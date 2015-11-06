@@ -1,0 +1,71 @@
+/*
+| Global variables
+*/
+
+$header-height: 80px;
+$logo-height : 28px;
+$branding-padding :  (($header-height - $logo-height)/2);
+
+@function centermargin($lgObj,$smObj){
+	@return (($lgObj - $smObj)/2) - 2;
+}
+
+
+.header-main{
+	position: relative;
+	overflow: hidden;
+	background-color:#fff;
+	border-bottom:1px solid #dedede;
+	height:$header-height;
+	width:100%;
+}
+
+.header-main__branding{
+	padding: $branding-padding 0;
+	position: relative;
+	overflow: hidden;
+	display:inline-block;
+
+	a{
+		display:block;
+		height: $logo-height;
+	}
+}
+
+.nav-main{
+	position: relative;
+	overflow: hidden;
+	display:block;
+	right:0;
+
+	ul.nav-main__cta { 
+		position: absolute;
+		overflow: hidden;
+		top:0;
+		right:0;
+	}
+
+	ul.nav-main__cta li{
+		position: relative;
+		overflow: hidden;
+		display:inline-block;
+	}
+
+	ul.nav-main__cta li a{
+		@include clearbutton;
+		display: block;
+		height:20px;
+		line-height:20px; 
+		padding:10px 15px;
+		color:#009CFF;
+		border:2px solid #009CFF;
+		margin: centermargin(80px,40px) 0;
+		margin-left:10px;
+		@include border-radius(2px);
+		font-weight:700;
+
+
+
+	}
+}
+

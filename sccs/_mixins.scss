@@ -1,0 +1,221 @@
+
+/*
+| Caclucale rem size
+| USAGE: @include font-size(14px)
+*/
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+
+@mixin bp-large {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+/*
+| Include breakpoints
+| USAGE: div { ... @include bp-small {...} ... }
+*/
+
+@mixin bp-medium {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+/*
+| Include Keyframes
+| USAGE: 
+| @include keyframes(slide-down) {
+|   0% { opacity: 1; }
+|   90% { opacity: 0; }
+| }
+*/
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }  
+  @-ms-keyframes $animation-name {
+    @content;
+  }
+  @-o-keyframes $animation-name {
+    @content;
+  }  
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+/*
+| Include animations
+| USAGE: 
+| .element {
+|   width: 100px;
+|   height: 100px;
+|   background: black;
+|   @include animation('slide-down 5s 3');
+| }
+*/
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+/*
+| Include transitions
+| USAGE: 
+| .element {
+|   @include transition(color .3s ease);
+| }
+*/
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+/*
+| Include opacity - cross browser opacity
+| USAGE: .faded-text {  @include opacity(0.8);  }
+*/
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/*
+| Include opacity - cross browser opacity
+| USAGE: .container-with-floated-children { @extend %clearfix; }
+*/
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+
+
+// generic transform
+@mixin transform($transforms) {
+     -moz-transform: $transforms;
+       -o-transform: $transforms;
+      -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin scale($scale) {
+   @include transform(scale($scale));
+} 
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+       -o-transform-origin: $origin;
+      -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+
+/*
+| Include opacity - cross browser opacity
+| USAGE: .container-with-floated-children { @extend %clearfix; }
+*/
+@mixin clearbutton{
+  text-decoration: none;
+  padding:0px;
+  margin:0px;
+  line-height:auto;
+}
+
+
+
+
+/*============================================================================
+  Dependency-free breakpoint mixin
+    - Based on http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+    - Usage docs: http://shopify.github.io/Timber/#sass-mixins
+==============================================================================*/
+$min: min-width;
+$max: max-width;
+
+$small: 480px;
+$medium: 768px;
+$large: 769px;
+
+@mixin at-query ($constraint_, $viewport1_, $viewport2_:null) {
+ 
+ $constraint: $constraint_; $viewport1: $viewport1_; $viewport2: $viewport2_;
+
+  @if type-of($constraint_) == number {
+    $viewport1 : $constraint_; $viewport2 : $viewport1_; $constraint : null;
+  }
+
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } 
+  @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } 
+  @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
