@@ -22,53 +22,102 @@
 	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 <div class="site-container header-main">
-		<div class="site-wrapper">
-			<header class="">
+	<div class="container">
+		<div class="row">
+			<header>
 				<nav class="nav-main">
 					<div class="header-main__branding">
 						<a href="#"><img src="images/logo.png" alt="NanoDesk"></a>
 					</div>
 				
-					<ul class="nav-main__cta">
+					<ul class="hidden-xs nav-main__cta">
 						<li><a href="#">Sign Up</a></li>
 						<li><a href="#">Log In</a></li>
 					</ul>
-				</nav>
+				</nav>			
 			</header>
-		</div><!--//site wrapper-->
+		</div><!--// row-->
+	</div><!--// container-->
 </div><!--//site container-->
 
 
 <div class="site-container site-main">
 	<div class="container">
-		<div class="row no-gutter">
-			<div class="col-md-3">
+		<div class="row no-gutter site-main-holder">
+			<div class="col-md-3 nav-aside-holder">
 				<aside class="nav-aside">
-					<nav>
-						<ul style="list-style:none;">
-							<li>item 1</li>
-							<li>item 2</li>
-							<li>item 3</li>
-							<li>item 4</li>
-							<li>item 1</li>
-							<li>item 2</li>
-							<li>item 3</li>
-							<li>item 4</li>
+					<nav class="nav-secondary">
+						<ul>
+							<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Dashboard</a></li>
+							<li><a href="#" class="active"><i class="glyphicon glyphicon-bookmark"></i> My Papers</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 3</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 4</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 5</a></li>
 						</ul>
 					</nav>
 				</aside>				
 
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-9 site-main__content-holder">
 				<main class="site-main__content">
-					<div class="module-block">
+					<h2>Module Title</h2>
+					<div class="module">
+						<div class="module-block__header">
+							<i class="glyphicon glyphicon-bookmark"></i> Block title
+						</div>
+						<div class="module-block__content  no-space">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+									<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+									</div>
+								<div class="form-group">
+									<label for="exampleInputFile">File input</label>
+									<input type="file" id="exampleInputFile">
+									<p class="help-block">Example block-level help text here.</p>
+								</div>
+								<div class="checkbox">
+									<label>
+									  <input type="checkbox"> Check me out
+									</label>
+								</div>
+								<button type="submit" class="btn btn-default">Submit</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="module module--default">
 						<div class="module-block__header">
 							<i class="glyphicon glyphicon-bookmark"></i> Block title
 						</div>
 						<div class="module-block__content">
-							content
+							<form>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+									<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+									</div>
+								<div class="form-group">
+									<label for="exampleInputFile">File input</label>
+									<input type="file" id="exampleInputFile">
+									<p class="help-block">Example block-level help text here.</p>
+								</div>
+								<div class="checkbox">
+									<label>
+									  <input type="checkbox"> Check me out
+									</label>
+								</div>
+								<button type="submit" class="btn btn-default">Submit</button>
+							</form>
 						</div>
-					</div>
+					</div><!--// module-->
 				</main>				
 			</div>
 		</div>
@@ -76,17 +125,16 @@
 </div><!--//site container-->
 
 <div class="site-container footer-main">
-	
-		<div class="site-wrapper">
+	<div class="container">
+		<div class="row">
 			<footer class="footer-content">
-
-			<p>
-				&copy; Nanodesk
-			</p>
+				<p>
+					&copy; 2015 Nanodesk
+				</p>
 			</footer>
-		</div>
-	
-</div>
+		</div><!--// row-->
+	</div><!--// container-->
+</div><!--// site container-->
 
 
 

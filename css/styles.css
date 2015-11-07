@@ -55,15 +55,31 @@
     - Usage docs: http://shopify.github.io/Timber/#sass-mixins
 ==============================================================================*/
 /*
+| (S)CSS general styles for content and font control
+*/
+/* line 5, ../scss/_content.scss */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+/*
 | base css
 */
-/* line 1, ../scss/_base.scss */
+/*
+| (S)CSS general styles and variables 
+*/
+/* line 5, ../scss/_base.scss */
 * {
   padding: 0;
   margin: 0;
 }
 
-/* line 8, ../scss/_base.scss */
+/* line 10, ../scss/_base.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 16, ../scss/_base.scss */
 .no-gutter.row,
 .no-gutter.container,
 .no-gutter.container-fluid {
@@ -71,25 +87,50 @@
   margin-right: 0;
 }
 
-/* line 13, ../scss/_base.scss */
+/* line 21, ../scss/_base.scss */
+.no-space {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* line 26, ../scss/_base.scss */
 .no-gutter > [class^="col-"] {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 26, ../scss/_base.scss */
+/* line 33, ../scss/_base.scss */
+.form-group input {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* line 39, ../scss/_base.scss */
+.btn {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* nanodesk blue*/
+/* line 54, ../scss/_base.scss */
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 1em;
 }
 
-/* line 32, ../scss/_base.scss */
+/* Global container */
+/* line 63, ../scss/_base.scss */
 .site-container {
   position: relative;
   overflow: hidden;
 }
 
-/* line 37, ../scss/_base.scss */
+/* Global wrapper */
+/* line 69, ../scss/_base.scss */
 .site-wrapper {
   position: relative;
   overflow: hidden;
@@ -98,42 +139,118 @@ body {
   max-width: 1030px;
 }
 
-/* line 46, ../scss/_base.scss */
+/* line 77, ../scss/_base.scss */
+.container {
+  padding: 0;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  /* line 77, ../scss/_base.scss */
+  .container {
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+}
+
+/* line 90, ../scss/_base.scss */
+.site-main-holder {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  /* line 90, ../scss/_base.scss */
+  .site-main-holder {
+    display: table;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* line 97, ../scss/_base.scss */
+  .site-main__content-holder {
+    display: table-cell;
+    float: none;
+  }
+}
+
+/* line 105, ../scss/_base.scss */
 .site-main {
   background-color: #f5f5f5;
-  padding: 30px 0;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  /* line 105, ../scss/_base.scss */
+  .site-main {
+    padding: 30px 0;
+  }
 }
 
-/* line 51, ../scss/_base.scss */
+/* line 115, ../scss/_base.scss */
 .site-main__content {
   background-color: #fff;
-  padding: 30px;
+  height: 100%;
+  padding: 10px;
+}
+@media screen and (min-width: 768px) {
+  /* line 115, ../scss/_base.scss */
+  .site-main__content {
+    padding: 30px;
+  }
 }
 
-/* line 57, ../scss/_base.scss */
-.module-block {
-  background-color: white;
-  border: 1px solid #dcdfe4;
+/*
+|
+|  Modules 
+|
+*/
+/* line 132, ../scss/_base.scss */
+.module {
+  margin-bottom: 30px;
 }
 
-/* line 63, ../scss/_base.scss */
+/* line 136, ../scss/_base.scss */
 .module-block__header {
-  border-bottom: 1px solid #dcdfe4;
-  padding: 20px;
+  padding: 10px;
   font-weight: 700;
 }
 
-/* line 70, ../scss/_base.scss */
+/* line 141, ../scss/_base.scss */
 .module-block__content {
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  /* line 141, ../scss/_base.scss */
+  .module-block__content {
+    padding: 20px;
+  }
+}
+
+/*
+| module default styles
+*/
+/* line 154, ../scss/_base.scss */
+.module--default {
+  background-color: white;
+  border: 1px solid #dcdfe4;
+}
+/* line 158, ../scss/_base.scss */
+.module--default .module-block__header {
+  border-bottom: 1px solid #dcdfe4;
+}
+/* line 162, ../scss/_base.scss */
+.module--default .module-block__content {
   padding: 20px;
 }
 
-/* line 75, ../scss/_base.scss */
+/*
+|
+|  Footer 
+|
+*/
+/* line 177, ../scss/_base.scss */
 .footer-main {
   border-top: 1px solid #dcdfe4;
 }
 
-/* line 80, ../scss/_base.scss */
+/* line 182, ../scss/_base.scss */
 .footer-content {
   padding: 30px 0;
 }
@@ -203,10 +320,80 @@ body {
   font-weight: 700;
 }
 
-/* line 1, ../scss/_aside-menu.scss */
+/*
+| (S)CSS styles for (a)side (secondary) menu on the main content
+*/
+/* line 5, ../scss/_aside-menu.scss */
+.nav-aside-holder {
+  height: 100%;
+  background-color: white;
+}
+@media screen and (min-width: 768px) {
+  /* line 5, ../scss/_aside-menu.scss */
+  .nav-aside-holder {
+    display: table-cell;
+    vertical-align: top;
+    border-right: 1px solid #dcdfe4;
+    float: none;
+  }
+}
+
+/* line 17, ../scss/_aside-menu.scss */
+.nav-aside-bg {
+  position: absolute;
+  display: block;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 26, ../scss/_aside-menu.scss */
 .nav-aside {
   background-color: #fff;
   width: 100%;
   height: 100%;
-  border-right: 1px solid #dcdfe4;
+  border: 0;
+}
+
+/* line 38, ../scss/_aside-menu.scss */
+.nav-secondary ul {
+  list-style: none;
+}
+/* line 42, ../scss/_aside-menu.scss */
+.nav-secondary ul li i {
+  padding-right: 10px;
+}
+/* line 46, ../scss/_aside-menu.scss */
+.nav-secondary ul li a {
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  line-height: auto;
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #dcdfe4;
+  -webkit-transition: 0.3s background-color ease;
+  -moz-transition: 0.3s background-color ease;
+  -ms-transition: 0.3s background-color ease;
+  -o-transition: 0.3s background-color ease;
+  transition: 0.3s background-color ease;
+  /* hover actions */
+}
+/* line 53, ../scss/_aside-menu.scss */
+.nav-secondary ul li a:hover {
+  background-color: #1475b3;
+  color: white;
+  -webkit-transition: 0.2s all ease-out;
+  -moz-transition: 0.2s all ease-out;
+  -ms-transition: 0.2s all ease-out;
+  -o-transition: 0.2s all ease-out;
+  transition: 0.2s all ease-out;
+}
+/* line 60, ../scss/_aside-menu.scss */
+.nav-secondary ul li a.active {
+  display: block;
+  background-color: #1475b3;
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid #1475b3;
 }
