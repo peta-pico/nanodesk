@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NanoDesk</title>
     <meta name="description" content="Nanodesk">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -37,52 +38,41 @@
 		</div><!--//site wrapper-->
 </div><!--//site container-->
 
+
 <div class="site-container site-main">
-	<div class="site-wrapper">
+	<div class="container">
+		<div class="row no-gutter">
+			<div class="col-md-3">
+				<aside class="nav-aside">
+					<nav>
+						<ul style="list-style:none;">
+							<li>item 1</li>
+							<li>item 2</li>
+							<li>item 3</li>
+							<li>item 4</li>
+							<li>item 1</li>
+							<li>item 2</li>
+							<li>item 3</li>
+							<li>item 4</li>
+						</ul>
+					</nav>
+				</aside>				
 
-
-		<aside class="nav-aside">
-			<nav>
-				<ul>
-					<li>item 1</li>
-					<li>item 2</li>
-					<li>item 3</li>
-					<li>item 4</li>
-					<li>item 1</li>
-					<li>item 2</li>
-					<li>item 3</li>
-					<li>item 4</li>
-					<li>item 5</li>
-					<li>item 6</li>
-					<li>item 7</li>
-					<li>item 8</li>
-					<li>item 9</li>
-					<li>item 10</li>
-					<li>item 11</li>
-					<li>item 12</li>
-					<li>item 13</li>
-					<li>item 14</li>
-					<li>item 15</li>
-					<li>item 16</li>
-					<li>item 17</li>
-					<li>item 18</li>
-					<li>item 19</li>
-					<li>item 20</li>
-				</ul>
-			</nav>
-		</aside>
-
-		<main>
-			<div class="module-block">
-				<div class="module-block__header">
-					Block title
-				</div>
-				<div class="module_block__content">
-					content
-				</div>
 			</div>
-		</main>
-	</div><!--//site wrapper-->
+			<div class="col-md-9">
+				<main class="site-main__content">
+					<div class="module-block">
+						<div class="module-block__header">
+							<i class="glyphicon glyphicon-bookmark"></i> Block title
+						</div>
+						<div class="module-block__content">
+							content
+						</div>
+					</div>
+				</main>				
+			</div>
+		</div>
+	</div>
 </div><!--//site container-->
 
 <div class="site-container footer-main">

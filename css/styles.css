@@ -57,25 +57,39 @@
 /*
 | base css
 */
-/* line 1, ../sccs/_base.scss */
+/* line 1, ../scss/_base.scss */
 * {
   padding: 0;
   margin: 0;
 }
 
-/* line 12, ../sccs/_base.scss */
+/* line 8, ../scss/_base.scss */
+.no-gutter.row,
+.no-gutter.container,
+.no-gutter.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 13, ../scss/_base.scss */
+.no-gutter > [class^="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 26, ../scss/_base.scss */
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 1em;
 }
 
-/* line 18, ../sccs/_base.scss */
+/* line 32, ../scss/_base.scss */
 .site-container {
   position: relative;
   overflow: hidden;
 }
 
-/* line 23, ../sccs/_base.scss */
+/* line 37, ../scss/_base.scss */
 .site-wrapper {
   position: relative;
   overflow: hidden;
@@ -84,18 +98,42 @@ body {
   max-width: 1030px;
 }
 
-/* line 32, ../sccs/_base.scss */
+/* line 46, ../scss/_base.scss */
 .site-main {
   background-color: #f5f5f5;
   padding: 30px 0;
 }
 
-/* line 39, ../sccs/_base.scss */
-.footer-main {
-  border-top: 1px solid #dedede;
+/* line 51, ../scss/_base.scss */
+.site-main__content {
+  background-color: #fff;
+  padding: 30px;
 }
 
-/* line 44, ../sccs/_base.scss */
+/* line 57, ../scss/_base.scss */
+.module-block {
+  background-color: white;
+  border: 1px solid #dcdfe4;
+}
+
+/* line 63, ../scss/_base.scss */
+.module-block__header {
+  border-bottom: 1px solid #dcdfe4;
+  padding: 20px;
+  font-weight: 700;
+}
+
+/* line 70, ../scss/_base.scss */
+.module-block__content {
+  padding: 20px;
+}
+
+/* line 75, ../scss/_base.scss */
+.footer-main {
+  border-top: 1px solid #dcdfe4;
+}
+
+/* line 80, ../scss/_base.scss */
 .footer-content {
   padding: 30px 0;
 }
@@ -103,59 +141,57 @@ body {
 /*
 | Global variables
 */
-/* line 14, ../sccs/_menu.scss */
+/* line 14, ../scss/_menu.scss */
 .header-main {
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #dcdfe4;
   height: 80px;
   width: 100%;
 }
 
-/* line 23, ../sccs/_menu.scss */
+/* line 23, ../scss/_menu.scss */
 .header-main__branding {
   padding: 26px 0;
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
-/* line 29, ../sccs/_menu.scss */
+/* line 29, ../scss/_menu.scss */
 .header-main__branding a {
   display: block;
   height: 28px;
 }
 
-/* line 35, ../sccs/_menu.scss */
+/* line 35, ../scss/_menu.scss */
 .nav-main {
   position: relative;
   overflow: hidden;
   display: block;
   right: 0;
 }
-/* line 41, ../sccs/_menu.scss */
+/* line 41, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta {
   position: absolute;
   overflow: hidden;
   top: 0;
   right: 0;
 }
-/* line 48, ../sccs/_menu.scss */
+/* line 48, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta li {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
-/* line 54, ../sccs/_menu.scss */
+/* line 54, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta li a {
   text-decoration: none;
   padding: 0px;
   margin: 0px;
   line-height: auto;
   display: block;
-  height: 20px;
-  line-height: 20px;
-  padding: 10px 15px;
+  padding: 8px 15px;
   color: #009CFF;
   border: 2px solid #009CFF;
   margin: 18px 0;
@@ -167,8 +203,10 @@ body {
   font-weight: 700;
 }
 
-/* line 1, ../sccs/_aside-menu.scss */
+/* line 1, ../scss/_aside-menu.scss */
 .nav-aside {
   background-color: #fff;
-  width: 200px;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #dcdfe4;
 }

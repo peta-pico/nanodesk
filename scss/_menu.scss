@@ -15,7 +15,7 @@ $branding-padding :  (($header-height - $logo-height)/2);
 	position: relative;
 	overflow: hidden;
 	background-color:#fff;
-	border-bottom:1px solid #dedede;
+	border-bottom:1px solid #dcdfe4;
 	height:$header-height;
 	width:100%;
 }
@@ -54,17 +54,13 @@ $branding-padding :  (($header-height - $logo-height)/2);
 	ul.nav-main__cta li a{
 		@include clearbutton;
 		display: block;
-		height:20px;
-		line-height:20px; 
-		padding:10px 15px;
+		padding:8px 15px;
 		color:#009CFF;
 		border:2px solid #009CFF;
 		margin: centermargin(80px,40px) 0;
 		margin-left:10px;
 		@include border-radius(2px);
 		font-weight:700;
-
-
 
 	}
 }
