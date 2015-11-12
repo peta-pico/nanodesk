@@ -53,6 +53,7 @@
 		&:hover{
 			background-color:$nd_blue;
 			color:white;
+			border-bottom:1px solid $nd_blue;
 			@include transition(.2s all ease-out);
 		}
 	}

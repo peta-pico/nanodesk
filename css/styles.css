@@ -100,7 +100,7 @@ html, body {
 }
 
 /* line 33, ../scss/_base.scss */
-.form-group input {
+.form-group input, .form-group select {
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -383,13 +383,14 @@ body {
 .nav-secondary ul li a:hover {
   background-color: #1475b3;
   color: white;
+  border-bottom: 1px solid #1475b3;
   -webkit-transition: 0.2s all ease-out;
   -moz-transition: 0.2s all ease-out;
   -ms-transition: 0.2s all ease-out;
   -o-transition: 0.2s all ease-out;
   transition: 0.2s all ease-out;
 }
-/* line 60, ../scss/_aside-menu.scss */
+/* line 61, ../scss/_aside-menu.scss */
 .nav-secondary ul li a.active {
   display: block;
   background-color: #1475b3;
