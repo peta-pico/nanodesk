@@ -11,12 +11,12 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?php echo ROOT; ?>/css/normalize.css">
+    <link rel="stylesheet" href="<?php echo ROOT; ?>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT; ?>/css/main.css">
+    <link rel="stylesheet" href="<?php echo ROOT; ?>/css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="<?php echo ROOT; ?>js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!-- add after -->
     <?php

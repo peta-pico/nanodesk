@@ -2,10 +2,14 @@
 <div class="col-md-3 nav-aside-holder">
 	<aside class="nav-aside">
 		<nav class="nav-secondary">
+			<?php 
+				$p =  $_GET['p'];
+				$active[$p] = "active"
+			?>
 			<ul>
-				<li><a href="<?php echo $root; ?>/?p=index"><i class="glyphicon glyphicon-bookmark"></i> Dashboard</a></li>
-				<li><a href="#" class="active"><i class="glyphicon glyphicon-bookmark"></i> My Papers</a></li>
-				<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 3</a></li>
+				<li><a href="<?php echo ROOT; ?>/" class="<?php echo $active['']; ?>"><i class="glyphicon glyphicon-bookmark"></i> Dashboard</a></li>
+				<li><a href="<?php echo ROOT; ?>/my-papers" class="<?php echo $active['my-papers']; ?>/"><i class="glyphicon glyphicon-bookmark"></i> My Papers</a></li>
+				<li><a href="#" class="<?php echo $active['page_3']; ?>"><i class="glyphicon glyphicon-bookmark"></i> Link 3</a></li>
 				<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 4</a></li>
 				<li><a href="#"><i class="glyphicon glyphicon-bookmark"></i> Link 5</a></li>
 			</ul>

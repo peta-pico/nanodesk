@@ -11,7 +11,7 @@
 
 			<div class="col-md-9 site-main__content-holder">
 				<main class="site-main__content">
-					<h2>Edit Paper ($module_title)</h2>
+					<h2>Add new ($module_title)</h2>
 					<div class="module">
 						<div class="module-block__header" style="display:none;">
 							<i class="glyphicon glyphicon-upload"></i> Edit paper

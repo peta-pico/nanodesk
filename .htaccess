@@ -1,42 +1,41 @@
 Options +FollowSymLinks
-#RewriteBase /github/nanodesk/
-
 
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /github/nanodesk/
+
+## If the request is for a valid directory
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+
+## If the request is for a valid file
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+
+## If the request is for a valid link
+RewriteCond %{REQUEST_FILENAME} -l
+
+## don't do anything
+RewriteRule ^ - [L]
+
+
+##
+# Add trailing slash when missing
+##
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !^.*\.(css|jpe?g|gif|png|js|ico)$ [NC]
-RewriteRule ^(.*)$ index.php?p=$1 [QSA]
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ http://localhost/github/nanodesk/$1/ [R=301,L]
 
 
+##
+# Query fields
+##
 
-#
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ ?p=$1&var=$2&var2=$3&var3=$4 [L,QSA]
 
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ ?p=$1&var=$2&var2=$3 [L,QSA]
 
+RewriteRule ^([^/]+)/([^/]+)/?$ ?p=$1&var=$2 [L,QSA]
 
-
-
-
-
-
-#Options +FollowSymLinks -MultiViews
-#RewriteEngine On
-
-
-
-#RewriteBase /github/nanodesk/
-#RewriteRule ^index/([0-9a-zA-Z_-]+) index.php?p=$1 [NC,L]
-
-#RewriteBase /wordpress/
-#RewriteRule ^index\.php$ - [L]
-
-
-#RewriteBase /boekendeals2016/
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule ^(.*)$ /index.php/$1 [L] 
+RewriteRule ^([^/]+)/?$ ?p=$1 [L,QSA]
 
 
 
