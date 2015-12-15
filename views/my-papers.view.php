@@ -23,19 +23,19 @@
 						<div class="row module__list-item">
 							<div class="col-md-3"><strong>Date</strong></div>
 							<div class="col-md-3"><strong>Paper title</strong></div>
-							<div class="col-md-3"><strong>field 3</strong></div>
+							<div class="col-md-3"><strong>doi?</strong></div>
 							<div class="col-md-3 text-right">
 								&nbsp;
 							</div>
 
 						</div><!--//row-->
 						<?php 
-							for($i=0;$i<10;$i++):
+							foreach($papers as $paper):
 						?>
 						<div class="row module__list-item">
-							<div class="col-md-3"><?php echo date('d / m / Y'); ?></div>
-							<div class="col-md-3">Paper Name</div>
-							<div class="col-md-3">Data 3</div>
+							<div class="col-md-3"><?php echo $paper['date']; ?></div>
+							<div class="col-md-3"><?php echo $paper['id']; ?></div>
+							<div class="col-md-3"><?php echo $paper['doi']; ?></div>
 							<div class="col-md-3 text-right">
 								<a href="#">
 									<i class="glyphicon glyphicon-trash"></i>
@@ -44,7 +44,7 @@
 
 						</div><!--//row-->
 						<?php 
-							endfor;
+							endforeach;
 						?>
 					</div>
 				</main>				

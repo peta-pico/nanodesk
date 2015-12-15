@@ -22,5 +22,10 @@ $head['meta']['robots'] = "index, follow";
 
 $user_id = $login->get_login_info('id');
 
+$query = $db->prepare("SELECT * FROM papers WHERE user_id=? ORDER BY date DESC");
+$query->execute(array($user_id));
+
+$papers = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
