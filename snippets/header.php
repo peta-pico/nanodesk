@@ -4,7 +4,7 @@
 			<header>
 				<nav class="nav-main">
 					<div class="header-main__branding">
-						<a href="#"><img src="images/logo.png" alt="NanoDesk"></a>
+						<a href="#"><img src="<?php echo ROOT;?>/images/logo.png" alt="NanoDesk"></a>
 					</div>
 				
 					<ul class="hidden-xs nav-main__cta">

@@ -25,7 +25,7 @@ include_once("config.inc.php");
 class login
 {
 
-	public $verbinding,$cookiename="bd_sid";
+	public $verbinding,$cookiename="nd_sid";
 
 	/*
 	| Een variabele om aan te geven of de gberuiker is ingelogd,
@@ -179,212 +179,6 @@ class login
 	}
 	
 	/*
-	| Een functie om gebruikers te registreren. Word aangeroepen in init().
-	| Het woord 'private' betekent dat je deze functie alleen in deze klasse
-	| (dit bestantd) mag aanroepen. Als je dat niet doet krijg je een foutmelding
-	*/
-	private function registreer_gebruiker()
-	{
-		/*
-		| Even kiken of het actie veld gezet is en de waarde correct is
-		*/
-		if(isset($_POST['actie']) && $_POST['actie'] == 'registreer_gebruiker') 
-		{			
-			$velden = array();
- 
-			 /*
-			| controleren of de database en het formulier hetzelfde zijn.
-			*/
-			if(!is_array($this->database_velden) || !count($this->database_velden)) 
-			{
-				if(show_errors == true)
-				{
-					/*
-					| Ik heb de Exception methode van PHP gebruikt voor deze foutmelding. Eerst stond er dit
-					| (kun je erin zetten als je dat liever hebt, moet je wel de throw new Exception(...) 
-					| weghalen!
-					|
-					| die("FOUT: Geen velden opgegeven");
-					*/
-					throw new Exception("De volgende fout is opgetreden: <strong>geen velden opgegeven</strong>.");
-				}
-				else
-				{
-					die("FOUT: Geen velden opgegeven");
-				}
-			}
- 
-			/*
-			| De database velden array uit elkaar trekken en gaan controleren op bepaalde zaken
-			| zoals lengte van gebruikersnamen.
-			*/
-			foreach($this->database_velden as $veld) 
-			{
-				/*
-				| Het veld item nog verder uit elkaar halen,
-				| scheiden op alle dubbele punten.
-				*/
-				$veld = split(':', $veld);
-				
-				/*
-				| De veldnaam ophalen
-				*/
-				$veld_naam = $veld[0];
-				
-				/*
-				| De velden uit het formulier synchroniseren
-				| met die uit de database.
-				*/
-				$velden[$veld_naam] = $_POST[$veld_naam];
-			
-				/*
-				| De veld instellingen ophalen
-				*/
-				$veld_instellingen = split('\|', $veld[1]);
- 
-				 /*
-				| De veld instellingen verder uit elkaar halen
-				| om te gaan controleren op lengtes enz.
-				*/
-				foreach($veld_instellingen as $instelling) 
-				{
-					/*
-					| Als de instelling verplicht is, en het veld is leeg.
-					*/
-					if($instelling == 'verplicht' && empty($velden[$veld_naam]))
-					{
-						$this->fouten .= "<li>Het veld '".$veld_naam."' is verplicht, maar nu is het leeg.</li>";
-					}
-					
-					/*
-					| Als de md5 instelling ingeschakeld is, omzetten naar MD5
-					*/
-					elseif($instelling == 'md5')
-					{
-						$velden[$veld_naam] = md5($velden[$veld_naam]);
-					}
-					
-					/*
-					| Kijken of er een minimum lengte is
-					*/
-					elseif(substr($instelling, 0, 3) == 'min')
-					{
-						/*
-						| En die dan controleren
-						*/
-						if(strlen($velden[$veld_naam]) < (int)substr($instelling, 4))
-						{
-							$this->fouten .= "<li>Het veld '".$veld_naam."' is te kort</li>";
-						}
-					}
-					
-					/*
-					| Kijken of er een maxium lengte is
-					*/
-					elseif(substr($instelling, 0, 3) == 'max') 
-					{
-						/*
-						| En die dan controleren
-						*/
-						if(strlen($velden[$veld_naam]) > (int) substr($instelling, 4)) 
-						{
-							$this->fouten .= "<li>Het veld '".$veld_naam."' is te lang.</li>";
-						}
-					} 
-					
-					/*
-					| Kijken of het veld iets moet matchen
-					*/
-					elseif(substr($instelling, 0, 2) == "==") 
-					{
-						/*
-						| Even kijken of het ook matcht.
-						*/
-						if($velden[$veld_naam] != $_POST[substr($instelling, 2)]) 
-						{
-							$this->fouten .= '<li>Het veld '.$veld_naam.' en '.substr($instelling, 2).' komen niet overeen</li>';
-						}				
-					} 
-					
-					/*
-					| Controleren of het veld uniek moet zijn
-					*/
-					elseif($instelling == 'uniek') 
-					{
-						$q = mysql_query("SELECT ".$veld_naam." FROM bd_gebruikers WHERE ".$veld_naam." = '".mysql_real_escape_string($velden[$veld_naam])."'");
-						if(!$q)
-						{
-							/*
-							| Een verkortte if-else lus.
-							| (wat te controleren) ? uitkomst van if : uitkomst van else
-							*/
-							(show_errors == true) ? trigger_error("Er is een MySQL fout opgetreden:<br />".mysql_error(), E_USER_ERROR) : $this->fouten .= '<li>Er is een MySQL fout opgetreden</li>';
-						}
-						else
-						{
-							/*
-							| controleren of het veld al bestaat,
-							*/
-							if(mysql_num_rows($q))
-							{
-								$this->fouten .= '<li>De inhoud van veld '.$veld_naam.' bestaat al</li>';
-							}
-						}		
-					} 
-					
-					/*
-					| Controleren of het veld een email adres is
-					*/
-					elseif($instelling == 'email')
-					{
-						/*
-						| Controleren of het een geldig email adres is.
-						*/
-						if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $velden[$veld_naam]))
-						{
-							$this->fouten .= '<li>Het email adres is niet correct</li>';
-						}
-					}
-				}
-			}
-			
-			 /*
-			| ALs er geen fouten zijn gevonden in het formulier
-			| gaan de de benodigde SQL code genereren.
-			*/
-			if(!$this->fouten) 
-			{
-				$SQL = "INSERT INTO gebruikers ";
-				$SQL_TMP = '';
-				
-				foreach($velden as $naam => $waarde)
-				{
-					$SQL_TMP .= ", ".$naam." = '".mysql_real_escape_string($waarde)."'";
-				}	
-				
-				$SQL .= "SET ".preg_replace("#^,{0,1}#", '', $SQL_TMP);
-				
-				/*
-				| De query is gelukt, nu de gebruiker terug bregen naar de index
-				*/
-				if($SQL_TMP && mysql_query($SQL))
-				{
-					header("Location: index.php");
-				}
-				
-				/*
-				| Anders een fout tonen.
-				*/
-				else
-				{
-					(show_errors == true) ? trigger_error("Er is een MySQL fout opgetreden:<br />".mysql_error(), E_USER_ERROR) : $this->fouten .= '<li>Er is een MySQL fout opgetreden</li>';
-				}
-			}		
-		}
-	
-	}
-	
-	/*
 	| Een functie om de gegevens van de gebruikers die in willen loggen te controleren.
 	*/
 	private function controleer_gegevens()
@@ -415,7 +209,7 @@ class login
 			/*
 			| Een query uitvoeren om te kijken of de gebruiker in de database zit
 			*/
-			$query = mysqli_query($this->verbinding,"SELECT * FROM bd_gebruikers WHERE active=1 AND email = '$gebruiker' AND wachtwoord = '$wachtwoord' LIMIT 1");
+			$query = mysqli_query($this->verbinding,"SELECT * FROM users2 WHERE email = '$gebruiker' AND password = '$wachtwoord' LIMIT 1");
 			
 			/*
 			| Als dat zo is moet de gebruikersinfo array gevuld worden met informatie,
@@ -482,12 +276,12 @@ class login
 		if(isset($_COOKIE[$this->cookiename]) && !empty($_COOKIE[$this->cookiename]))
 		{
 			$sid = $_COOKIE[$this->cookiename];
-			$query = mysqli_query($this->verbinding,"SELECT * FROM bd_logins WHERE sid = '".$sid."' AND ip = '".$this->get_ip()."'") or die(mysql_error());
+			$query = mysqli_query($this->verbinding,"SELECT * FROM logins WHERE sid = '".$sid."' AND ip = '".$this->get_ip()."'") or die(mysql_error());
 			if(mysqli_num_rows($query))
 			{
 				#$f = mysql_fetch_array($query);
 				$f = mysqli_fetch_object($query);
-				$query = mysqli_query($this->verbinding,"SELECT * FROM bd_gebruikers WHERE id = '".$f->uid."'") or die(mysql_error());
+				$query = mysqli_query($this->verbinding,"SELECT * FROM users2 WHERE id = '".$f->uid."'") or die(mysql_error());
 				if(mysqli_num_rows($query))
 				{
 					self::$loginsessie = true;
@@ -513,14 +307,14 @@ class login
 	{
 		self::$gebruikersinfo['sleutel'] = md5(rand(0,99999999999).date("dmyhis"));
 		$info = self::$gebruikersinfo['info'];
-		$SQL  = "INSERT INTO bd_logins ";
+		$SQL  = "INSERT INTO logins ";
 		$SQL .= "SET uid	= '". $info['id'] ."' ";
 		$SQL .= ",   sid   = '". self::$gebruikersinfo['sleutel'] ."' ";
 		$SQL .= ",   ip	= '". $this->get_ip() ."' ";
 		$SQL .= ",   datum = NOW() ";
 		mysqli_query($this->verbinding,$SQL) or die("Error: kon niet inloggen. :".mysqli_error($this->verbinding));
 		$secondes = login_session_time * 3600;
-		setcookie("bd_sid", self::$gebruikersinfo['sleutel'], time()+$secondes, "/");
+		setcookie("nd_sid", self::$gebruikersinfo['sleutel'], time()+$secondes, "/");
 		header("Location: ".$_SERVER['REQUEST_URI']);
 	}
 	
@@ -531,7 +325,7 @@ class login
 	*/
 	private function end_session()
 	{
-		mysqli_query($this->verbinding,"DELETE FROM bd_logins WHERE sid = '".$_COOKIE[$this->cookiename]."' AND ip = '".$this->get_ip()."'") or die(mysql_error());
+		mysqli_query($this->verbinding,"DELETE FROM logins WHERE sid = '".$_COOKIE[$this->cookiename]."' AND ip = '".$this->get_ip()."'") or die(mysql_error());
 		$secondes = login_session_time * 3600;
 		setcookie($this->cookiename, "", time()-$secondes, "/");
 		unset($_SESSION['fb_token']);

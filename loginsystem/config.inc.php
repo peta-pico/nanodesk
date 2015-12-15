@@ -19,7 +19,7 @@ if(basename($_SERVER['PHP_SELF']) == "config.php")
 }
 
 $host = 'localhost';
-$dbname = 'boekendeals';
+$dbname = 'nanodesk';
 $dbuser = 'root';
 $dbpass = '';
 

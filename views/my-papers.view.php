@@ -13,10 +13,10 @@
 				<main class="site-main__content">
 					<div class="row">
 						<div class="col-md-6"><h2>My Papers</h2></div>
-						<div class="col-md-6 text-right"><a href="#" class="btn btn-md btn-default">+ Add New</a></div>
+						<div class="col-md-6 text-right"><a href="<?php echo ROOT.'/edit-paper/'; ?>" class="btn btn-md btn-default">+ Add New</a></div>
 					</div>
 	
-					<div class="module">
+					<div class="module" style="display:none;">
 						<a href="#" class="btn btn-md btn-default">+ Add New</a>
 					</div>
 					<div class="module module--list">

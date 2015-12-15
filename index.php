@@ -8,7 +8,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 // depencencies
 include('includes/config.inc.php');
 include('classes/head.class.php');
+include('classes/core.class.php');
 include('classes/functions.class.php');
+include('loginsystem/header.inc.php');
 
 $start_mc_time = microtime_float();
 
@@ -42,6 +44,5 @@ echo $end_mc_time - $start_mc_time;
 
 //include end html
 include('footer.php');
-
 
 ?>
