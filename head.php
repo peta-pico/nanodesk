@@ -16,14 +16,13 @@
     <link rel="stylesheet" href="<?php echo ROOT; ?>/css/main.css">
     <link rel="stylesheet" href="<?php echo ROOT; ?>/css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <script src="<?php echo ROOT; ?>js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    <script src="<?php echo ROOT; ?>/js/vendor/jquery-1.11.3.min.js"></script>
 
     <!-- add after -->
     <?php
         echo add_files($head['add_files']);
     ?>
-
-
 </head>
 <body>
 	<!--[if lt IE 8]>

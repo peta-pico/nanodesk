@@ -12,8 +12,6 @@ include('classes/core.class.php');
 include('classes/functions.class.php');
 include('loginsystem/header.inc.php');
 
-$start_mc_time = microtime_float();
-
 //global variables
 $head = array();
 
@@ -39,8 +37,6 @@ include('head.php');
 include('views/'.$p.'.view.php'); 
 
 
-$end_mc_time = microtime_float();
-echo $end_mc_time - $start_mc_time;
 
 //include end html
 include('footer.php');

@@ -6,11 +6,18 @@
 					<div class="header-main__branding">
 						<a href="#"><img src="<?php echo ROOT;?>/images/logo.png" alt="NanoDesk"></a>
 					</div>
-				
-					<ul class="hidden-xs nav-main__cta">
-						<li><a href="#">Sign Up</a></li>
-						<li><a href="#">Log In</a></li>
-					</ul>
+					<?php 
+						if( $login->get_login_info('id') ):
+					?>
+
+					<?php else: ?>
+						<ul class="hidden-xs nav-main__cta">
+							<li><a href="#">Sign Up</a></li>
+							<li><a href="#">Log In</a></li>
+						</ul>
+					<?php 
+						endif;
+					?>
 				</nav>			
 			</header>
 		</div><!--// row-->

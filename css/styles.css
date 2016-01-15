@@ -256,6 +256,23 @@ body {
 }
 
 /*
+| Aida lists
+*/
+/* line 193, ../scss/_base.scss */
+.aida-list .aida-item {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #e1e1e1;
+  background-color: #f1f1f1;
+  padding: 15px 0;
+}
+
+/* line 204, ../scss/_base.scss */
+.aida-controls {
+  padding: 15px;
+}
+
+/*
 | Global variables
 */
 /* line 14, ../scss/_menu.scss */
