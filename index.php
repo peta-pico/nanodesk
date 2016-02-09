@@ -22,9 +22,6 @@ if($p ==''){
 	$p = 'index';
 }
 
-echo $_GET['a'];
-
-
 
 //include controller (contains all the logic that needs to be displayed on the view)
 // it can sometimes contain arrays that need to be looped into the view (requires minimal logical coding in the view)

@@ -1,0 +1,28 @@
+@prefix : <http://example.org/nanodesk/example/aida/> .
+			@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+			@prefix dc: <http://purl.org/dc/terms/> .
+			@prefix pav: <http://purl.org/pav/> .
+			@prefix prov: <http://www.w3.org/ns/prov#> .
+			@prefix np: <http://www.nanopub.org/nschema#> .
+			@prefix ex: <http://example.org/> .
+			@prefix orcid: <http://orcid.org/> .
+			
+			:Head {
+				: np:hasAssertion :assertion ;
+					np:hasProvenance :provenance ;
+					np:hasPublicationInfo :pubinfo ;
+					a np:Nanopublication .
+			}
+			
+			:assertion {
+			    <http://dx.doi.org/10.1145/2531602.2531659> ex:includesStatement <http://purl.org/aida/Malaria+is+transmitted+by+mosquitoes.> .
+			}
+			
+			:provenance {
+				:assertion prov:wasAttributedTo orcid:0000-0000-1234-5678 .
+			}
+			
+			:pubinfo {
+				: dc:created "2016-02-09T09:19:05+01:00"^^xsd:dateTime ;
+					pav:createdBy orcid:0000-0000-1234-5678 .
+			}

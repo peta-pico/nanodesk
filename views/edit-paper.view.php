@@ -74,7 +74,7 @@
 									<?php 
 										if($formAction == 'insert'):
 									?>
-										<div class="aida-item col-md-12">
+										<div class="aida-item col-md-12" style="display:none;">
 											<div class="col-md-3">
 												<label for="">Does:</label>
 												<select name="aida_option[]" id="something" class="form-control">
@@ -130,19 +130,35 @@
 
 
 								</div><!--end aida-list-->
-								<div class="col-md-12 text-center aida-controls">
+								<div class="form-group text-left aida-controls">
 									<button class="add-aida btn btn-md- btn-primary">+ Add Aida</button>
 								</div>
-								<div class="form-group">
+								<div class="form-group" style="display:none;">
 									<label for="doi2">About this paper (DOI)</label>
 									<input type="text" class="form-control" id="doi2" name="doi2" placeholder="http://" value="http://"  required>
 								</div>
 
-								<div class="form-group text-right">
-									<input type="text" name="action" value="<?php echo $formAction; ?>">
-									<input type="text" name="paper_id" value="<?php echo ($formAction == 'insert' ) ? $add_to_url:$_GET['var']?>">
+
+								<div class="form-group text-right" style="border-top:1px solid #ccc; padding-top:20px; ">
+									<input type="hidden" name="action" value="<?php echo $formAction; ?>">
+									<input type="hidden" name="paper_id" value="<?php echo ($formAction == 'insert' ) ? $add_to_url:$_GET['var']?>">
 									<button type="submit" class="btn btn-md btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
 								</div>
+
+								<code>
+									<?php 
+										if($_GET['var']){
+											//echo $paper['doi'];
+
+											$trigdata = $trig->aida($paper['doi'],$date,$login->get_login_info('orcid'));
+
+											echo(htmlspecialchars($trigdata));
+
+											$filename = $paper['id'].'_'.$login->get_login_info('orcid').'_'.date('Y-d-m');
+											$trig->writeFile($filename, $trigdata, 'trigfiles');
+										}
+									?>
+								</code>
 
 							</form>
 						</div>
@@ -168,7 +184,9 @@
 									  <input type="checkbox"> Check me out
 									</label>
 								</div>
+
 								<button type="submit" class="btn btn-default">Submit</button>
+
 							</form>
 						</div>
 					</div><!--// module-->

@@ -34,6 +34,13 @@
 								<input type="hidden" name="next"  value="<?php echo rawurlencode($_GET['next']); ?>">
 								<button class="btn btn-md btn-primary" name="submit_login" type="submit"><i class="fa fa-sign-in"></i> Inloggen</button>
 							</div>
+
+							<a 
+							href="https://orcid.org/oauth/authorize?client_id=APP-DYF2BEWUCJNL1I5A&response_type=code&scope=/authenticate&redirect_uri=http://localhost/github/nanodesk/orcidlogin/"
+							class="btn btn-lg btn-primary"
+							>
+							Login With OrcId
+						</a>
 								
 						</div>
 					</div>

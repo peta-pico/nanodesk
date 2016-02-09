@@ -37,6 +37,9 @@
 							<div class="col-md-3"><?php echo $paper['id']; ?></div>
 							<div class="col-md-3"><?php echo $paper['doi']; ?></div>
 							<div class="col-md-3 text-right">
+								<a href="<?php echo ROOT; ?>/edit-paper/<?php echo $paper['id']; ?>/">
+									<i class="glyphicon glyphicon-pencil"></i>
+								</a>
 								<a href="#">
 									<i class="glyphicon glyphicon-trash"></i>
 								</a>

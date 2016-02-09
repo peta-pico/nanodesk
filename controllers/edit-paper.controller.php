@@ -6,7 +6,8 @@ if( ! $login->get_login_info('id') ){
 	header('Location: '.ROOT.'/login/&next='.rawurlencode($current_url));
 }
 
-
+include('classes/trig.class.php');
+$trig = new trig;
 
 //add metatags
 $head['meta']['title'] = "Edit paper";
@@ -67,13 +68,14 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'insert' || $_POST['action'
 	{
 
 		//basic info
-		if($_POST['aida_action'][$i] == 'insert' || $_POST['aida_action'][$i] == 'update')
+		if( ( $_POST['aida_action'][$i] == 'insert' || $_POST['aida_action'][$i] == 'update') && $_POST['aida'][$i] !='' )
 		{
 			//insert
-			if($_POST['aida_action'][$i] == 'insert')
+			if($_POST['aida'][$i] != '')
 			{
-				$aida = $db->prepare("INSERT INTO aidas ( date , paper_id, aida_option, description) VALUES( NOW(), :paper_id, :aida_option, :description)");
-				$aida->bindValue(':paper_id', $paper_id, PDO::PARAM_INT);
+					$aida = $db->prepare("INSERT INTO aidas ( date , paper_id, aida_option, description) VALUES( NOW(), :paper_id, :aida_option, :description)");
+					$aida->bindValue(':paper_id', $paper_id, PDO::PARAM_INT);
+				
 			}
 
 			//update
