@@ -4,12 +4,17 @@ class trig{
 
 
 
+
+
+
+
+
+
 	function aida($doi, $date, $orcid){
 
 		$date = date("c", time());
 
 		$data = 
-
 			'@prefix : <http://example.org/nanodesk/example/aida/> .
 			@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 			@prefix dc: <http://purl.org/dc/terms/> .
@@ -27,7 +32,7 @@ class trig{
 			}
 			
 			:assertion {
-			    <'.$doi.'> ex:includesStatement <http://purl.org/aida/Malaria+is+transmitted+by+mosquitoes.> .
+			    <'.$doi.'> ex:includesStatement <aida> .
 			}
 			
 			:provenance {

@@ -8,7 +8,39 @@
 			//$('.aida-item').clone().insertAfter('.aida-list--target');
 		});
 
+		//ajax info
+		$("#doi_submit").click(function(e){
+			e.preventDefault();
+			var doi = $("#doi").val();
+			//alert('the doi:'+ doi);
 
+			$.ajax({
+				type:"POST",
+				url: "<?php echo ROOT;?>/ajax/doi_check.php",
+				dataType:"json", 
+				data:{ doi:doi },
+	            cache:false,
+	            beforeSend: function(){
+	                $(".preloader").hide().show();
+	                $(".error").hide();
+	                $(".success").hide();
+	            },		
+
+				success: function(result){
+					$(".preloader").hide();
+
+					$.each(result, function(key, value){
+					    console.log(key, value);
+					    if(value != null || value != false || value !='' || value !='null'){
+					    	$("#doi_"+key).text(value);
+					    }
+					});
+					
+
+		       		//alert(result);
+				}
+			}); // end ajax
+		});
 
 	});
 
@@ -16,6 +48,8 @@
 		e.preventDefault();
 		$(this).closest('.aida-item').slideUp().remove();
 	});
+
+
 
 </script>
 <?php 
@@ -45,16 +79,21 @@
 
 						<div class="module-block__content  no-space">
 							<form action="<?php echo ROOT.'/'.$_GET['p'].'/'.$add_to_url.'/'; ?>" method="POST">
-								<div class="form-group">
-									<label for="doi">DOI:</label>
-									<input type="text" class="form-control" id="doi" name="doi" value="http://dx.doi.org/10.1145/2531602.2531659" required>
+							<label for="doi">DOI:</label>	
+
+
+								<div class="input-group">
+									<div class="input-group-addon">http://dx.doi.org/</div>
+									<input type="text" class="form-control" id="doi" name="doi" value="10.1145/2531602.2531659" required>
 								</div>
+								<button type="submit" id="doi_submit" class="btn btn-md btn-primary">Check DOI</button>
 
 								<div class="form-group">
 									<div class="col-md-12">
-										<p><strong>Author:</strong> abc</p>
-										<p><strong>Author:</strong> abc</p>
-										<p><strong>Author:</strong> abc</p>
+										<p><strong>Title:</strong> <span id="doi_title"></span></p>
+										<p><strong>Author:</strong> <span id="doi_author"></span></p>
+										<p><strong>Journal:</strong> <span id="doi_journal"></span></p>
+										<p><strong>pages:</strong> <span id="doi_pages"></span></p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -154,8 +193,18 @@
 
 											echo(htmlspecialchars($trigdata));
 
-											$filename = $paper['id'].'_'.$login->get_login_info('orcid').'_'.date('Y-d-m');
+											$filename = $paper['id'].'_'.$login->get_login_info('orcid');
 											$trig->writeFile($filename, $trigdata, 'trigfiles');
+
+
+											echo "uplading now<br><br>";
+
+											echo exec("java -jar trigfiles/nanopub.jar mktrusty trigfiles/".$filename.".trig", $output);
+											print_r( $output );
+											//echo exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $output);
+											print_r ( $output );
+											//echo exec("java -jar file.jar ", $output);
+
 										}
 									?>
 								</code>
