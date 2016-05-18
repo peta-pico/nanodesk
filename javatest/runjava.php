@@ -32,9 +32,13 @@ echo "<br><br>";
  $output = exec("java -jar nanopub.jar mktrusty ".$filename."_1.trig",$output);
 var_dump($output);
 
-//use system function
- $output = system("java -jar nanopub.jar mktrusty ".$filename."_2.trig",$output);
+//publish the paper
+ $output = exec("java -jar nanopub.jar publish trusty.".$filename."_1.trig",$output);
 var_dump($output);
+
+//use system function
+//$output = system("java -jar nanopub.jar mktrusty ".$filename."_2.trig",$output);
+//var_dump($output);
 
 echo "<br><br>";
 
