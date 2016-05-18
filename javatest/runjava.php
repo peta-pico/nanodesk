@@ -1,6 +1,7 @@
 <?php 
 
-echo "<h1>Show Files</h1>"
+echo "<h1>Show Files</h1>";
+
 if ($handle = opendir('.')) {
 
     while (false !== ($entry = readdir($handle))) {
