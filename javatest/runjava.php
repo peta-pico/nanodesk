@@ -18,7 +18,7 @@ if ($handle = opendir('.')) {
 echo "<hr><br><br>";
 
 $output=array();
-$filename="19_0000-0000-0000-0000";
+$filename="nanopub_1";
 
 if( file_exists("nanopub.jar") ) { echo "file exits nano <br>";}
 else{ echo "nofile nano"; }
@@ -29,13 +29,13 @@ else{ echo "nofile ".$filename; }
 echo "<br><br>";
 
 //use exec function
- $output = exec("java -jar nanopub.jar mktrusty ".$filename."_1.trig",$output);
+ $output = exec("java -jar nanopub.jar mktrusty ".$filename.".trig",$output);
 var_dump($output);
 
 if($_GET['publish'] == 1)
 {
 //publish the paper
- $output = exec("java -jar nanopub.jar publish trusty.".$filename."_1.trig",$output);
+ $output = exec("java -jar nanopub.jar publish trusty.".$filename.".trig",$output);
 var_dump($output);
 }
 
