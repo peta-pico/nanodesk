@@ -85,8 +85,9 @@
 								<div class="input-group">
 									<div class="input-group-addon">http://dx.doi.org/</div>
 									<input type="text" class="form-control" id="doi" name="doi" value="10.1145/2531602.2531659" required>
+									<button type="submit" id="doi_submit" class="input-group-addon">Check DOI</button>
 								</div>
-								<button type="submit" id="doi_submit" class="btn btn-md btn-primary">Check DOI</button>
+								
 
 								<div class="form-group">
 									<div class="col-md-12">
