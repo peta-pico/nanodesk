@@ -11,7 +11,12 @@ else{ echo "nofile ".$filename; }
 
 echo "<br><br>";
 
- $output = system("java -jar nanopub.jar mktrusty ".$filename.".trig",$output);
+//use exec function
+ $output = exec("java -jar nanopub.jar mktrusty ".$filename."_1.trig",$output);
+var_dump($output);
+
+//use system function
+ $output = system("java -jar nanopub.jar mktrusty ".$filename."_2.trig",$output);
 var_dump($output);
 
 echo "<br><br>";
@@ -23,7 +28,7 @@ echo "<br><br>";
         echo "$output<br/><br/><br/><br/>";
  
 
-$output = system("java -version");
+$output = system("java -version 2>&1");
         echo "<strong>Java Version Before Setting Environmental Variable</strong>";
         echo "<hr/>";
         echo "$output<br/><br/><br/><br/>";
