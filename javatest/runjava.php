@@ -15,6 +15,7 @@ if ($handle = opendir('.')) {
     closedir($handle);
 }
 
+echo "<hr><br><br>";
 
 $output=array();
 $filename="19_0000-0000-0000-0000";
