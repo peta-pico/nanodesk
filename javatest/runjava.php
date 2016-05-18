@@ -8,7 +8,7 @@ if ($handle = opendir('.')) {
 
         if ($entry != "." && $entry != "..") {
 
-            echo "$entry\n";
+            echo "- $entry <br>";
         }
     }
 
