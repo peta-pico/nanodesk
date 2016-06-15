@@ -29,14 +29,25 @@ else{ echo "nofile ".$filename; }
 echo "<br><br>";
 
 //use exec function
- $output = exec("java -jar nanopub.jar mktrusty ".$filename.".trig",$output);
-var_dump($output);
+$output = exec("java -jar nanopub.jar mktrusty ".$filename.".trig",$output);
+//var_dump($output);
 
 if($_GET['publish'] == 1)
 {
 //publish the paper
  $output = exec("java -jar nanopub.jar publish trusty.".$filename.".trig",$output);
-var_dump($output);
+
+
+ echo '<strong>Output:</strong>'.$output.' <br><br>';
+
+ if($output !='')
+ {
+ 	echo '<strong>Your pub is being uploaded</strong><br><br>';
+ }
+ else{
+ 	echo '<strong>Your pub is NOT uploaded .. retry</strong><br><br>';
+ }
+ //var_dump($output);
 }
 
 //use system function

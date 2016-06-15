@@ -6,6 +6,9 @@ if( ! $login->get_login_info('id') ){
 	header('Location: '.ROOT.'/login/&next='.rawurlencode($current_url));
 }
 
+/*
+/ Class for all trig file functions
+*/
 include('classes/trig.class.php');
 $trig = new trig;
 
@@ -15,15 +18,89 @@ $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
 
 //add additional files 
-#$head['add_files'] = [['<style,script,custom>',"<file path>"]];
-
-// add when update
+//$head['add_files'] = [['<style,script,costum>',"<file path>"]];
 
 // user id
 $user_id = $login->get_login_info('id');
 
 //form action
 $formAction = ( $_GET['var'] !='' ) ? "update":"insert";
+
+
+/*---------------------------------------------------------------------------------------------------*/
+// WRITE FILES
+/*---------------------------------------------------------------------------------------------------*/
+
+if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
+{
+	$trigdata = $trig->aida($_POST['doi'],$login->get_login_info('orcid_id'));
+
+	//echo(htmlspecialchars($trigdata));
+
+	//die();
+	$filename = uniqid(mt_rand(), true).'_'.time().'_'.$login->get_login_info('orcid_id');
+	$trig->writeFile($filename, $trigdata, 'trigfiles');
+
+
+	echo "<br><br>prepare upload<br><br>";
+
+	if( file_exists("trigfiles/nanopub.jar") )
+	{
+		$trusty_output = exec("java -jar trigfiles/nanopub.jar mktrusty trigfiles/".$filename.".trig", $trusty_output);
+		echo "<div class='alert alert-warning'>TRUSTY OUTPUT:".$trusty_output ."</div>";
+
+		if ( $trusty_output == '')
+		{
+			echo "<br>File is trusty - prepare upload<br>";
+
+			//try upload
+			// if succes, it will return a string
+			$publish_output = exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $publish_output);
+
+			echo "<div class='alert alert-warning'>PUBLISH OUTPUT:".$publish_output ."</div>";
+
+			if( strpos($publish_output , 'INVALID NANOPUB') !== false )
+			{
+				//-- the file is invalid and cannot be posted
+				$alert['response'] =  "warning";
+				$alert['message'] =  "INVALID NANOPUB DETECTED";
+			}
+			else
+			{
+				if($publish_output != '')
+				{
+					$alert['response'] =  "success";
+					$alert['message'] =  $publish_output;
+				}
+				else
+				{
+					$alert['response'] =  "danger";
+					$alert['message'] =  "File is not published<br>".$publish_output;
+				}
+			}
+
+		}
+
+		else
+		{
+			echo "file is not uploding...";
+		}
+
+	}
+	else{
+		echo "file does not exsist";
+	}
+	
+	
+	//print_r( $exec );
+	echo "<br>OUTPUT:<br>";
+	print_r( $output );
+	//echo exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $output);
+	//print_r ( $output );
+	//echo exec("java -jar file.jar ", $output);
+	echo "<br>done";
+}
+
 
 
 /*---------------------------------------------------------------------------------------------------*/
@@ -142,9 +219,9 @@ if($formAction == 'insert')
 	
 
 	//query
-	$last_aida = $db->query("SELECT id FROM aidas ORDER BY id DESC LIMIT 1");
-	$last_aida_id = $last_aida->fetch();
-	$last_aida_id = $last_id['id'] + 1;
+	// $last_aida = $db->query("SELECT id FROM aidas ORDER BY id DESC LIMIT 1");
+	// $last_aida_id = $last_aida->fetch();
+	// $last_aida_id = $last_id['id'] + 1;
 
 }
 

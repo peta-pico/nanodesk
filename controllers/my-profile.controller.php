@@ -17,4 +17,5 @@ $head['meta']['title'] = "Edit paper";
 $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
 
+
 ?>

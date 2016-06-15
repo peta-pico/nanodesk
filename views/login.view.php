@@ -36,7 +36,7 @@
 							</div>
 
 							<a 
-							href="https://orcid.org/oauth/authorize?client_id=APP-DYF2BEWUCJNL1I5A&response_type=code&scope=/authenticate&redirect_uri=http://localhost/github/nanodesk/orcidlogin/"
+							href="https://orcid.org/oauth/authorize?client_id=APP-DYF2BEWUCJNL1I5A&response_type=code&scope=/authenticate&redirect_uri=http://149.210.214.2/~nanodesk/orcidlogin/"
 							class="btn btn-lg btn-primary"
 							>
 							Login With OrcId

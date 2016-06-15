@@ -1,7 +1,8 @@
 <?php 
 //include controller
 session_start();
-error_reporting(E_ALL & ~E_NOTICE);
+//error_reporting(-1);
+//error_reporting(E_ALL & ~E_NOTICE);
 
 
 
@@ -10,7 +11,7 @@ include('includes/config.inc.php');
 include('classes/head.class.php');
 include('classes/core.class.php');
 include('classes/functions.class.php');
-include('loginsystem/header.inc.php');
+include('classes/login.class.php');
 
 //global variables
 $head = array();

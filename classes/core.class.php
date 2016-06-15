@@ -47,5 +47,3 @@ class Core{
 
 $db = Core::dbConnect();
 ?>
-
-

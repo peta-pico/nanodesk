@@ -32,7 +32,12 @@
 
 								<div class="form-group">
 									<label for="doi">E-mail:</label>
-									<input type="text" class="form-control" id="doi" value="<?php echo $login->get_login_info('email'); ?>" readonly>
+									<input type="text" class="form-control" id="" value="<?php echo $login->get_login_info('email'); ?>">
+								</div>
+
+								<div class="form-group">
+									<label for="doi">ORCID:</label>
+									<input type="text" class="form-control" id="" value="<?php echo $login->get_login_info('orcid_id'); ?>" readonly>
 								</div>
 
 								<div class="form-group">
