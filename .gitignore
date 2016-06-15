@@ -1,3 +1,5 @@
 *~
-/includes/config.inc
-/classes/core.class
+.sass-cache/
+scss/
+includes/config.inc
+classes/core.class
