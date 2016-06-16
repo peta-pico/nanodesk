@@ -4,3 +4,4 @@ scss/
 includes/config.inc.php
 classes/core.class.php
 trigfiles/
+db/
