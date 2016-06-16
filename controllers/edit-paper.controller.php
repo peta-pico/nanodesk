@@ -33,7 +33,15 @@ $formAction = ( $_GET['var'] !='' ) ? "update":"insert";
 
 if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 {
-	$trigdata = $trig->aida($_POST['doi'],$login->get_login_info('orcid_id'));
+	//SET THE WRITING TYPE
+	if($_POST['trigtype']=='read')
+	{
+		$trigdata = $trig->read_nanopub($_POST['doi'],$login->get_login_info('orcid_id'));
+	}
+	elseif($_POST['trigtype']=='aida')
+	{
+		$trigdata = $trig->aida($_POST['doi'],$login->get_login_info('orcid_id'),'a aida sentence about the paper');
+	}
 
 	//echo(htmlspecialchars($trigdata));
 
@@ -42,22 +50,22 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 	$trig->writeFile($filename, $trigdata, 'trigfiles');
 
 
-	echo "<br><br>prepare upload<br><br>";
+	//echo "<br><br>prepare upload<br><br>";
 
 	if( file_exists("trigfiles/nanopub.jar") )
 	{
 		$trusty_output = exec("java -jar trigfiles/nanopub.jar mktrusty trigfiles/".$filename.".trig", $trusty_output);
-		echo "<div class='alert alert-warning'>TRUSTY OUTPUT:".$trusty_output ."</div>";
+		//echo "<div class='alert alert-warning'>TRUSTY OUTPUT:".$trusty_output ."</div>";
 
 		if ( $trusty_output == '')
 		{
-			echo "<br>File is trusty - prepare upload<br>";
+			//echo "<br>File is trusty - prepare upload<br>";
 
 			//try upload
 			// if succes, it will return a string
 			$publish_output = exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $publish_output);
 
-			echo "<div class='alert alert-warning'>PUBLISH OUTPUT:".$publish_output ."</div>";
+			//echo "<div class='alert alert-warning'>PUBLISH OUTPUT:".$publish_output ."</div>";
 
 			if( strpos($publish_output , 'INVALID NANOPUB') !== false )
 			{
@@ -70,7 +78,7 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 				if($publish_output != '')
 				{
 					$alert['response'] =  "success";
-					$alert['message'] =  $publish_output;
+					$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
 				}
 				else
 				{
@@ -79,26 +87,31 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 				}
 			}
 
+
+			//delete the created files
+			unlink ( "trigfiles/".$filename.".trig" );
+			unlink ( "trigfiles/trusty.".$filename.".trig" );
+
 		}
 
 		else
 		{
-			echo "file is not uploding...";
+			//echo "file is not uploding...";
 		}
 
 	}
 	else{
-		echo "file does not exsist";
+		//echo "file does not exsist";
 	}
 	
 	
 	//print_r( $exec );
-	echo "<br>OUTPUT:<br>";
-	print_r( $output );
+	//--echo "<br>OUTPUT:<br>";
+	//--print_r( $output );
 	//echo exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $output);
 	//print_r ( $output );
 	//echo exec("java -jar file.jar ", $output);
-	echo "<br>done";
+	//--echo "<br>done";
 }
 
 
@@ -133,8 +146,6 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'insert' || $_POST['action'
 	{
 		$query->bindValue(':paper_id', $_POST['paper_id'], PDO::PARAM_STR);
 	}
-
-
 
 	/*
 	| do aida inserts and updates

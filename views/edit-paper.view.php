@@ -23,22 +23,39 @@
 	            cache:false,
 	            beforeSend: function()
 	            {
-	                $(".preloader").hide().show();
+	                $(".w3loader").hide().show();
 	                $(".error").hide();
 	                $(".success").hide();
+	                $("#doi_results").hide();
+	                $("#upload_doi").hide();
 	            },		
 
 				success: function(result)
 				{
-					$(".preloader").hide();
+					$(".w3loader").hide();
 
-					$.each(result, function(key, value){
-					    console.log(key, value);
-					    if(value != null || value != false || value !='' || value !='null'){
-					    	$("#doi_"+key).text(value);
-					    }
-					});
-					
+
+					if ( result.title === null || result.title == false || result.title === '' || result.title ==="null" )
+					{
+						$(".error").show();
+					}
+					else
+					{
+						
+
+						//the paper is found
+						$("#doi_results").show();
+						$("#upload_doi").show();
+
+						$.each(result, function(key, value)
+						{
+						    console.log(key, value);
+						    if(value != null || value != false || value !='' || value !='null')
+						    {
+						    	$("#doi_"+key).text(value);
+						    }
+						});
+					}
 
 		       		//alert(result);
 				}
@@ -91,23 +108,38 @@
 										<input type="text" class="form-control input-lg" id="doi" name="doi" value="10.1145/2531602.2531659" required>
 									</div>
 									<div class="text-center" style="margin-top:20px;">
-										<button type="submit" id="doi_submit" class="btn btn-lg btn-primary">Check DOI</button>
+										<div class="error alert alert-danger" style="display:none;">There is no paper found under the given DOI</div>
+										<div class="w3loader" style="display:none;"></div>
+										<button type="submit" id="doi_submit" class="btn btn-lg btn-primary"> Check DOI</button>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div id="doi_results" class="form-group" style="display:none;">
 									<div class="row">
 										<p><strong>Title:</strong> <span id="doi_title"></span></p>
 										<p><strong>Author:</strong> <span id="doi_author"></span></p>
 										<p><strong>Journal:</strong> <span id="doi_journal"></span></p>
 										<p><strong>pages:</strong> <span id="doi_pages"></span></p>
 									</div>
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="trigtype">Choose publish format</label>
+												<select id="trigtype" name="trigtype" class="form-control" id="">
+													<option value="read">Has Read</option>
+													<option value="aida">AIDA</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
 								</div>
 
 								<div class="form-group text-right" style="border-top:1px solid #ccc; padding-top:20px; ">
 									<input type="hidden" name="action" value="directupload">
 									<input type="hidden" name="paper_id" value="<?php echo ($formAction == 'insert' ) ? $add_to_url:$_GET['var']?>">
-									<button type="submit" class="btn btn-md btn-primary"><i class="glyphicon glyphicon-ok"></i> Upload</button>
+									<button style="display:none;" id="upload_doi" type="submit" class="btn btn-md btn-primary"><i class="glyphicon glyphicon-ok"></i> Upload</button>
 								</div>
 
 							</form>

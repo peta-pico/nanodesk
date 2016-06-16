@@ -4,7 +4,7 @@ class trig{
 
 
 
-	function aida( $doi, $orcid, $date=false ){
+	function aida( $doi, $orcid, $sentence, $date = false ){
 
 		$date = ( $date !='' ) ? $date : date("c", time());
 
@@ -27,7 +27,7 @@ class trig{
 			}
 			
 			:assertion {
-			    <http://dx.doi.org/'.$doi.'> ex:includesStatement <http://purl.org/aida/Malaria+is+transmitted+by+mosquitoes.> .
+			    <http://dx.doi.org/'.$doi.'> ex:includesStatement <http://purl.org/aida/'.urlencode( $sentence ).'> .
 			}
 			
 			:provenance {

@@ -54,7 +54,7 @@ function doiData($json_array){
 
 	$data = array();
 
-  $data['title']        = $json_array["title"];
+  $data['title']        = ($json_array["title"] !='') ? $json_array["title"]: "null";
   $data['author'] = $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
   $data['journal']       = $json_array["container-title"];
   $data['pages']        = $json_array["page"];
@@ -63,6 +63,9 @@ function doiData($json_array){
   //$issn_array   = $json_array["ISSN"];
   //$url          = $json_array["URL"];
   $data['year']         = $json_array["issued"]["date-parts"][0][0];
+
+
+  //echo $data['title'];
 
   return json_encode( $data );
 }
@@ -80,9 +83,9 @@ $json_array   = get_json_array($json);
 
 //print_r($json_array);
 // echo "<br><br>---------------------------------<br><br>";
-// echo "<pre>";
-// //print_r(  doiData( $json_array ) );
-// echo "</pre>";
+//echo "<pre>";
+//print_r(   $json_array );
+//echo "</pre>";
 
 echo doiData( $json_array );
 ?>
