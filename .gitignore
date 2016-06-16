@@ -1,5 +1,6 @@
 *~
 .sass-cache/
 scss/
-includes/config.inc.php
-classes/core.class.php
+includes/config.inc
+classes/core.class
+trigfiles/
