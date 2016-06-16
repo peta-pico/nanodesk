@@ -1,5 +1,5 @@
 *~
 .sass-cache/
 scss/
-includes/config.inc
-classes/core.class
+includes/config.inc.php
+classes/core.class.php
