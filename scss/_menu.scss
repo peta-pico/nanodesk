@@ -11,32 +11,34 @@ $branding-padding :  (($header-height - $logo-height)/2);
 }
 
 
-.header-main{
+.header-main
+{
 	position: relative;
-	overflow: hidden;
-	background-color:#fff;
-	border-bottom:1px solid #dcdfe4;
-	height:$header-height;
+	background-color:#03A9F4;
+	//border-bottom:1px solid #dcdfe4;
+	height:60px;
 	width:100%;
+	z-index:1;
 }
 
 .header-main__branding{
-	padding: $branding-padding 0;
+	padding: 15px 0;
 	position: relative;
 	overflow: hidden;
 	display:inline-block;
 
 	a{
 		display:block;
-		height: $logo-height;
+		height: 28px;
 	}
 }
 
 .nav-main{
 	position: relative;
-	overflow: hidden;
 	display:block;
+	height:80px;
 	right:0;
+	z-index:0;
 
 	ul.nav-main__cta { 
 		position: absolute;
@@ -45,23 +47,173 @@ $branding-padding :  (($header-height - $logo-height)/2);
 		right:0;
 	}
 
-	ul.nav-main__cta li{
+	ul.nav-main__cta li
+	{
 		position: relative;
 		overflow: hidden;
 		display:inline-block;
 	}
 
-	ul.nav-main__cta li a{
+	ul.nav-main__cta li a
+	{
 		@include clearbutton;
 		display: block;
 		padding:8px 15px;
-		color:#009CFF;
-		border:2px solid #009CFF;
-		margin: centermargin(80px,40px) 0;
+		color:#fff;
+		margin-top:10px;
+		//background-color:red;
+		//border:1px solid #fff;
+		//margin: centermargin(80px,40px) 0;
 		margin-left:10px;
-		@include border-radius(2px);
+		@include border-radius(1px);
 		font-weight:700;
 
 	}
 }
+
+.nav-profile
+{
+	position:relative;
+	height:60px;
+	display:inline-block;
+	background-color:#0288D1;
+	float:right;
+	padding-left:15px;
+	padding-right:15px;
+
+	
+	.nav-profile_image
+	{
+		position:relative;
+		overflow:hidden;
+		display:inline-block;
+		background-color:white;
+		height:40px;
+		width:40px;
+		//@include border-radius(50%);
+		margin-top:10px;
+		margin-right:10px;
+		vertical-align: top;
+		background-size:cover;
+		background-position:50% 50%;
+	}
+
+	.nav-profile_username
+	{
+		position:relative;
+		overflow:hidden;
+		display:inline-block;
+		line-height:64px;
+		height:60px;
+		font-size:16px;
+		text-transform: uppercase;
+		font-weight:500;
+		color:white;
+		letter-spacing: 0.8px;
+		width:120px;
+		
+		word-break:break-all;
+		text-overflow: ellipsis;
+	}
+
+	i{
+		display:inline-block;
+		vertical-align: top;
+		height:60px;
+		line-height: 60px;
+		font-size:10px;
+		margin-left:5px;
+		color:white;
+	}
+
+	ul{
+		display:none;
+		top:60px;
+		left:0px;
+		background-color:#fff;
+		width:100%;
+		text-decoration: none;
+		list-style: none;
+		border:1px solid #efefef;
+		box-shadow:0px 0px 5px #bbb;
+		li a
+		{
+			display:block;
+			padding:12px 12px;
+			text-decoration: none;
+
+			&:hover
+			{
+				background-color:#eaeaea;
+			}
+		}
+
+	}
+
+	&:hover
+	{
+		ul
+		{
+			position:absolute;
+			overflow: hidden;
+			display:block;
+		}
+	}
+}
+
+
+
+
+.header-logged-in
+{
+	//border-bottom:1px solid #ccc;
+}
+
+
+.nav-logged-in
+{
+	display:block;
+	position:relative;
+	overflow:hidden;
+	height:50px;
+	
+
+	ul
+	{
+		margin:0;
+		padding:0;
+		z-index:1;
+	}
+
+	ul li
+	{
+		display:inline-block;
+	}
+
+	ul li a
+	{
+		display:inline-block;
+		text-decoration: none;
+		line-height:50px;
+		height:50px;
+		padding-left:20px;
+		padding-right:20px;
+		letter-spacing: 0.8px;
+		font-size:15px;
+		text-transform: uppercase;
+		color:#666;
+
+
+		i{
+			margin-right:8px;
+		}
+	}
+}
+
+
+.seperator-top{ border-top:1px solid #dedede; }
+.seperator-bottom{ border-bottom:1px solid #dedede; }
+
+
+
 

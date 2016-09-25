@@ -41,7 +41,7 @@ html, body{
 }
 
 
-$font-stack: 'Lato', Helvetica, Arial, sans-serif;
+$font-stack: 'Roboto', Helvetica, Arial, sans-serif;
 
 $nd_blue:#1475B3; /* nanodesk blue*/
 
@@ -53,7 +53,8 @@ $border-color:#dcdfe4;
 
 body{
 	font-family: $font-stack;
-	font-size:1em;
+	font-weight:400;
+	font-size:16px;
 }
 
 
@@ -120,9 +121,17 @@ body{
 	@include at-query($min, $medium){
 		padding:$lg_gutter;
 	}
-	
-
 }
+
+.login-container{
+
+	//desktop and up
+	@include at-query($min, $large){
+		min-height:80vh;
+		vertical-align: middle;
+	}
+}
+
 
 /*
 |
@@ -167,6 +176,12 @@ border:1px solid $border-color;
 
 
 
+.panel-default
+{
+	border:0px !important;
+}
+
+
 /*
 |
 |  Footer 
@@ -174,15 +189,24 @@ border:1px solid $border-color;
 */
 
 
-.footer-main{
-	border-top:1px solid #dcdfe4;
-
+.footer-main
+{
+	//border-top:1px solid #dcdfe4;
 }
 
 .footer-content{
 	padding:$lg_gutter 0;
 }
 
+
+
+.padding-top-10{ padding-top:10px;}
+.padding-top-20{ padding-top:20px;}
+.padding-top-30{ padding-top:30px;}
+
+.padding-bottom-10{ padding-bottom:10px;}
+.padding-bottom-20{ padding-bottom:20px;}
+.padding-bottom-30{ padding-bottom:30px;}
 
 
 /*
@@ -220,3 +244,5 @@ border:1px solid $border-color;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+

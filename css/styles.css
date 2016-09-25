@@ -118,19 +118,20 @@ html, body {
 /* nanodesk blue*/
 /* line 54, ../scss/_base.scss */
 body {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 1em;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 /* Global container */
-/* line 63, ../scss/_base.scss */
+/* line 64, ../scss/_base.scss */
 .site-container {
   position: relative;
   overflow: hidden;
 }
 
 /* Global wrapper */
-/* line 69, ../scss/_base.scss */
+/* line 70, ../scss/_base.scss */
 .site-wrapper {
   position: relative;
   overflow: hidden;
@@ -139,60 +140,68 @@ body {
   max-width: 1030px;
 }
 
-/* line 77, ../scss/_base.scss */
+/* line 78, ../scss/_base.scss */
 .container {
   padding: 0;
   margin: 0;
 }
 @media screen and (min-width: 768px) {
-  /* line 77, ../scss/_base.scss */
+  /* line 78, ../scss/_base.scss */
   .container {
     padding: 0 15px;
     margin: 0 auto;
   }
 }
 
-/* line 90, ../scss/_base.scss */
+/* line 91, ../scss/_base.scss */
 .site-main-holder {
   width: 100%;
 }
 @media screen and (min-width: 768px) {
-  /* line 90, ../scss/_base.scss */
+  /* line 91, ../scss/_base.scss */
   .site-main-holder {
     display: table;
   }
 }
 
 @media screen and (min-width: 768px) {
-  /* line 97, ../scss/_base.scss */
+  /* line 98, ../scss/_base.scss */
   .site-main__content-holder {
     display: table-cell;
     float: none;
   }
 }
 
-/* line 105, ../scss/_base.scss */
+/* line 106, ../scss/_base.scss */
 .site-main {
   background-color: #f5f5f5;
   padding: 0;
 }
 @media screen and (min-width: 768px) {
-  /* line 105, ../scss/_base.scss */
+  /* line 106, ../scss/_base.scss */
   .site-main {
     padding: 30px 0;
   }
 }
 
-/* line 115, ../scss/_base.scss */
+/* line 116, ../scss/_base.scss */
 .site-main__content {
   background-color: #fff;
   height: 100%;
   padding: 10px;
 }
 @media screen and (min-width: 768px) {
-  /* line 115, ../scss/_base.scss */
+  /* line 116, ../scss/_base.scss */
   .site-main__content {
     padding: 30px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /* line 126, ../scss/_base.scss */
+  .login-container {
+    min-height: 80vh;
+    vertical-align: middle;
   }
 }
 
@@ -201,23 +210,23 @@ body {
 |  Modules 
 |
 */
-/* line 132, ../scss/_base.scss */
+/* line 141, ../scss/_base.scss */
 .module {
   margin-bottom: 30px;
 }
 
-/* line 136, ../scss/_base.scss */
+/* line 145, ../scss/_base.scss */
 .module-block__header {
   padding: 10px;
   font-weight: 700;
 }
 
-/* line 141, ../scss/_base.scss */
+/* line 150, ../scss/_base.scss */
 .module-block__content {
   padding: 0;
 }
 @media screen and (min-width: 768px) {
-  /* line 141, ../scss/_base.scss */
+  /* line 150, ../scss/_base.scss */
   .module-block__content {
     padding: 20px;
   }
@@ -226,18 +235,23 @@ body {
 /*
 | module default styles
 */
-/* line 154, ../scss/_base.scss */
+/* line 163, ../scss/_base.scss */
 .module--default {
   background-color: white;
   border: 1px solid #dcdfe4;
 }
-/* line 158, ../scss/_base.scss */
+/* line 167, ../scss/_base.scss */
 .module--default .module-block__header {
   border-bottom: 1px solid #dcdfe4;
 }
-/* line 162, ../scss/_base.scss */
+/* line 171, ../scss/_base.scss */
 .module--default .module-block__content {
   padding: 20px;
+}
+
+/* line 180, ../scss/_base.scss */
+.panel-default {
+  border: 0px !important;
 }
 
 /*
@@ -245,20 +259,45 @@ body {
 |  Footer 
 |
 */
-/* line 177, ../scss/_base.scss */
-.footer-main {
-  border-top: 1px solid #dcdfe4;
-}
-
-/* line 182, ../scss/_base.scss */
+/* line 197, ../scss/_base.scss */
 .footer-content {
   padding: 30px 0;
+}
+
+/* line 203, ../scss/_base.scss */
+.padding-top-10 {
+  padding-top: 10px;
+}
+
+/* line 204, ../scss/_base.scss */
+.padding-top-20 {
+  padding-top: 20px;
+}
+
+/* line 205, ../scss/_base.scss */
+.padding-top-30 {
+  padding-top: 30px;
+}
+
+/* line 207, ../scss/_base.scss */
+.padding-bottom-10 {
+  padding-bottom: 10px;
+}
+
+/* line 208, ../scss/_base.scss */
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+
+/* line 209, ../scss/_base.scss */
+.padding-bottom-30 {
+  padding-bottom: 30px;
 }
 
 /*
 | Aida lists
 */
-/* line 193, ../scss/_base.scss */
+/* line 217, ../scss/_base.scss */
 .aida-list .aida-item {
   position: relative;
   overflow: hidden;
@@ -267,12 +306,12 @@ body {
   padding: 15px 0;
 }
 
-/* line 204, ../scss/_base.scss */
+/* line 228, ../scss/_base.scss */
 .aida-controls {
   padding: 15px;
 }
 
-/* line 210, ../scss/_base.scss */
+/* line 234, ../scss/_base.scss */
 .w3loader {
   border: 5px solid #f3f3f3;
   /* Light grey */
@@ -285,12 +324,12 @@ body {
 }
 
 @keyframes spin {
-  /* line 220, ../scss/_base.scss */
+  /* line 244, ../scss/_base.scss */
   0% {
     transform: rotate(0deg);
   }
 
-  /* line 221, ../scss/_base.scss */
+  /* line 245, ../scss/_base.scss */
   100% {
     transform: rotate(360deg);
   }
@@ -299,50 +338,50 @@ body {
 /*
 | Global variables
 */
-/* line 14, ../scss/_menu.scss */
+/* line 15, ../scss/_menu.scss */
 .header-main {
   position: relative;
-  overflow: hidden;
-  background-color: #fff;
-  border-bottom: 1px solid #dcdfe4;
-  height: 80px;
+  background-color: #03A9F4;
+  height: 60px;
   width: 100%;
+  z-index: 1;
 }
 
-/* line 23, ../scss/_menu.scss */
+/* line 24, ../scss/_menu.scss */
 .header-main__branding {
-  padding: 26px 0;
+  padding: 15px 0;
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
-/* line 29, ../scss/_menu.scss */
+/* line 30, ../scss/_menu.scss */
 .header-main__branding a {
   display: block;
   height: 28px;
 }
 
-/* line 35, ../scss/_menu.scss */
+/* line 36, ../scss/_menu.scss */
 .nav-main {
   position: relative;
-  overflow: hidden;
   display: block;
+  height: 80px;
   right: 0;
+  z-index: 0;
 }
-/* line 41, ../scss/_menu.scss */
+/* line 43, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta {
   position: absolute;
   overflow: hidden;
   top: 0;
   right: 0;
 }
-/* line 48, ../scss/_menu.scss */
+/* line 51, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta li {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
-/* line 54, ../scss/_menu.scss */
+/* line 58, ../scss/_menu.scss */
 .nav-main ul.nav-main__cta li a {
   text-decoration: none;
   padding: 0px;
@@ -350,15 +389,138 @@ body {
   line-height: auto;
   display: block;
   padding: 8px 15px;
-  color: #009CFF;
-  border: 2px solid #009CFF;
-  margin: 18px 0;
+  color: #fff;
+  margin-top: 10px;
   margin-left: 10px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -ms-border-radius: 2px;
-  border-radius: 2px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  -ms-border-radius: 1px;
+  border-radius: 1px;
   font-weight: 700;
+}
+
+/* line 75, ../scss/_menu.scss */
+.nav-profile {
+  position: relative;
+  height: 60px;
+  display: inline-block;
+  background-color: #0288D1;
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 86, ../scss/_menu.scss */
+.nav-profile .nav-profile_image {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  margin-right: 10px;
+  vertical-align: top;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+/* line 102, ../scss/_menu.scss */
+.nav-profile .nav-profile_username {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 64px;
+  height: 60px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.8px;
+  width: 120px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+/* line 119, ../scss/_menu.scss */
+.nav-profile i {
+  display: inline-block;
+  vertical-align: top;
+  height: 60px;
+  line-height: 60px;
+  font-size: 10px;
+  margin-left: 5px;
+  color: white;
+}
+/* line 129, ../scss/_menu.scss */
+.nav-profile ul {
+  display: none;
+  top: 60px;
+  left: 0px;
+  background-color: #fff;
+  width: 100%;
+  text-decoration: none;
+  list-style: none;
+  border: 1px solid #efefef;
+  box-shadow: 0px 0px 5px #bbb;
+}
+/* line 140, ../scss/_menu.scss */
+.nav-profile ul li a {
+  display: block;
+  padding: 12px 12px;
+  text-decoration: none;
+}
+/* line 146, ../scss/_menu.scss */
+.nav-profile ul li a:hover {
+  background-color: #eaeaea;
+}
+/* line 156, ../scss/_menu.scss */
+.nav-profile:hover ul {
+  position: absolute;
+  overflow: hidden;
+  display: block;
+}
+
+/* line 174, ../scss/_menu.scss */
+.nav-logged-in {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+}
+/* line 182, ../scss/_menu.scss */
+.nav-logged-in ul {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+/* line 189, ../scss/_menu.scss */
+.nav-logged-in ul li {
+  display: inline-block;
+}
+/* line 194, ../scss/_menu.scss */
+.nav-logged-in ul li a {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 50px;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  letter-spacing: 0.8px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #666;
+}
+/* line 207, ../scss/_menu.scss */
+.nav-logged-in ul li a i {
+  margin-right: 8px;
+}
+
+/* line 214, ../scss/_menu.scss */
+.seperator-top {
+  border-top: 1px solid #dedede;
+}
+
+/* line 215, ../scss/_menu.scss */
+.seperator-bottom {
+  border-bottom: 1px solid #dedede;
 }
 
 /*

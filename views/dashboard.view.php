@@ -12,6 +12,25 @@
 
 			<?php include('snippets/aside-nav.php'); ?>
 
+
+			<div class="col-md-9 site-main__content-holder">
+				<main class="site-main__content">
+					<h2>Dashboard</h2>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</main>				
+			</div>
 		</div>
 	</div>
 </div><!--//site container-->

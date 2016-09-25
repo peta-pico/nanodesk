@@ -2,7 +2,7 @@
 //include controller
 session_start();
 //error_reporting(-1);
-//error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL & ~E_NOTICE);
 
 
 

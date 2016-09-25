@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?php echo ROOT; ?>/css/main.css">
     <link rel="stylesheet" href="<?php echo ROOT; ?>/css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
     <script src="<?php echo ROOT; ?>/js/vendor/jquery-1.11.3.min.js"></script>
 
     <!-- add after -->

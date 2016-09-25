@@ -547,7 +547,7 @@ class login
 //users table, logins table, cookie name
 $login = new login('nanousers', 'logins', 'nda');
 //$login->cookiename = '';
-$login->login_url = ROOT.'/orcidlogin/';
+$login->login_url = ROOT.'/login/';
 $login->landing_page_url = ROOT.'/my-papers/';
 $login->username_postfield = 'email';
 $login->password_postfield = 'wachtwoord';
