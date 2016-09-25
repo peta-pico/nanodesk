@@ -1,15 +1,6 @@
 
 <script>
-	$(document).ready(function()
-	{
-
-		$("#doi").on("change paste", function(){
-			//alert($(this).val());
-
-			var x = $(this).val().replace('http://dx.doi.org/', '').replace('dx.doi.org/', '');
-			$(this).val(x);
-		});
-
+	$(document).ready(function(){
 		$('.add-aida').click( function(e){
 			e.preventDefault();
 			var aida_item = '<div class="aida-item col-md-12"><div class="col-md-3"><label for="">Does:</label><select name="aida_option[]" id="something" class="form-control"><option value="Confirms">Claim</option><option value="Refutes">Refutes</option><option value="option 3">option 3</option></select></div><div class="col-md-8"><label for="">Aida Sentence:</label><textarea name="aida[]" id="" class="form-control"></textarea><input type="hidden" class="aida_id" name="aida_id[]" value=""><input type="hidden" class="aida_action" name="aida_action[]" value="insert"></div><div class="col-md-1"><br><button class="delete-aida btn btn-md btn-default"><i class=" glyphicon glyphicon-trash"></i></button></div></div><!-- end aida -->';
@@ -88,16 +79,13 @@
 
 <div class="site-container site-main">
 	<div class="container">
-		<div class="row">
-			<div class="text-center">
-				<h2>Add Nanopublication</h2>
-				<p>Let the world know what you are working on.</p>
-			</div>
-		</div>
 		<div class="row no-gutter site-main-holder">
-			<div class="col-md-10 col-md-offset-1 site-main__content-holder">
+			
+			<?php include('snippets/aside-nav.php'); ?>
+
+			<div class="col-md-9 site-main__content-holder">
 				<main class="site-main__content">
-					
+					<h2>Add new</h2>
 
 					<div class="module">
 						<div class="module-block__header" style="display:none;">
@@ -112,18 +100,17 @@
 
 						<div class="module-block__content  no-space">
 							<form action="<?php echo ROOT.'/'.$_GET['p'].'/'.$add_to_url.'/'; ?>" method="POST">
-								<p class="text-center"><strong>Provide us with a DOI, we do the rest</strong></p>
-								<label for="doi" class="hidden">Add a DOI:</label>	
+								<label for="doi">DOI:</label>	
 
 								<div class="doi-holder">
 									<div class="input-group">
 										<div class="input-group-addon">http://dx.doi.org/</div>
-										<input type="text" class="form-control input-lg" id="doi" name="doi" value="" required>
+										<input type="text" class="form-control input-lg" id="doi" name="doi" value="10.1145/2531602.2531659" required>
 									</div>
 									<div class="text-center" style="margin-top:20px;">
-										<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
+										<div class="error alert alert-danger" style="display:none;">There is no paper found under the given DOI</div>
 										<div class="w3loader" style="display:none;"></div>
-										<button type="submit" id="doi_submit" class="btn btn-lg btn-primary" style="font-weight:bold;"> <i class="glyphicon glyphicon-search"></i> CHECK DOI</button>
+										<button type="submit" id="doi_submit" class="btn btn-lg btn-primary"> Check DOI</button>
 									</div>
 								</div>
 

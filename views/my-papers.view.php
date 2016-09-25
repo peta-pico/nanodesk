@@ -17,7 +17,7 @@
 					
 						
 					<div class="padding-bottom-30">
-						<a href="<?php echo ROOT.'/edit-paper/'; ?>" class="btn btn-lg btn-default">+ Add Paper</a>
+						<a href="<?php echo ROOT.'/edit-paper/'; ?>" class="btn btn-lg btn-default">+ Add Nanopub</a>
 					</div>
 					
 
