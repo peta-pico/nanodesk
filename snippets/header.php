@@ -9,7 +9,7 @@
 		<div class="row">
 			<nav class="nav-main">
 				<div class="header-main__branding">
-					<a href="#"><img src="<?php echo ROOT;?>/images/logo.png" alt="NanoDesk"></a>
+					<a href="<?php echo ROOT; ?>"><img src="<?php echo ROOT;?>/images/logo.png" alt="NanoDesk"></a>
 				</div>
 
 				<?php 
@@ -20,9 +20,9 @@
 					 	<div class="nav-profile_username"><?php echo $login->get_login_info('username'); ?></div>
 						<i class="glyphicon glyphicon-triangle-bottom"></i>
 					 	<ul>
-					 		<li><a href="#">My Profile</a></li>
+					 		<li><a href="<?php echo ROOT.'/my-profile/'?>">My Profile</a></li>
 					 		<li><a href="#">Tab2</a></li>
-					 		<li class="seperator-top"><a href="#">Log Out</a></li>
+					 		<li class="seperator-top"><a href="<?php echo ROOT.'/&actie=uitloggen/'?>">Log Out</a></li>
 					 	</ul>
 					</div>
 				<?php else: ?>
@@ -47,7 +47,7 @@
 		<div class="row">
 			<nav class="nav-logged-in">
 				<ul>
-					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-file"></i>My Papers</a></li>
+					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-bookmark"></i>Bookmarks</a></li>
 				</ul>
 			</nav>	
 		</div>

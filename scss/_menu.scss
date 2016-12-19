@@ -111,6 +111,7 @@ $branding-padding :  (($header-height - $logo-height)/2);
 		color:white;
 		letter-spacing: 0.8px;
 		width:120px;
+		white-space: nowrap;
 		
 		word-break:break-all;
 		text-overflow: ellipsis;

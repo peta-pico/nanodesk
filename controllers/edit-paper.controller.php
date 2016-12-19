@@ -1,7 +1,8 @@
 <?php 
 
 //check if user is logged in
-if( ! $login->get_login_info('id') ){
+if( ! $login->get_login_info('id') )
+{
 	$current_url = rawurlencode($_SERVER[REQUEST_URI]);
 	header('Location: '.ROOT.'/login/&next='.rawurlencode($current_url));
 }
@@ -46,28 +47,28 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 	//echo(htmlspecialchars($trigdata));
 
 	//die();
+	//-- write nanopub file.
 	$filename = uniqid(mt_rand(), true).'_'.time().'_'.$login->get_login_info('orcid_id');
 	$trig->writeFile($filename, $trigdata, 'trigfiles');
 
 
 	//echo "<br><br>prepare upload<br><br>";
 
+	//prepare upload
 	if( file_exists("trigfiles/nanopub.jar") )
 	{
 		$trusty_output = exec("java -jar trigfiles/nanopub.jar mktrusty trigfiles/".$filename.".trig", $trusty_output);
-		//echo "<div class='alert alert-warning'>TRUSTY OUTPUT:".$trusty_output ."</div>";
+
+		die('should be trusty');
 
 		if ( $trusty_output == '')
 		{
-			//echo "<br>File is trusty - prepare upload<br>";
-
 			//try upload
 			// if succes, it will return a string
 			$publish_output = exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $publish_output);
 
-			//echo "<div class='alert alert-warning'>PUBLISH OUTPUT:".$publish_output ."</div>";
 
-			if( strpos($publish_output , 'INVALID NANOPUB') !== false )
+			if( strpos($publish_output , 'INVALID NANOPUB') != false )
 			{
 				//-- the file is invalid and cannot be posted
 				$alert['response'] =  "warning";
@@ -87,11 +88,9 @@ if(isset($_POST['action'] ) && ( $_POST['action'] == 'directupload' ) )
 				}
 			}
 
-
 			//delete the created files
 			unlink ( "trigfiles/".$filename.".trig" );
 			unlink ( "trigfiles/trusty.".$filename.".trig" );
-
 		}
 
 		else

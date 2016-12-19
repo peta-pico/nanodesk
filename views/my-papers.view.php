@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row no-gutter site-main-holder">
 			
-			<div class="col-md-9 site-main__content-holder">
+			<div class="col-md-12">
 				<div class="row">
 					<h2 class="text-center">My Papers</h2>
 					<p class="text-center">All those papers, all in one place.</p>

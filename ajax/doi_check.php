@@ -54,15 +54,15 @@ function doiData($json_array){
 
 	$data = array();
 
-  $data['title']        = ($json_array["title"] !='') ? $json_array["title"]: "null";
-  $data['author'] = $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
-  $data['journal']       = $json_array["container-title"];
-  $data['pages']        = $json_array["page"];
-  $data['volume']       = $json_array["volume"];
-  $data['issue']        = $json_array["issue"];
+  $data['title']    = ($json_array["title"] !='') ? $json_array["title"]: "null";
+  $data['author']   = $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
+  $data['journal']  = $json_array["container-title"];
+  $data['pages']    = $json_array["page"];
+  $data['volume']   = $json_array["volume"];
+  $data['issue']    = $json_array["issue"];
   //$issn_array   = $json_array["ISSN"];
   //$url          = $json_array["URL"];
-  $data['year']         = $json_array["issued"]["date-parts"][0][0];
+  $data['year']     = $json_array["issued"]["date-parts"][0][0];
 
 
   //echo $data['title'];

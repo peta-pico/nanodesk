@@ -5,60 +5,69 @@
 
 <div class="site-container site-main">
 	<div class="container">
-		<div class="row no-gutter site-main-holder">
-			
-			<?php include('snippets/aside-nav.php'); ?>
-
-			<div class="col-md-9 site-main__content-holder">
-				<main class="site-main__content">
-					<div class="row">
-						<div class="col-md-6"><h2>My Papers</h2></div>
-						<div class="col-md-6 text-right">
-							
-						</div>
-					</div>
-
-					<div class="module">
-						<div class="module-block__header" style="display:none;">
-							<i class="glyphicon glyphicon-upload"></i> Edit paper
-						</div>
-						<div class="module-block__content  no-space">
-							<form>
-
-								<div class="form-group">
-									<label for="username">Username:</label>
-									<input type="text" class="form-control" id="username" value="<?php echo $login->get_login_info('username'); ?>">
-								</div>
-
-								<div class="form-group">
-									<label for="doi">E-mail:</label>
-									<input type="text" class="form-control" id="" value="<?php echo $login->get_login_info('email'); ?>">
-								</div>
-
-								<div class="form-group">
-									<label for="doi">ORCID:</label>
-									<input type="text" class="form-control" id="" value="<?php echo $login->get_login_info('orcid_id'); ?>" readonly>
-								</div>
-
-								<div class="form-group">
-									<label for="Password">Reset Password</label>
-									<input type="text" class="form-control" id="Password" name="Password">
-								</div>
-
-								<div class="form-group text-right">
-									<button type="submit" class="btn btn-md btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
-								</div>
-
-							</form>
-						</div>
-					</div><!--//end module-->
-
-
-				</main>				
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="text-center">My Profile</h2>
+				<p class="text-center">Edit your profile.</p>
 			</div>
 		</div>
-	</div>
+
+		<div class="row hidden">
+			<div class="col-md-4 text-center">
+				<a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a>
+			</div>
+			<div class="col-md-4 text-center">
+				<a href="#"><i class="glyphicon glyphicon-user"></i> Email</a>
+			</div>
+			<div class="col-md-4 text-center">
+				<a href="#"><i class="glyphicon glyphicon-user"></i> profile</a>
+			</div>
+		</div>
+
+		<div class="row bg--white box--50">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Profile</h3>
+						<hr>
+					</div>
+					<form class="ajaxform ajaxform-required">
+						<div class="col-md-4 col-md-push-8 text-center">
+							<div class="text-center">
+								<div class="thumbnail" style="height: 180px; width: 180px; display: inline-block; background:url(<?php echo ROOT.'/assets/profile2.png'?>) 50% 50% no-repeat transparent; background-size:cover;">
+								</div>
+							</div>
+							<button class="btn btn-md btn-default">Upload new image</button>
+						</div>
+
+						<div class="col-md-8  col-md-pull-4">
+							<div class="form-group">
+								<label for="username">Username:</label>
+								<input type="text" class="form-control" id="username" value="<?php echo $login->get_login_info('username'); ?>">
+							</div>
+
+							<div class="form-group">
+								<label for="doi">ORCID:</label>
+								<input type="text" class="form-control" id="" value="<?php echo $login->get_login_info('orcid_id'); ?>" readonly>
+							</div>
+						</div>
+
+
+					</form>
+					<div class="form-group col-md-12 text-center">
+						<hr>
+						<button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div><!--// container-->
 </div><!--//site container-->
 
 
 <?php include('snippets/footer.php');  ?>
+
+

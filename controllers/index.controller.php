@@ -8,7 +8,7 @@ $head['meta']['robots'] = "index, follow";
 //add additional files 
 #$head['add_files'] = [['<style,script,custom>',"<file path>"]];
 
-$login->check_login();
+//$login->check_login();
 
 // if( ! $login->get_login_info('id') )
 // {

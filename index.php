@@ -7,7 +7,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 // depencencies
-include('includes/config.inc.php');
+include('config.inc.php');
 include('classes/head.class.php');
 include('classes/core.class.php');
 include('classes/functions.class.php');

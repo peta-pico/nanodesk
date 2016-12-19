@@ -58,6 +58,9 @@ body{
 }
 
 
+/* bg color helpers */
+.bg--white{ background-color:white; }
+
 
 
 /* Global container */
@@ -238,6 +241,7 @@ border:1px solid $border-color;
     width: 30px;
     height: 30px;
     animation: spin 2s linear infinite;
+    display:inline-block;
 }
 
 @keyframes spin {
@@ -246,3 +250,98 @@ border:1px solid $border-color;
 }
 
 
+/*
+| BOX
+*/
+.box
+{
+//box-shadow:0px 1px 0px 0px rgba(0,0,0,.2);
+background-color:white;
+}
+
+.box--white{}
+
+//horizontal
+.box-h-50{ padding-left:50px; padding-right:50px; }
+.box-h-30{ padding-left:30px; padding-right:30px; }
+.box-h-20{ padding-left:20px; padding-right:20px; }
+
+//vertical
+.box-v-50{ padding-top:50px; padding-bottom:50px; }
+.box-v-30{ padding-top:30px; padding-bottom:30px; }
+.box-v-20{ padding-top:20px; padding-bottom:20px; }
+
+
+/* block padding helpers*/
+.box--50{
+	@include at-query($max,$min)
+	{
+		padding:15px;
+	}
+	padding:50px;
+}
+
+
+/*
+| Hero
+*/
+
+.hero
+{
+	position:relative;
+	overflow:hidden;
+	width:100%;
+	height:80vh;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	background-size:cover;
+	display:table;
+	background-color:#ccc;
+	.hero__content{
+		display:table-cell;
+		vertical-align: middle;
+
+		h1
+		{
+			font-size:3em;
+			color:white;
+		}
+	}
+}
+
+.hero--search
+{
+	vertical-align:top;
+
+	.__input
+	{
+		display:inline-block;
+		height:65px;
+		line-height:65px;
+		padding:0px 15px;
+		font-size:28px;
+		width: 450px;
+		border:1px solid white;
+		vertical-align:top;
+
+		&:focus
+		{
+			outline: none;
+			
+		}
+	}
+
+	.__submit{
+		height:65px;
+		line-height:65px;
+		padding:0 20px;
+		margin:0px;
+		margin-left:-5px;
+		vertical-align:top;
+		background-color:#03a9f4;
+		font-weight: 700;
+		border:none;
+		color:white;
+		min-width:80px;
+	}
+}
