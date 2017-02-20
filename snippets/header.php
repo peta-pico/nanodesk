@@ -9,7 +9,7 @@
 		<div class="row">
 			<nav class="nav-main">
 				<div class="header-main__branding">
-					<a href="<?php echo ROOT; ?>"><img src="<?php echo ROOT;?>/images/logo.png" alt="NanoDesk"></a>
+					<a href="<?php echo ROOT; ?>"><img src="<?php echo ROOT;?>/images/logo_white.png" alt="NanoDesk"></a>
 				</div>
 
 				<?php 

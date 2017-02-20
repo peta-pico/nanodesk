@@ -3,7 +3,7 @@
 		<div class="row">
 			<footer class="footer-content">
 				<p>
-					&copy; 2015 Nanodesk
+					 Nanodesk
 				</p>
 			</footer>
 		</div><!--// row-->

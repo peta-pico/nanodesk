@@ -7,7 +7,7 @@
 Options +FollowSymLinks
 
 RewriteEngine On
-RewriteBase /github/nanodesk/
+RewriteBase /
 
 ## If the request is for a valid directory
 RewriteCond %{REQUEST_FILENAME} -d [OR]

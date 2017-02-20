@@ -7,7 +7,7 @@
     <title><?php echo $head['meta']['title']; ?></title>
     <meta name="description" content="<?php echo $head['meta']['description']; ?>">
     <meta name="robots" content="<?php echo $head['meta']['robots']; ?>" />
-    
+
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="<?php echo ROOT; ?>/css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
-    <script src="<?php echo ROOT; ?>/js/vendor/jquery-1.11.3.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
     <!-- add after -->
     <?php

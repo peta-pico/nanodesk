@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-$root  = "http://localhost/github/nanodesk";
+$root  = "http://nanodesk.nl";
 define('ROOT', $root);
 
 
