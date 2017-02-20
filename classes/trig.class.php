@@ -28,6 +28,7 @@ class Trig {
 			    <http://dx.doi.org/'.$doi.'> ex:includesStatement <http://purl.org/aida/'.urlencode( $sentence ).'> .
 			}
 
+
 			:provenance {
 				:assertion prov:wasAttributedTo orcid:'.$orcid.' .
 			}
@@ -35,6 +36,7 @@ class Trig {
 			:pubinfo {
 				: dc:created "'.$date.'"^^xsd:dateTime ;
 				pav:createdBy orcid:'.$orcid.' .
+
 			}
 		';
 
@@ -44,7 +46,7 @@ class Trig {
 	/*
 	/ Example of a read nanopub
 	*/
-	function writeReadNanopub( $doi, $orcid, $date=false )
+	function writeReadNanopub(array $paper, $orcid, $date=false )
 	{
 		$date = ( $date !='' ) ? $date : date("c", time());
 
@@ -57,6 +59,7 @@ class Trig {
 		@prefix np: <http://www.nanopub.org/nschema#> .
 		@prefix ex: <http://example.org/> .
 		@prefix orcid: <http://orcid.org/> .
+		@prefix dct: <http://purl.org/dc/terms/> .
 
 		:Head {
 			: np:hasAssertion :assertion ;
@@ -66,8 +69,10 @@ class Trig {
 		}
 
 		:assertion {
-			orcid:".$orcid." ex:hasRead <http://dx.doi.org/".$doi."> .
+			orcid:".$orcid." ex:hasRead <http://dx.doi.org/".$paper['doi']."> .
+			<http://dx.doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
 		}
+
 
 		:provenance {
 			:assertion prov:wasAttributedTo orcid:".$orcid." .
@@ -76,6 +81,8 @@ class Trig {
 		:pubinfo {
 			: dc:created \"".$date."\"^^xsd:dateTime ;
 				pav:createdBy orcid:".$orcid." .
+			: dct:license <https://creativecommons.org/licenses/by/4.0/> .
+
 		}
 		";
 
@@ -88,7 +95,7 @@ class Trig {
 		//make file trusty
 		$this->makeTrusty($filename);
 
-		return 'trusty'.$filename.'trig';
+		return 'trusty.'.$filename.'.trig';
 
 	}//
 
@@ -143,7 +150,6 @@ class Trig {
 
 	function getHashFromTrusty( $filename )
 	{
-
 		if(file_exists($filename))
 		{
 			$f = fopen($filename, 'r');
@@ -154,6 +160,7 @@ class Trig {
 			// get first line and strip tags
 			$lines = str_replace(array('<','>','.'), '', $line);
 			$lines = explode('/', $lines);
+
 			//return hash
 			return trim(end($lines));
 		}
@@ -163,66 +170,51 @@ class Trig {
 		}
 	}
 
-	function uploadNanopub($file)
+	function uploadNanopub( $filename )
 	{
-		if(file_exists('../trigfiles/'))
+		if(file_exists('../trigfiles/'.$filename))
 		{
+			$publish_output = exec("java -jar ../trigfiles/nanopub.jar publish ../trigfiles/".$filename, $publish_output_text);
 
+			if( strpos($publish_output , 'INVALID NANOPUB') != false )
+			{
+				//-- the file is invalid and cannot be posted
+				$alert['response'] =  "warning";
+				$alert['message'] =  "INVALID NANOPUB DETECTED";
+				return false;
+			}
+			elseif($publish_output != '')
+			{
+				$alert['response'] =  "success";
+				$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
+
+				//delete the created files
+				unlink ( "../trigfiles/".$filename);
+				unlink ( "../trigfiles/".str_replace("trusty.","",$filename) );
+
+
+
+				return true;
+			}
+			else
+			{
+				$alert['response'] =  "danger";
+				$alert['message'] =  "File is not published<br>";
+				print_r($alert);
+				print_r($publish_output_text);
+
+				die();
+			}
 		}
 
+	function descriptionFormat( array $data )
+	{
 
-
-
-
-
-		if( file_exists("trigfiles/nanopub.jar") )
-			{
-
-
-				die('should be trusty');
-
-				if ( $trusty_output == '')
-				{
-					//try upload
-					// if succes, it will return a string
-					$publish_output = exec("java -jar trigfiles/nanopub.jar publish trigfiles/trusty.".$filename.".trig", $publish_output);
-
-
-					if( strpos($publish_output , 'INVALID NANOPUB') != false )
-					{
-						//-- the file is invalid and cannot be posted
-						$alert['response'] =  "warning";
-						$alert['message'] =  "INVALID NANOPUB DETECTED";
-					}
-					else
-					{
-						if($publish_output != '')
-						{
-							$alert['response'] =  "success";
-							$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
-						}
-						else
-						{
-							$alert['response'] =  "danger";
-							$alert['message'] =  "File is not published<br>".$publish_output;
-						}
-					}
-
-					//delete the created files
-					unlink ( "trigfiles/".$filename.".trig" );
-					unlink ( "trigfiles/trusty.".$filename.".trig" );
-				}
-
-				else
-				{
-					//echo "file is not uploding...";
-				}
-
-			}
-			else{
-				//echo "file does not exsist";
-			}
 	}
+
+
+
+	} // END uploadNanopub
 
 
 

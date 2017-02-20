@@ -1,7 +1,7 @@
 <?php 
 
 $output=array();
-$filename="19_0000-0000-0000-0000";
+$filename="140876710558aae9964c5779.37466020_1487595926_0000-0003-3734-6091";
 
 if( file_exists("nanopub.jar") ) { echo "file exits nano <br>";}
 else{ echo "nofile nano"; }
@@ -11,12 +11,12 @@ else{ echo "nofile ".$filename; }
 
 echo "<br><br>";
 
- $output = system("java -jar nanopub.jar mktrusty ".$filename."_1.trig",$output);
-var_dump($output);
+ $output = system("java -jar nanopub.jar mktrusty ".$filename.".trig ",$output_var);
+var_dump($output_var);
 
 
- $output = system("java -jar nanopub.jar mktrusty ".$filename."_2.trig",$output);
-var_dump($output);
+//  $output = system("java -jar nanopub.jar mktrusty ".$filename.".trig",$output);
+// var_dump($output);
 
 echo "<br><br>";
 

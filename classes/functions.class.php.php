@@ -1,11 +1,23 @@
 <?php
-// head functions
-function microtime_float()
-{
-    list($usec, $sec) = explode(" ", microtime());
-    return ((float)$usec + (float)$sec);
-}
 
+/**
+ *
+ */
+class Functions
+{
+
+	// function __construct(argument)
+	// {
+	// 	# code...
+	// }
+
+	function dumpArray( $array )
+	{
+		echo "<pre>";
+		print_r($array);
+		echo "</pre>";
+	}
+}
 
 
 ?>

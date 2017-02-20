@@ -1,4 +1,4 @@
-<?php 
+<?php
 //include controller
 session_start();
 //error_reporting(-1);
@@ -12,6 +12,9 @@ include('classes/head.class.php');
 include('classes/core.class.php');
 include('classes/functions.class.php');
 include('classes/login.class.php');
+
+
+$functions = new Functions;
 
 //global variables
 $head = array();
@@ -32,7 +35,7 @@ include('controllers/'.$p.'.controller.php');
 include('head.php');
 
 //include view
-include('views/'.$p.'.view.php'); 
+include('views/'.$p.'.view.php');
 
 
 

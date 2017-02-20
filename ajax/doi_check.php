@@ -1,4 +1,4 @@
-<?php 
+<?php
 //curl -LH "Accept: application/json"
 //> http://dx.doi.org/10.1103/PhysRevX.4.041036
 error_reporting(E_ALL & ~E_NOTICE);
@@ -15,23 +15,23 @@ function doi_url($doi)
   //return "http://data.crossref.org/" . $doi;
 }
 
-function get_curl($url) 
-{ 
-  $curl = curl_init(); 
-  $header[0] = "Accept: application/rdf+xml;q=0.5,"; 
-  $header[0] .= "application/vnd.citationstyles.csl+json;q=1.0"; 
-  curl_setopt($curl, CURLOPT_URL, $url); 
-  curl_setopt($curl, CURLOPT_USERAGENT, 'Googlebot/2.1 (+http://www.google.com/bot.html)'); 
-  curl_setopt($curl, CURLOPT_HTTPHEADER, $header); 
-  curl_setopt($curl, CURLOPT_REFERER, 'http://www.google.com'); 
-  curl_setopt($curl, CURLOPT_AUTOREFERER, true); 
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+function get_curl($url)
+{
+  $curl = curl_init();
+  $header[0] = "Accept: application/rdf+xml;q=0.5,";
+  $header[0] .= "application/vnd.citationstyles.csl+json;q=1.0";
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_USERAGENT, 'Googlebot/2.1 (+http://www.google.com/bot.html)');
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+  curl_setopt($curl, CURLOPT_REFERER, 'http://www.google.com');
+  curl_setopt($curl, CURLOPT_AUTOREFERER, true);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($curl, CURLOPT_TIMEOUT, 10); 
-  $json = curl_exec($curl); 
+  curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+  $json = curl_exec($curl);
   curl_close($curl);
   //print_r($json);
-  return $json; 
+  return $json;
 }
 
 function get_json_array($json)
@@ -47,15 +47,28 @@ function show_json_array($json_array, $debug=false) {
     echo "<pre class='json_array'>";
     print_r($json_array);
     echo "</pre>";
-  
+
 }
 
-function doiData($json_array){
+function doiData($json_array)
+{
 
 	$data = array();
 
+  $data['doi']    = $json_array["DOI"];
   $data['title']    = ($json_array["title"] !='') ? $json_array["title"]: "null";
-  $data['author']   = $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
+
+ 	$data['author']   = '';
+	foreach ($json_array["author"] as $key)
+	{
+		$data['author'] .= $key['given'].' '.$key['family'].', ';
+	}
+	$data['author'] = substr($data['author'],0,-2);
+//:[{"given":"Tom","family":"Heath","affiliation":[]},
+  $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
+
+
+
   $data['journal']  = $json_array["container-title"];
   $data['pages']    = $json_array["page"];
   $data['volume']   = $json_array["volume"];
@@ -79,6 +92,9 @@ $doi      		= doi_url($doi);
 //echo $doi;
 
 $json         = get_curl($doi);
+
+//print_r($json);
+
 $json_array   = get_json_array($json);
 
 //print_r($json_array);

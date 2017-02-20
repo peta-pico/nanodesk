@@ -3,7 +3,7 @@ post request of the (trusty) trig file to np.inn.ac
 (mozilla poster)
 
 ///
-run java execute with php to make trusty file and publish to network;
+x run java execute with php to make trusty file and publish to network;
 
 ///
 orcid online testing include aida sentence in the aida template
@@ -11,10 +11,10 @@ orcid online testing include aida sentence in the aida template
 do this also for the read
 
 ///
-Do the DOI chcek to verify
+x Do the DOI chcek to verify
 
 ///
-check contract
+x heck contract
 
 
 

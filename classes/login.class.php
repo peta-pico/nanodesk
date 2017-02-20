@@ -6,7 +6,7 @@
 | Eerst een beveiliging (ook gevonden in config.php, zie die file voor
 | verdere uitleg)
 */
-if(basename($_SERVER['PHP_SELF']) == "header.php") 
+if(basename($_SERVER['PHP_SELF']) == "header.php")
 {
 	header("Location: ../index.php");
 }
@@ -18,7 +18,7 @@ if(basename($_SERVER['PHP_SELF']) == "header.php")
 //include_once("config.inc.php");
 
 /*
-| Nu beginnen we aan de klasse, dit is een simpele klasse die 
+| Nu beginnen we aan de klasse, dit is een simpele klasse die
 | niets meer en niets minder doet dan waarvoor hij gemaakt is:
 | gebruikersauthenticatie.
 */
@@ -26,7 +26,7 @@ class login
 {
 
 	/*
-	| instellingen voor de login 
+	| instellingen voor de login
 	*/
 	var $show_errors = true;
 
@@ -34,7 +34,7 @@ class login
 	var $cookiename;
 
 	//-- tijd van de sessie in uren
-	var $login_session_time = 24; 
+	var $login_session_time = 24;
 
 	//--password ook md5 encripten? Default = true
 	var $ip_check = true;
@@ -71,25 +71,25 @@ class login
 	| teruggeeft.
 	*/
 	public $fouten = "";
-	
+
 	/*
 	| Een variabele (array) om wat informatie over de gebruikers
 	| in op te slaan.
 	*/
 	private static $gebruikersinfo = array();
-	
+
 	/*
 	| Een variabele om database velden in op te slaan
 	*/
 	public $database_velden = array();
-	
+
 	/*
 	| Een variabele die bijhoud hoeveel pogingen een gebruiker al
 	| heeft gemaakt om in te loggen. We beginnen met tellen bij 0
 	*/
 	private $recheck = 0;
-	
-	
+
+
 	/*
 	| Deze functie word aangeroepen bij het laden van de klasse.
 	| Hier word de verbinding met de database tot stand gebracht,
@@ -107,30 +107,30 @@ class login
 		$this->show_errors = true;
 
 		/*
-		| Verbinding maken met de database. De informatie word uit config.php 
+		| Verbinding maken met de database. De informatie word uit config.php
 		| gehaald om te kunnen verbinden.
 		*/
 		$this->verbinding = Core::dbConnect();
-		
+
 		//$this->verbinding = mysqli_connect(mysql_host, mysql_user, mysql_password,mysql_database);
 		//mysqli_select_db(mysql_database, $verbinding);
-		
+
 		/*
-		| Als er fouten zijn en fouten mogen getoond worden dan 
+		| Als er fouten zijn en fouten mogen getoond worden dan
 		| worden ze nu opgeroepen (en later pas weergegeven!)
 		*/
 		if($this->show_errors == true && !$this->verbinding  )
 		{
 			throw new Exception("MySQL liep tegen de volgende fout aan: <br />".mysql_error());
 		}
-		
+
 		/*
 		| Controleren op een login sessie!
 		*/
 		$this->check_session();
-		
+
 		/*
-		| De logout actie koppelen aan de end_session functie welke mensen 
+		| De logout actie koppelen aan de end_session functie welke mensen
 		| uitlogd.
 		*/
 		if(isset($_GET['actie']) && $_GET['actie'] == "uitloggen" && self::$loginsessie === true)
@@ -156,7 +156,7 @@ class login
 		}
 
 	}
-	
+
 	/*
 	| De init functie. Deze zorgt ervoor dat wanneer de gebruiker inlogt of registreert
 	| hij/zij de juiste pagina voor z'n neus krijgt.
@@ -182,22 +182,22 @@ class login
 			if( isset($_POST['actie']) )
 			{
 				/*
-				| Om een grote if-else lussen constructie tegen te 
+				| Om een grote if-else lussen constructie tegen te
 				| gaan doen we het in een switch, dat is makeklijker
 				| uit te breiden.
 				*/
-				
+
 				switch( $_POST['actie'] )
 				{
 					case "login": $this->controleer_gegevens(); break;
 					case "registreer_gebruiker": $this->registreer_gebruiker(); break;
 				}
-		
+
 
 			}
 		}
 	}
-	
+
 	/*
 	| Een functie om het IP-adres van de gebruiker mee te achterhalen
 	*/
@@ -223,9 +223,9 @@ class login
 				$realip = $_SERVER['REMOTE_ADDR'];
 			}
 		}
-		
+
 		/*
-		| Als PHP geen gebruik maakt van $_SERVER 
+		| Als PHP geen gebruik maakt van $_SERVER
 		| moeten we wat anders proberen.
 		*/
 		else
@@ -243,14 +243,14 @@ class login
 				$realip = getenv('REMOTE_ADDR');
 			}
 		}
-		
+
 		/*
 		| De variabele realip returnen, zodat we die kunnen gebruiken
 		*/
 		return $realip;
 	}
-	
-	
+
+
 	/*
 	| Een functie om de gegevens van de gebruikers die in willen loggen te controleren.
 	*/
@@ -265,7 +265,7 @@ class login
 
 
 			/*
-			| Even de gebruikersnaam en wachtwoord beveiligen 
+			| Even de gebruikersnaam en wachtwoord beveiligen
 			| voordat we deze in de database gooien
 			*/
 			#$gebruiker = mysql_real_escape_string($_POST['gebruikersnaam']);
@@ -281,7 +281,7 @@ class login
 			{
 				$wachtwoord = sha1(md5($wachtwoord));
 			}
-			
+
 			/*
 			| Een query uitvoeren om te kijken of de gebruiker in de database zit
 			*/
@@ -307,9 +307,9 @@ class login
 				//print_r(self::$gebruikersinfo['info']['id']);
 				//die('290');
 				return $this->start_session();
-				
+
 			}
-			
+
 			/*
 			| De gebruiker zit niet in de database. Fout laten zien dan maar
 			*/
@@ -331,7 +331,7 @@ class login
 			}
 		}
 	}
-	
+
 	/*
 	| Een functie om te kijken of de gebruiker al is ingelogd.
 	*/
@@ -339,8 +339,8 @@ class login
 	{
 		/*
 		| kijken of de recheck variabele van daarstraks niet
-		| te groot is geworden. 
-		| Is dat wel zo dan een foutmelding laten zien en 
+		| te groot is geworden.
+		| Is dat wel zo dan een foutmelding laten zien en
 		| 'false' retourneren.
 		*/
 		if($this->recheck >= 3)
@@ -348,11 +348,11 @@ class login
 			$this->fouten = "Er is een ongeldige sleutel gevonden.";
 			return false;
 		}
-		
+
 		/*
 		| als de cookie (sid) is gezet en NIET leeg is
 		| even controleren of de sleutel uit de cookie
-		| klopt met die uit de database (als die er 
+		| klopt met die uit de database (als die er
 		| al in staat om mee te beginnen)
 		|
 		| Is dat zo dan word self::$loginsessie waar en
@@ -371,30 +371,33 @@ class login
 
 			/*
 			| Start query
-			*/			
-			$q = "SELECT * FROM ".$this->logins_table." WHERE sid=? AND ip = ? LIMIT 1";
+			*/
+			$q = "SELECT * FROM ".$this->logins_table." WHERE sid=? AND ip=? LIMIT 1";
 
 			$query = $this->verbinding->prepare( $q );
 			if( $query->execute( array( $sid , $this->get_ip() ) ) )
 			{
 				//-- Get user data
-				$row 	 = $query->fetch();
-				//print_r($row);
-				//die();
-				$user_id = $row['uid'];
-
-				$user_query = $this->verbinding->prepare("SELECT * FROM ".$this->users_table." WHERE id=? LIMIT 1");
-				if( $user_query->execute( array($user_id ) ) )
+				$row  = $query->fetch();
+				if($query->rowCount() == 1 )
 				{
-					$user_row = $user_query->fetch();
-					self::$loginsessie = true;
-					self::$gebruikersinfo = array();
-					self::$gebruikersinfo['info'] = $user_row;
-					
+					$user_id = $row['uid'];
+
+					$user_query = $this->verbinding->prepare("SELECT * FROM ".$this->users_table." WHERE id=? LIMIT 1");
+
+					if( $user_query->execute( array($user_id ) ) )
+					{
+						$user_row = $user_query->fetch();
+						self::$loginsessie = true;
+						self::$gebruikersinfo = array();
+						self::$gebruikersinfo['info'] = $user_row;
+
+					}
+					else{
+						print_r( $user_query->errorInfo() );
+					}
 				}
-				else{
-					print_r( $user_query->errorInfo() );	
-				}
+
 			}
 			else
 			{
@@ -410,7 +413,7 @@ class login
 			$this->recheck = $this->recheck + 1;
 		}
 	}
-	
+
 	/*
 	| De sessie die hierboven word besproken starten, de correcte informatie
 	| in de database opslaan ,een cookie maken en de gebruiker terugleiden
@@ -434,7 +437,7 @@ class login
 			*/
 			$secondes = $this->login_session_time * 3600;
 			setcookie($this->cookiename, self::$gebruikersinfo['sleutel'], time()+$secondes, "/");
-			
+
 			/*
 			| Send to the next page
 			*/
@@ -443,16 +446,16 @@ class login
 			$the_url = ( $next != '' ) ?  $next: $this->landing_page_url;
 
 			header("Location:". $the_url);
-			
+
 		}
 		else
 		{
 			print_r( $query->errorInfo() );
 		}
 	}
-	
+
 	/*
-	| Een functie om de sessie die hierboven besproken word te stoppen, en de 
+	| Een functie om de sessie die hierboven besproken word te stoppen, en de
 	| informatie uit de database te halen, de cookie te vernietigen en de
 	| gebruiker terug te leiden naar waar hij/zij vandaan kwam.
 	*/
@@ -465,7 +468,7 @@ class login
 		if ( $query )
 		{
 			$secondes = $this->login_session_time * 3600;
-			setcookie($this->cookiename, "", time()-$secondes, "/");	
+			setcookie($this->cookiename, "", time()-$secondes, "/");
 			unset($_SESSION['fb_token']);
 			unset($_SESSION['user_infocheck']);
 			header("Location: ".ROOT);
@@ -474,11 +477,11 @@ class login
 
 
 
-		
-		
-		
+
+
+
 	}
-	
+
 	/*
 	| De functie om gebruikers informatie op te halen en te controleren
 	| of de gebruikers ingelogd is.
@@ -494,7 +497,7 @@ class login
 		{
 			return false;
 		}
-		
+
 		/*
 		| Anders even wat controles uitvoeren wat er moet gebeuren
 		*/
@@ -507,15 +510,15 @@ class login
 			{
 				return self::$gebruikersinfo['info'];
 			}
-			
+
 			/*
 			| Een specefiek veld van de gebruiker latgeen zien
 			*/
 			elseif(isset(self::$gebruikersinfo['info'][$wat]))
 			{
-				return self::$gebruikersinfo['info'][$wat];	
+				return self::$gebruikersinfo['info'][$wat];
 			}
-			
+
 			/*
 			| Anders true retourneren (zie eerste if() lus van deze functie)
 			*/

@@ -46,7 +46,7 @@
 					<div class="doi-holder">
 						<div class="input-group">
 							<div class="input-group-addon">http://dx.doi.org/</div>
-							<input type="text" class="form-control input-lg" id="doi" name="doi" value="10.1109/5254.920602" required>
+							<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="10.1109/5254.920602" required>
 						</div>
 						<div class="text-center" style="margin-top:20px;">
 							<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
@@ -96,6 +96,14 @@
 								<td><strong>Pages</strong></td>
 								<td><span id="doi_pages"></span></td>
 							</tr>
+							<tr>
+								<td><strong>Volume</strong></td>
+								<td><span id="doi_volume"></span></td>
+							</tr>
+							<tr>
+								<td><strong>Year</strong></td>
+								<td><span id="doi_year"></span></td>
+							</tr>
 						</table>
 
 						<div class="form-group">
@@ -103,6 +111,9 @@
 							<input type="hidden" id="author" name="author" value="">
 							<input type="hidden" id="journal" name="journal" value="">
 							<input type="hidden" id="pages" name="pages" value="">
+							<input type="hidden" id="volume" name="volume" value="">
+							<input type="hidden" id="year" name="year" value="">
+							<input type="hidden" id="doi" name="doi" value="">
 
 							<div class="form-group">
 								<label for="trigtype">Choose publish format</label>

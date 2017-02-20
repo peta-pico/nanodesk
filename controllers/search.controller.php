@@ -2,19 +2,13 @@
 
 include('classes/users.class.php');
 
-if( ! $login->get_login_info('id') )
-{
-	$current_url = rawurlencode($_SERVER[REQUEST_URI]);
-	header('Location: '.ROOT.'/login/&next='.rawurlencode($current_url));
-}
-
 $users = new Users;
-$user = $users->dataArray( $login->get_login_info('id') );
-$user_orcid = $login->get_login_info('orcid_id');
+$user = $users->dataArray($_GET['var']);
 
+//$functions->dumpArray($user);
 
 //add metatags
-$head['meta']['title'] = "Edit paper";
+$head['meta']['title'] = "Nanodesk Profile of ";
 $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
 
@@ -41,6 +35,12 @@ $data = file_get_contents("http://petapico.d2s.labs.vu.nl/api/database/api.php?s
 
 
 $papers = json_decode($data, true);
+
+$query = $db->prepare('SELECT * FROM papers WHERE id=? AND user_id=? LIMIT 1');
+$query->execute(array($_GET['var'], $user_id));
+$paper = $query->fetch(PDO::FETCH_ASSOC);
+
+
 
 
 

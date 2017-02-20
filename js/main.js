@@ -6,7 +6,7 @@ $('.ajaxsubmit').click(function(e)
 
     //rename buttons
     var submitButtin = $(this);
-    submitButtin.addClass('m-progress disabled').prop('disabled', true);
+    //submitButtin.addClass('m-progress disabled').prop('disabled', true);
 
     var theform = $(this).closest(".ajaxform");
 
@@ -57,7 +57,7 @@ $('.ajaxsubmit').click(function(e)
             if(data.redirect == true){
                 // similar behavior as an HTTP redirect
 
-                window.location.replace(data.redirecturl);
+                window.location.replace(data.redirect_url);
 
                 // similar behavior as clicking on a link
                 //window.location.href = "http://stackoverflow.com";
@@ -74,7 +74,7 @@ $('.ajaxsubmit').click(function(e)
 $("#doi_submit").click(function(e)
 {
     e.preventDefault();
-    var doi = $("#doi").val();
+    var doi = $("#doi_check").val();
     //alert('the doi:'+ doi);
     $.ajax({
         type:"POST",
@@ -111,6 +111,7 @@ $("#doi_submit").click(function(e)
                     if(value != null || value != false || value !='' || value !='null')
                     {
                         $("#doi_"+key).text(value);
+                        $("#"+key).val(value);
                     }
                 });
             }
