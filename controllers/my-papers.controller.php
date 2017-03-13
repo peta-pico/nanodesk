@@ -14,7 +14,7 @@ $user_orcid = $login->get_login_info('orcid_id');
 
 
 //add metatags
-$head['meta']['title'] = "Edit paper";
+$head['meta']['title'] = "My Papers";
 $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
 
@@ -37,7 +37,8 @@ $head['meta']['robots'] = "index, follow";
 
 
 //-- user papaers
-$data = file_get_contents("http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F".$user_orcid."&head=on&assertion=on&provenance=on&pubinfo=on&format=json");
+
+$data = file_get_contents("http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F".$user_orcid."&head=on&assertion=on&provenance=on&pubinfo=on&format=json&page=1");
 
 
 $papers = json_decode($data, true);

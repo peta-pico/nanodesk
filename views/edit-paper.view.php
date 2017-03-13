@@ -16,15 +16,13 @@
 			$('.aida-list--target').append(aida_item);
 			//$('.aida-item').clone().insertAfter('.aida-list--target');
 		});
-
-
-
 	});
 
 	$('body').on('click', '.delete-aida', function(e){
 		e.preventDefault();
 		$(this).closest('.aida-item').slideUp().remove();
 	});
+
 </script>
 <?php
 	//insert this view
@@ -35,7 +33,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="text-center">
-				<h2>Add Nanopublication</h2>
+				<h2>Add Paper I have read</h2>
 				<p>Let the world know what you are working on.</p>
 			</div>
 		</div>
@@ -74,10 +72,8 @@
 				<?php endif; ?>
 
 				<div class="box-h-50 box-v-50">
-					<p class="text-center">
-						Is the following information correct?
-					</p>
-					<form class="ajaxform" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
+
+					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
 
 						<table class="table table-striped">
 							<tr>
@@ -115,23 +111,33 @@
 							<input type="hidden" id="year" name="year" value="">
 							<input type="hidden" id="doi" name="doi" value="">
 
-							<div class="form-group">
+							<div id="ihaveread" class="checkbox text-center pd-10">
+ 								<label>
+									<input type="checkbox" name="ihaveread" class="required"> I have read this paper and want to make it public
+								</label>
+							</div>
+
+							<!-- <div class="form-group">
 								<label for="trigtype">Choose publish format</label>
 								<select id="trigtype" name="trigtype" class="form-control" id="">
 									<option value="read">Has Read</option>
 									<option value="aida">AIDA</option>
 								</select>
-							</div>
+							</div> -->
 
 
-							<div class="form-group text-center box-50">
+							<div class="form-group text-center pd-10">
 								<input type="hidden" name="action" value="addpaper">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
-								<button type="submit" class="ajaxsubmit btn btn-lg btn-primary">
-									<i class="glyphicon glyphicon-ok"></i> Upload
+								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
+									<i class="glyphicon glyphicon-upload"></i>  Make Public
 								</button>
 							</div>
-
+							<div class="form-group text-center pd-10">
+								<div class="alert alert-danger text-center" style="display:none;">
+									There was an error while uploading. Please try again in a few mintutes.
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>

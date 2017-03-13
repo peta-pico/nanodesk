@@ -21,7 +21,7 @@ if( $login->get_login_info('id') =='' )
 // start actions
 if($action == 'addpaper')
 {
-    $required = array('uid');
+    $required = array('uid','ihaveread');
     $json['errors'] = array();
 
     foreach($required as $val)
@@ -48,7 +48,11 @@ if($action == 'addpaper')
 		}
 
 		// format = Berners-Lee et al. > 2001. Title of paper. Nature.
-		$paper_data['description'] = $paper_data['author'].'. '.$paper_data['year'].'. '.$paper_data['journal'];
+		$paper_data['description'] =
+		$paper_data['author'].'. '.
+		str_replace('—','-',$paper_data['title']).'. '.
+		$paper_data['year'].'. '.
+		$paper_data['journal'];
 
         //Write nanopub file - returns trusty file name
        $trigfile = $trig->writeReadNanopub($paper_data,$login->get_login_info('orcid_id'));
@@ -61,10 +65,10 @@ if($action == 'addpaper')
 
         //Alter values
         $np_hash = $trig->getHashFromTrusty('../trigfiles/'.$trigfile);
-        $np_uri = 'http://np.inn.ac/'.$np_hash;
-
-        $doi_url = "http://dx.doi.org/".$_POST['doi'];
-        $paper_data['doi_url'] = $doi_url = "http://dx.doi.org/".$_POST['doi'];
+        $np_uri = NP_PUBISH_SERVER.$np_hash;
+		https://doi.org/10.1109/5254.920602
+        $doi_url = "https://doi.org/".$_POST['doi'];
+        $paper_data['doi_url'] = $doi_url = "https://doi.org/".$_POST['doi'];
 
         $paper_data = json_encode($paper_data);
 
@@ -84,18 +88,20 @@ if($action == 'addpaper')
 
 
 
-        if($query->execute() && $trig->uploadNanopub($trigfile) )
+        if( $trig->uploadNanopub($trigfile) )
         {
-            $json['response'] = true;
-            $json['message'] = 'complete';
-            $json['redirect'] = true;
-            $json['redirect_url'] = ROOT.'/my-papers/&feedback=success';
+			if($query->execute())
+			{
+	            $json['response'] = true;
+	            $json['message'] = 'complete';
+	            $json['redirect'] = true;
+	            $json['redirect_url'] = ROOT.'/my-papers/&feedback=success';
+			}
         }
         else
         {
-            $json['response'] = false;
+            $json['response'] = "error";
             $json['message'] = $query->errorInfo();
-
         }
 
         echo json_encode($json);

@@ -6,7 +6,7 @@ $('.ajaxsubmit').click(function(e)
 
     //rename buttons
     var submitButtin = $(this);
-    //submitButtin.addClass('m-progress disabled').prop('disabled', true);
+    submitButtin.addClass('m-progress disabled').prop('disabled', true);
 
     var theform = $(this).closest(".ajaxform");
 
@@ -16,7 +16,8 @@ $('.ajaxsubmit').click(function(e)
         data:theform.serialize(),
         dataType:"json",
         cache:false,
-        beforeSend: function(){
+        beforeSend: function()
+		{
             $(".preloader").hide().show();
             $(".alert-success").hide();
             $(".alert-warning").hide();
@@ -26,37 +27,39 @@ $('.ajaxsubmit').click(function(e)
             $(".required").removeClass("redBorder");
         },
 
-        success:function(data){
+        success:function(data)
+		{
             submitButtin.removeClass("m-progress disabled").prop('disabled', false);
-
 
             if(data.response == true)
             {
                 $("#formholder").slideUp();
-                $(".alert-success").delay(300).slideDown();
+                theform.find(".alert-success").delay(300).slideDown();
             }
 
-            else if(data.response == false)
+            if(data.response == false)
             {
-                $(".alert-warning").delay(300).slideDown();
+                theform.find(".alert-warning").delay(300).slideDown();
 
                 // errors are found
                 if(data.errors.length <= 1)
                 {
                     $.each(data.errors, function(i, item){
-                        $('#'+data.errorfields[i]).addClass("redBorder");
-                        $('#'+data.errorfields[i])+'_alt'.show();
+                        $('#'+data.errors[i]).addClass("redBorder");
+                        $('#'+data.errors[i]+'_alt').show();
                     });
                 }
             }
-            else if(data.response =="error")
+
+			if(data.response =="error")
             {
-                $(".alert-danger").delay(300).slideDown();
+                theform.find(".alert-danger").delay(300).slideDown();
             }
 
-            if(data.redirect == true){
-                // similar behavior as an HTTP redirect
 
+            if(data.redirect == true)
+			{
+                // similar behavior as an HTTP redirect
                 window.location.replace(data.redirect_url);
 
                 // similar behavior as clicking on a link
@@ -68,7 +71,6 @@ $('.ajaxsubmit').click(function(e)
     });//end ajax
 
 });
-
 
 //ajax info
 $("#doi_submit").click(function(e)
@@ -119,4 +121,36 @@ $("#doi_submit").click(function(e)
             //alert(result);
         }
     }); // end ajax
+});
+
+
+
+$('form.ajax-required .required').bind('keyup change',function()
+{
+	var empty = false;
+
+    $('form.ajax-required .required').each(function()
+    {
+        if ($(this).val() == '')
+		{
+            empty = true;
+			console.log( $(this) );
+        }
+    });
+
+    if (empty)
+	{
+        $('.ajax-required-submit').attr('disabled', 'disabled');
+    }
+    else
+	{
+        $('.ajax-required-submit').removeAttr('disabled');
+    }
+});
+
+
+
+$('.required').change(function(){
+	$(this).removeClass('redBorder');
+	$(this).closest('.redBorder').removeClass('redBorder');
 });

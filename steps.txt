@@ -14,7 +14,7 @@ do this also for the read
 x Do the DOI chcek to verify
 
 ///
-x heck contract
+x 	heck contract
 
 
 

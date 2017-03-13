@@ -15,9 +15,11 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<h2 style="margin-top:30px;"><?php echo $user['username']; ?> <a href="#" class="btn btn-md btn-default" style="margin-right:15px;">+ Follow</a></h2>
-			<p>Title Description</p>
-			<div class="">
+			<h2 style="margin-top:30px;"><?php echo $user['username']; ?>
+				<a href="#" class="btn btn-md btn-default hidden" style="margin-right:15px;">+ Follow</a>
+			</h2>
+			<p class="hidden">Title Description</p>
+			<div class="hidden">
 				<a href="#" style="margin-right:15px;" class="">Following 8</a>
 				<a href="#" style="margin-right:15px;" class="">Followers 12</a>
 			</div>
@@ -32,12 +34,12 @@
 					<i class="fa fa-eye" aria-hidden="true"></i> Has Read
 				</a>
 			</li>
-			<li class="col-xs-4">
+			<li class="col-xs-4 hidden">
 				<a href="#">
 					<i class="fa fa-commenting" aria-hidden="true"></i>	Aida
 				</a>
 			</li>
-			<li class="col-xs-4">
+			<li class="col-xs-4 hidden">
 				<a href="#">
 					tab3
 				</a>
@@ -50,7 +52,7 @@
 			<div class="" style="padding:30px;">
 				<table class="table table-striped">
 					<tr>
-						<td>#</td>
+						<td>Date</td>
 						<td>Paper</td>
 						<td>Action</td>
 					</tr>
@@ -58,10 +60,9 @@
 					<?php
 						$i=0;
 						foreach($user['papers'] as $paper):
-
 					?>
 							<tr>
-								<td><?php echo $i++; ?></td>
+								<td><?php echo $paper['date']; ?></td>
 								<td><?php echo $paper['title']; ?></td>
 								<td><a href="#" class="btn btn-md btn-default">View</a></td>
 							</tr>

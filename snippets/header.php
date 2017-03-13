@@ -48,8 +48,8 @@
 		<div class="row">
 			<nav class="nav-logged-in">
 				<ul>
-					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Feed</a></li>
-					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-bookmark"></i> Bookmarks</a></li>
+					<!-- <li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Feed</a></li> -->
+					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-bookmark"></i>Papers i have read</a></li>
 				</ul>
 			</nav>
 		</div>

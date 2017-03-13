@@ -69,8 +69,8 @@ class Trig {
 		}
 
 		:assertion {
-			orcid:".$orcid." ex:hasRead <http://dx.doi.org/".$paper['doi']."> .
-			<http://dx.doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
+			orcid:".$orcid." ex:hasRead <https://doi.org/".$paper['doi']."> .
+			<https://doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
 		}
 
 
@@ -132,7 +132,7 @@ class Trig {
 	{
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
-			$trusty_output = exec("java -jar ../trigfiles/nanopub.jar mktrusty ../trigfiles/".$file.".trig", $trusty_output);
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar mktrusty ../trigfiles/".$file.".trig", $trusty_output);
 
 			return true;
 		}
@@ -174,9 +174,24 @@ class Trig {
 	{
 		if(file_exists('../trigfiles/'.$filename))
 		{
-			$publish_output = exec("java -jar ../trigfiles/nanopub.jar publish ../trigfiles/".$filename, $publish_output_text);
+			if(NP_PUBLISH_METHOD == 'auto')
+			{
+				$publish_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar publish ../trigfiles/".$filename, $publish_output_text);
+			}
+			elseif(NP_PUBLISH_METHOD == 'manual')
+			{
 
-			if( strpos($publish_output , 'INVALID NANOPUB') != false )
+				$publish_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar publish -u ".NP_PUBISH_SERVER." ../trigfiles/".$filename, $publish_output_text);
+			}
+
+
+			// when fail:
+			// $publish_output == "FAILED TO PUBLISH NANOPUBS"
+			$publish_errors = array(
+				"FAILED TO PUBLISH NANOPUBS","INVALID NANOPUB"
+			);
+
+			if( $publish_output == "FAILED TO PUBLISH NANOPUBS" || strpos($publish_output, 'INVALID NANOPUB') == true )
 			{
 				//-- the file is invalid and cannot be posted
 				$alert['response'] =  "warning";
@@ -198,12 +213,12 @@ class Trig {
 			}
 			else
 			{
-				$alert['response'] =  "danger";
+				$alert['response'] =  "error";
 				$alert['message'] =  "File is not published<br>";
-				print_r($alert);
-				print_r($publish_output_text);
-
-				die();
+				$alert['message'] .=  "$publish_output<br>";
+				//print_r($alert);
+				return false;
+				//die();
 			}
 		}
 

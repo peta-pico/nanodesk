@@ -55,30 +55,52 @@ function doiData($json_array)
 
 	$data = array();
 
-  $data['doi']    = $json_array["DOI"];
-  $data['title']    = ($json_array["title"] !='') ? $json_array["title"]: "null";
+	$data['doi']    = $json_array["DOI"];
+	$data['title']    = ($json_array["title"] !='') ? $json_array["title"]: "null";
+	$data['author']   = '';
 
- 	$data['author']   = '';
-	foreach ($json_array["author"] as $key)
+	if( count($json_array["author"]) > 5)
 	{
-		$data['author'] .= $key['given'].' '.$key['family'].', ';
+		//print_r( $json_array["author"]);
+		//echo "<br>---<br>";
+		//print_r( $json_array["author"][2]['family']);
+
+		for($i=0; $i < 5; $i++)
+		{
+			$data['author'] .= $json_array["author"][$i]['family'].', ';
+		}
+
+		$data['author'] = substr($data['author'],0,-2);
+		$data['author'] .= ' et al';
 	}
-	$data['author'] = substr($data['author'],0,-2);
-//:[{"given":"Tom","family":"Heath","affiliation":[]},
-  $json_array["author"][0]['family'].','.$json_array["author"][0]['given'];
+	else
+	{
+		if(count($json_array["author"]) > 0)
+		{
+			foreach ($json_array["author"] as $key)
+			{
+				//$data['author'] .= $key['given'].' '.$key['family'].', ';
+				$data['author'] .= $key['family'].', ';
+			}
+			$data['author'] = substr($data['author'],0,-2);
+		}
+	}
+
+
+		//:[{"given":"Tom","family":"Heath","affiliation":[]},
 
 
 
-  $data['journal']  = $json_array["container-title"];
-  $data['pages']    = $json_array["page"];
-  $data['volume']   = $json_array["volume"];
-  $data['issue']    = $json_array["issue"];
-  //$issn_array   = $json_array["ISSN"];
-  //$url          = $json_array["URL"];
-  $data['year']     = $json_array["issued"]["date-parts"][0][0];
+	$data['journal']  = $json_array["container-title"];
+	$data['pages']    = $json_array["page"];
+	$data['volume']   = $json_array["volume"];
+	$data['issue']    = $json_array["issue"];
+	//$issn_array   = $json_array["ISSN"];
+	//$url          = $json_array["URL"];
+	$data['year']     = $json_array["issued"]["date-parts"][0][0];
 
-
-  //echo $data['title'];
+	// end check data count
+	//echo $data['title'];
 
   return json_encode( $data );
 }
