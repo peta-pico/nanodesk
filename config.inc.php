@@ -16,6 +16,7 @@ define('DB_PASSWORD','');
 //where to publish the NANOPUBS
 // options: auto , <url to server eg: http://app.petapico.d2s.labs.vu.nl/nanopub-server/>
 define('NP_PUBLISH_METHOD','manual');
+
 if(NP_PUBLISH_METHOD == 'auto')
 {
 	define('NP_PUBISH_SERVER','http://np.inn.ac/');
