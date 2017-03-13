@@ -26,7 +26,6 @@ RewriteRule ^ - [L]
 ##
 # Add trailing slash when missing
 ##
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteRule ^(.*)$ $1/ [R=301,L]
@@ -50,6 +49,3 @@ RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ ?p=$1&var=$2&var2=$3 [L,QSA]
 RewriteRule ^([^/]+)/([^/]+)/?$ ?p=$1&var=$2 [L,QSA]
 
 RewriteRule ^([^/]+)/?$ ?p=$1 [L,QSA]
-
-
-
