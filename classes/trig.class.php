@@ -95,7 +95,7 @@ class Trig {
 		//make file trusty
 		$this->makeTrusty($filename);
 
-		return 'trusty.'.$filename.'.trig';
+		return 'signed.'.$filename.'.trig';
 
 	}//
 
@@ -132,7 +132,7 @@ class Trig {
 	{
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar mktrusty ../trigfiles/".$file.".trig", $trusty_output);
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign ../trigfiles/".$file.".trig", $trusty_output);
 
 			return true;
 		}

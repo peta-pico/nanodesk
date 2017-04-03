@@ -131,7 +131,7 @@ $('form.ajax-required .required').bind('keyup change',function()
 
     $('form.ajax-required .required').each(function()
     {
-        if ($(this).val() == '')
+        if ($(this).val() == '' || $(this).val() == false)
 		{
             empty = true;
 			console.log( $(this) );
@@ -146,6 +146,8 @@ $('form.ajax-required .required').bind('keyup change',function()
 	{
         $('.ajax-required-submit').removeAttr('disabled');
     }
+
+
 });
 
 

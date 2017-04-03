@@ -44,10 +44,12 @@ if($action == 'addpaper')
 		foreach($_POST as $key => $val )
 		{
 			if($key !='uid' && $key !='trigtype' && $key !='action')
-			$paper_data[$key] = $val;
+			{
+				$paper_data[$key] = $val;
+			}
 		}
 
-		// format = Berners-Lee et al. > 2001. Title of paper. Nature.
+		// format = Berners-Lee et al. 2001. Title of paper. Nature.
 		$paper_data['description'] =
 		$paper_data['author'].'. '.
 		str_replace('—','-',$paper_data['title']).'. '.

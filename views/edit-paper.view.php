@@ -88,11 +88,11 @@
 								<td><strong>Journal</strong></td>
 								<td><span  id="doi_journal"></span></td>
 							</tr>
-							<tr>
+							<tr class="hidden">
 								<td><strong>Pages</strong></td>
 								<td><span id="doi_pages"></span></td>
 							</tr>
-							<tr>
+							<tr class="hidden">
 								<td><strong>Volume</strong></td>
 								<td><span id="doi_volume"></span></td>
 							</tr>

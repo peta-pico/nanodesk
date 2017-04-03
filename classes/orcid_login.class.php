@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class orcid_login extends login
 {
@@ -28,14 +28,11 @@ class orcid_login extends login
 
 		 $this->db = Core::dbConnect();
 
-
-
-
 	}
 
 	function loginUrl()
 	{
-		$val = $this->authorization_url.'?client_id='. $this->client_id .'&response_type=code&scope=/authenticate&redirect_uri='. $this->redirect_uri; 
+		$val = $this->authorization_url.'?client_id='. $this->client_id .'&response_type=code&scope=/authenticate&redirect_uri='. $this->redirect_uri;
 		return $val;
 	}
 
@@ -43,10 +40,10 @@ class orcid_login extends login
 	{
 		  //Build request parameter string
 		  $params = "client_id=" . $this->client_id . "&client_secret=" . $this->client_secret . "&grant_type=authorization_code&code=" . $code . "&redirect_uri=" . $this->redirect_uri;
-		  
+
 		  //Initialize cURL session
 		  $ch = curl_init();
-		  
+
 		  //Set cURL options
 		  curl_setopt($ch, CURLOPT_URL, $this->token_url);
 		  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
@@ -54,15 +51,15 @@ class orcid_login extends login
 		  curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 		  //curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 1);//Turn off SSL certificate check for testing - remove this for production version!
 		  //curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 1);//Turn off SSL certificate check for testing - remove this for production version!
-		  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-		  
+		  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
 		  //Execute cURL command
 		  $result = curl_exec($ch);
 		  $info = curl_getinfo($ch);
 
 		  //dont display errors for now
 		  #print curl_error($ch);
-		  
+
 		  //Close cURL session
 		  curl_close($ch);
 

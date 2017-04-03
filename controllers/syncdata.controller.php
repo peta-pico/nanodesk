@@ -39,20 +39,48 @@ $head['meta']['robots'] = "index, follow";
 
 
 //-- user papaers
-//has read filter
-http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F0000-0003-3734-6091%0D%0Ahttp%3A%2F%2Fexample.org%2FhasRead%0D%0A&page=1&begin_timestamp=&end_timestamp=&order=1&head=on&assertion=on&provenance=on&pubinfo=on&format=json
 
 $data = file_get_contents("http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F".$user_orcid."&head=on&assertion=on&provenance=on&pubinfo=on&format=json&page=1");
 $papers = json_decode($data, true);
 
 
 
+foreach ($papers as $nanopub)
+{
+	$rac = explode("/",$nanopub);
+	$rac = end($rac);
+
+	$np_online = NP_PUBISH_SERVER.$rac.'.jsonld.txt';
+	//echo $np_online;
+	$jsondata = json_decode(file_get_contents($np_online),true);
+
+	//extract description
+	$paper_title = $jsondata[1]['@graph'][1]['http://purl.org/dc/terms/description'][0]['@value'];
+
+	echo $paper_title ? $paper_title.'<br>':'no title available<br>';
+}
 
 
-$np_online = NP_PUBISH_SERVER.'RAWHdFJKV-aYucpxh3oIDGanaDUMwa3PM5c25lCBHrzpM.jsonld.txt';
 
 
-//$functions->dumpArray( json_decode(file_get_contents($np_online),true) );
+
+
+
+
+	//$jsondata = json_decode(file_get_contents('http://app.petapico.d2s.labs.vu.nl/nanopub-server/RAWHdFJKV-aYucpxh3oIDGanaDUMwa3PM5c25lCBHrzpM.jsonld.txt'),true);
+	$jsondata = json_decode(file_get_contents('http://np.inn.ac/RAWHdFJKV-aYucpxh3oIDGanaDUMwa3PM5c25lCBHrzpM.jsonld.txt'),true);
+
+//np_hash
+
+//get doi
+echo $jsondata[1]['@graph'][0]['http://example.org/hasRead'][0]['@id'].'<br>';
+//get title
+$title = $jsondata[1]['@graph'][1]['http://purl.org/dc/terms/description'][0]['@value'].'<br>';
+print_r(explode('.',$title));
+echo '<br>';
+
+
+$functions->dumpArray( $jsondata, true  );
 
 // echo "<pre>";
 // echo 'Rows:'.count($papers)."<br>";
