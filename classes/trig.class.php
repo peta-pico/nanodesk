@@ -222,10 +222,10 @@ class Trig {
 			}
 		}
 
-	function descriptionFormat( array $data )
-	{
+		function descriptionFormat( array $data )
+		{
 
-	}
+		}
 
 
 
