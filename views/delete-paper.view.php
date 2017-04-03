@@ -1,8 +1,7 @@
 <?php
 	//insert this view
 	include('snippets/header.php');
-?>
-
+?>uploadNanopub
 <div class="site-container site-main">
 	<div class="container">
 		<div class="row no-gutter site-main-holder">
@@ -25,7 +24,7 @@
 										Are you sure you want to delete this entry?
 										It will create a new nanopub stating you delteted this publication.
 									</div>
-								</div>
+								</div>uploadNanopub
 
 								<table class="table table-striped">
 									<tr><td><strong>Title</strong></td><td><?php echo $row['title'] ?></td></tr>

@@ -92,7 +92,7 @@ if($action == 'addpaper')
 
         if( $trig->uploadNanopub($trigfile) )
         {
-			if($query->execute())
+			if( $query->execute() )
 			{
 	            $json['response'] = true;
 	            $json['message'] = 'complete';

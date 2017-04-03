@@ -50,16 +50,16 @@ class Trig {
 	{
 		$date = ( $date !='' ) ? $date : date("c", time());
 
-		$data = "
-		@prefix : <http://example.org/nanodesk/example/read/> .
+		$data = '@prefix : <http://purl.org/np/> .
 		@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-		@prefix dc: <http://purl.org/dc/terms/> .
+		@prefix dct: <http://purl.org/dc/terms/> .
 		@prefix pav: <http://purl.org/pav/> .
 		@prefix prov: <http://www.w3.org/ns/prov#> .
-		@prefix np: <http://www.nanopub.org/nschema#> .
-		@prefix ex: <http://example.org/> .
 		@prefix orcid: <http://orcid.org/> .
-		@prefix dct: <http://purl.org/dc/terms/> .
+		@prefix np: <http://www.nanopub.org/nschema#> .
+		@prefix npx: <http://purl.org/nanopub/x/> .
+		@prefix fabio: <http://purl.org/spar/fabio/> .
+		@prefix pc: <http://purl.org/petapico/o/paperclub#> .
 
 		:Head {
 			: np:hasAssertion :assertion ;
@@ -69,22 +69,59 @@ class Trig {
 		}
 
 		:assertion {
-			orcid:".$orcid." ex:hasRead <https://doi.org/".$paper['doi']."> .
-			<https://doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
+			orcid:'.$orcid.' pc:hasRead <http://dx.doi.org/'.$paper['doi'].'> .
+
+			<http://dx.doi.org/'.$paper['doi'].'>
+				dct:bibliographicCitation "'.$paper['description'].'" ;
+				dct:title "'.$paper['title'].'" ;
+				fabio:hasPublicationYear "'.$paper['year'].'"^^xsd:gYear .
 		}
 
-
 		:provenance {
-			:assertion prov:wasAttributedTo orcid:".$orcid." .
+			:assertion prov:wasAttributedTo orcid:'.$orcid.' .
 		}
 
 		:pubinfo {
-			: dc:created \"".$date."\"^^xsd:dateTime ;
-				pav:createdBy orcid:".$orcid." .
-			: dct:license <https://creativecommons.org/licenses/by/4.0/> .
+			: dct:created "'.$date.'"^^xsd:dateTime ;
+				pav:createdBy orcid:'.$orcid.' .
+			: a npx:ExampleNanopub .  # remove this line once we are done with testing
+		}';
 
-		}
-		";
+		// $data = "
+		// @prefix : <http://example.org/nanodesk/example/read/> .
+		// @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+		// @prefix dc: <http://purl.org/dc/terms/> .
+		// @prefix pav: <http://purl.org/pav/> .
+		// @prefix prov: <http://www.w3.org/ns/prov#> .
+		// @prefix np: <http://www.nanopub.org/nschema#> .
+		// @prefix ex: <http://example.org/> .
+		// @prefix orcid: <http://orcid.org/> .
+		// @prefix dct: <http://purl.org/dc/terms/> .
+		//
+		// :Head {
+		// 	: np:hasAssertion :assertion ;
+		// 		np:hasProvenance :provenance ;
+		// 		np:hasPublicationInfo :pubinfo ;
+		// 		a np:Nanopublication .
+		// }
+		//
+		// :assertion {
+		// 	orcid:".$orcid." ex:hasRead <https://doi.org/".$paper['doi']."> .
+		// 	<https://doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
+		// }
+		//
+		//
+		// :provenance {
+		// 	:assertion prov:wasAttributedTo orcid:".$orcid." .
+		// }
+		//
+		// :pubinfo {
+		// 	: dc:created \"".$date."\"^^xsd:dateTime ;
+		// 		pav:createdBy orcid:".$orcid." .
+		// 	: dct:license <https://creativecommons.org/licenses/by/4.0/> .
+		//
+		// }
+		// ";
 
 		// Set filename of the trigfile
 		$filename = uniqid(mt_rand(), true).'_'.time().'_'.$orcid;
@@ -95,7 +132,7 @@ class Trig {
 		//make file trusty
 		$this->makeTrusty($filename);
 
-		return 'signed.'.$filename.'.trig';
+		return 'trusty.'.$filename.'.trig';
 
 	}//
 
@@ -132,7 +169,7 @@ class Trig {
 	{
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign ../trigfiles/".$file.".trig", $trusty_output);
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar mktrusty ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			return true;
 		}
@@ -180,7 +217,6 @@ class Trig {
 			}
 			elseif(NP_PUBLISH_METHOD == 'manual')
 			{
-
 				$publish_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar publish -u ".NP_PUBISH_SERVER." ../trigfiles/".$filename, $publish_output_text);
 			}
 
@@ -196,6 +232,7 @@ class Trig {
 				//-- the file is invalid and cannot be posted
 				$alert['response'] =  "warning";
 				$alert['message'] =  "INVALID NANOPUB DETECTED";
+				print_r($alert);
 				return false;
 			}
 			elseif($publish_output != '')
@@ -204,8 +241,8 @@ class Trig {
 				$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
 
 				//delete the created files
-				unlink ( "../trigfiles/".$filename);
-				unlink ( "../trigfiles/".str_replace("trusty.","",$filename) );
+				//unlink ( "../trigfiles/".$filename);
+				//unlink ( "../trigfiles/".str_replace("trusty.","",$filename) );
 
 
 
@@ -216,7 +253,7 @@ class Trig {
 				$alert['response'] =  "error";
 				$alert['message'] =  "File is not published<br>";
 				$alert['message'] .=  "$publish_output<br>";
-				//print_r($alert);
+				print_r($alert);
 				return false;
 				//die();
 			}

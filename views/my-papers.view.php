@@ -48,7 +48,7 @@
 											<td style="width:30%; text-align:right;">
 												<a href="<?php echo $paper['np_uri']; ?>" target="_blank" class="btn btn-md btn-default">Nanopub</a>
 												<a href="<?php echo 'https://doi.org/'.$paper['doi']; ?>" target="_blank" class="btn btn-md btn-default">Paper</a>
-												<a href="<?php echo ROOT.'/delete-paper/'.$paper['id'].'/'; ?>" target="_blank" class="btn btn-md btn-danger">
+												<a href="<?php echo ROOT.'/delete-paper/'.$paper['id'].'/'; ?>" target="" class="btn btn-md btn-danger">
 													<i class="glyphicon glyphicon-trash"></i>
 												</a>
 											</td>
