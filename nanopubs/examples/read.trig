@@ -31,6 +31,7 @@
 
 :pubinfo {
 	: dct:created "2017-02-21T11:46:29+01:00"^^xsd:dateTime ;
-		pav:createdBy orcid:0000-0002-1267-0234 .
+		pav:createdBy orcid:0000-0002-1267-0234 ;
+		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
 	: a npx:ExampleNanopub .  # remove this line once we are done with testing
 }
