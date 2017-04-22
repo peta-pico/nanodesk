@@ -2,10 +2,10 @@
 	$(document).ready(function()
 	{
 
-		$("#doi").on("change paste", function(){
+		$("#doi_check").on("change paste", function(){
 			//alert($(this).val());
 
-			var x = $(this).val().replace('http://dx.doi.org/', '').replace('dx.doi.org/', '').replace('https://doi.org/', '');;
+			var x = $(this).val().replace('http://dx.doi.org/', '').replace('dx.doi.org/', '').replace('https://doi.org/', '').replace('http://doi.org/', '');
 			$(this).val(x);
 		});
 

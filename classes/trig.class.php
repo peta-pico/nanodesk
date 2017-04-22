@@ -87,54 +87,116 @@ class Trig {
 			: a npx:ExampleNanopub .  # remove this line once we are done with testing
 		}';
 
-		// $data = "
-		// @prefix : <http://example.org/nanodesk/example/read/> .
-		// @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-		// @prefix dc: <http://purl.org/dc/terms/> .
-		// @prefix pav: <http://purl.org/pav/> .
-		// @prefix prov: <http://www.w3.org/ns/prov#> .
-		// @prefix np: <http://www.nanopub.org/nschema#> .
-		// @prefix ex: <http://example.org/> .
-		// @prefix orcid: <http://orcid.org/> .
-		// @prefix dct: <http://purl.org/dc/terms/> .
-		//
-		// :Head {
-		// 	: np:hasAssertion :assertion ;
-		// 		np:hasProvenance :provenance ;
-		// 		np:hasPublicationInfo :pubinfo ;
-		// 		a np:Nanopublication .
-		// }
-		//
-		// :assertion {
-		// 	orcid:".$orcid." ex:hasRead <https://doi.org/".$paper['doi']."> .
-		// 	<https://doi.org/".$paper['doi']."> dct:description \"".$paper['description']."\" .
-		// }
-		//
-		//
-		// :provenance {
-		// 	:assertion prov:wasAttributedTo orcid:".$orcid." .
-		// }
-		//
-		// :pubinfo {
-		// 	: dc:created \"".$date."\"^^xsd:dateTime ;
-		// 		pav:createdBy orcid:".$orcid." .
-		// 	: dct:license <https://creativecommons.org/licenses/by/4.0/> .
-		//
-		// }
-		// ";
-
 		// Set filename of the trigfile
 		$filename = uniqid(mt_rand(), true).'_'.time().'_'.$orcid;
 
 		// Write the file to folder
 		$this->writeFile($filename, $data, '../trigfiles');
 
-		//make file trusty
+		// make file trusty or signed
 		$this->makeTrusty($filename);
 
 		return 'signed.'.$filename.'.trig';
 
 	}//
+
+	/*
+	 Write a nanopub
+	 $np_type = read | retract
+	 $np_info = array of all info of the np e.g. title date, orcid etc.
+
+	*/
+
+	function makeNanopub($np_type, array $np_info)
+	{
+		// reurns a string with corrent template and information
+		$file = $this->writeNanopub($np_type,$np_info);
+		// new name for the file
+		$filename = uniqid(mt_rand(), true).'_'.time().'_'.$np_info['orcid'];
+
+		// Write the file to folder
+		$this->writeFile($filename, $file, '../trigfiles');
+
+		// make file trusty or signed - the file is in the same folder
+		$this->makeTrusty($filename);
+
+		// return the filename for refrence
+		return 'signed.'.$filename.'.trig';
+	}
+
+
+	/*
+		writes nanopub
+
+		Read NP requires : orcid, doi, paper_cite, paper_title, paper_year, datetime
+		Retract NP requires : orcid, np_uri, datetime
+	*/
+	function writeNanopub($np_type,$np_info)
+	{
+		$file = $this->loadTemplate($np_type);
+
+		$find = array(
+			'|*ORCID*|',
+			'|*NP_URI*|',
+			'|*DOI*|',
+			'|*PAPER_CITE*|',
+			'|*PAPER_TITLE*|',
+			'|*PAPER_YEAR*|',
+			'|*DATETIME*|');
+
+		$orcid 			=  ($np_info['orcid'] !='') ? $np_info['orcid'] : '';
+		$np_uri 		=  ($np_info['np_uri'] !='') ? $np_info['np_uri'] : '';
+		$doi 			=  ($np_info['doi'] !='') ? $np_info['doi'] :'';
+		$paper_cite 	=  ($np_info['paper_cite'] !='') ? $np_info['paper_cite'] :'';
+		$paper_title 	=  ($np_info['paper_title'] !='') ? $np_info['paper_title'] :'';
+		$paper_year 	= ($np_info['paper_year'] !='') ? $np_info['paper_year'] :'';
+		$date 			= ( $np_info['date'] !='' ) ? $np_info['date'] : date("c", time());
+
+
+		$replace = array(
+			$orcid,
+			$np_uri,
+			$doi,
+			$paper_cite,
+			$paper_title,
+			$paper_year,
+			$date
+		);
+
+		$file = @str_replace($find,$replace,$file);
+
+		return $file;
+	}
+
+	/*
+		Loads the correct template
+
+	*/
+
+	function loadTemplate($np_type)
+	{
+		$path = '../nanopubs/';
+		//load correct template
+		switch ($np_type)
+		{
+			case 'read':
+				$template = 'read.txt';
+				break;
+			case 'retract':
+				$template = 'retract.txt';
+				break;
+
+			default:
+				$template = 'read.txt';
+				break;
+		}
+
+		$file = file_get_contents($path.$template);
+
+		return $file;
+	}
+
+
 
 	function writeFile($filename, $text, $path)
 	{
@@ -169,7 +231,11 @@ class Trig {
 	{
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign ../trigfiles/".$file.".trig", $trusty_outputx);
+			// server config
+			//$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
+
+			// local config
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			return true;
 		}
@@ -207,6 +273,18 @@ class Trig {
 		}
 	}
 
+
+	function getHashFromUrl( $url )
+	{
+		// get first line and strip tags
+		$lines = str_replace(array('<','>','.'), '', $url);
+		$lines = explode('/', $lines);
+
+		//return hash
+		return trim(end($lines));
+	}
+
+
 	function uploadNanopub( $filename )
 	{
 		if(file_exists('../trigfiles/'.$filename))
@@ -241,8 +319,8 @@ class Trig {
 				$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
 
 				//delete the created files
-				unlink ( "../trigfiles/".$filename);
-				unlink ( "../trigfiles/".str_replace("trusty.","",$filename) );
+				@unlink ( "../trigfiles/".$filename);
+				@unlink ( "../trigfiles/".str_replace("signed.","",$filename) );
 
 
 

@@ -1,0 +1,19 @@
+|*ORCID*| 		= the orcid id  
+
+|*NP_URI*| = Full uri of the nanopub
+
+|*DOI*| 		= the DOI of the paper
+
+|*PAPER_CITE*| 	= full paper cite
+
+|*PAPER_TITLE*| = tite pf the paper
+
+|*PAPER_YEAR*| 	= year of the paper 
+
+|*DATETIME*| 	= Datetime (2017-04-10T12:27:19+02:00) 
+
+|**| = 
+
+|**| = 
+
+|**| = 
