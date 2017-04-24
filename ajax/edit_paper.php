@@ -63,7 +63,7 @@ if($action == 'addpaper')
         $np_array['paper_cite'] = $paper_data['description'];
         $np_array['paper_title'] = htmlspecialchars($_POST['title']);
         $np_array['paper_year'] = $_POST['year'];
-
+        
         $trigfile = $trig->makeNanopub('read', $np_array);
 
        // prepare query

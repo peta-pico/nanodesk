@@ -13,7 +13,7 @@
 				</div>
 				<main class="site-main__content">
 					<div class="module module--list">
-						<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/delete_paper.php'; ?>" method="POST">
+						<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/retract_paper.php'; ?>" method="POST">
 							<div style="display:block; overflow:hidden; position:relative; width:100%;">
 							<div class="box-h-50 box-v-50">
 								<div class="row alert alert-warning text-center">
@@ -41,7 +41,9 @@
 								</div>
 
 								<div class="form-group text-center pd-10">
-									<input type="hidden" name="action" value="addpaper">
+									<input type="hidden" name="action" value="retract">
+									<input type="hidden" name="id" value="<?php echo $_GET['var']; ?>">
+									<input type="hidden" name="np_uri" value="<?php echo $row['np_uri'] ?>">
 									<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
 									<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-danger" disabled="disabled">
 										<i class="glyphicon glyphicon-xupload"></i>  Delete

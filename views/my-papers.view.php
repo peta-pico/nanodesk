@@ -15,7 +15,7 @@
 				<main class="site-main__content">
 					<?php if($_GET['feedback'] !=''): ?>
 						<div class="alert alert-success text-center mg-bottom-30">
-							<strong>Success!</strong> Your "I have read" is uploaded.
+							<strong>Success!</strong> Action completed.
 						</div>
 					<?php endif; ?>
 

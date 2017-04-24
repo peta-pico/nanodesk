@@ -17,3 +17,19 @@
 |**| = 
 
 |**| = 
+
+
+
+
+
+
+/*
+ READ Requirements
+*/
+orcid, doi, paper_cite, paper_title, paper_year, (datetime)
+
+/*
+ READ Requirements
+*/
+
+orcid, np_uri, (datetime)
