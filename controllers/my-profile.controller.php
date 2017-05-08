@@ -13,7 +13,7 @@ if( ! $login->get_login_info('id') ){
 */
 
 //add metatags
-$head['meta']['title'] = "Edit paper";
+$head['meta']['title'] = "My Profiles";
 $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
 

@@ -1,6 +1,12 @@
 
 <?php
 
+//add metatags
+$head['meta']['title'] = "Login";
+$head['meta']['description'] = "Login to acces your profile";
+$head['meta']['robots'] = "no-index, no-follow";
+
+
   //initate orcid_login class
   include('classes/orcid_login.class.php');
 

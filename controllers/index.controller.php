@@ -5,8 +5,8 @@ include('classes/orcid_login.class.php');
 
 
 //add metatags
-$head['meta']['title'] = "The Title tag";
-$head['meta']['description'] = "description";
+$head['meta']['title'] = "Nanodesk";
+$head['meta']['description'] = "Nanodeks, publish nanopublications with ease";
 $head['meta']['robots'] = "index, follow";
 
 //add additional files
