@@ -155,6 +155,9 @@
 								<div class="alert alert-danger text-center" style="display:none;">
 									There was an error while uploading. Please try again in a few mintutes.
 								</div>
+								<div class="alert alert-warning text-center" style="display:none;">
+									This cannot be done..
+								</div>
 							</div>
 						</div>
 					</form>
@@ -174,7 +177,7 @@
 
 						<div class="form-group">
 							<label for="title">Resource URL <span class="redText">*</span></label>
-							<input type="text" id="doi_url" class="form-control input-lg" name="doi_url" value="">
+							<input type="text" id="doi_url" class="form-control input-lg" name="doi_url" value="http://">
 						</div>
 
 						<div class="form-group">
@@ -183,15 +186,15 @@
 							    <input type="text" id="title" class="form-control input-lg" name="title" value="">
 							</div>
 							<div class="form-group">
-							    <label for="author">Author(s)?</label> <small>e.g. Maedche, Staab</small>
+							    <label for="author">Author(s)? <span class="redText">*</span> </label> <small>e.g. Maedche, Staab</small>
 								<input type="text" id="author" class="form-control input-lg" name="author" value="">
 							</div>
 							<div class="form-group">
-							    <label for="journal">Journal</label>
+							    <label for="journal">Journal <span class="redText">*</span></label>
 							   	<input type="text" id="journal" class="form-control input-lg" name="journal" value="">
 							</div>
 							<div class="form-group">
-							    <label for="year">Year</label>
+							    <label for="year">Year <span class="redText">*</span></label>
 							    <input type="text" id="year" class="form-control input-lg" name="year" value="">
 							</div>
 
@@ -202,7 +205,7 @@
 							</div>
 
 							<div class="form-group text-center pd-10">
-								<input type="hidden" name="action" value="addpaper">
+								<input type="hidden" name="action" value="addpaper_manual">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
 								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
 									<i class="glyphicon glyphicon-upload"></i>  Make Public
@@ -211,6 +214,9 @@
 							<div class="form-group text-center pd-10">
 								<div class="alert alert-danger text-center" style="display:none;">
 									There was an error while uploading. Please try again in a few mintutes.
+								</div>
+								<div class="alert alert-warning text-center" style="display:none;">
+									This cannot be done..
 								</div>
 							</div>
 						</div>

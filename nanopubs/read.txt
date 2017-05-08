@@ -19,7 +19,7 @@
 :assertion {
 	orcid:|*ORCID*| pc:hasRead <|*DOI_URL*|> .
 
-	<http://dx.doi.org/|*DOI*|>
+	<|*DOI_URL*|>
 		dct:bibliographicCitation "|*PAPER_CITE*|" ;
 		dct:title "|*PAPER_TITLE*|" ;
 		fabio:hasPublicationYear "|*PAPER_YEAR*|"^^xsd:gYear .

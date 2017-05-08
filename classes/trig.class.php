@@ -138,10 +138,10 @@ class Trig {
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
 			// server config
-			//$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			// local config
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
+			//$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			return true;
 		}
@@ -225,8 +225,8 @@ class Trig {
 				$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
 
 				//delete the created files
-				@unlink ( "../trigfiles/".$filename);
-				@unlink ( "../trigfiles/".str_replace("signed.","",$filename) );
+				//@unlink ( "../trigfiles/".$filename);
+				//@unlink ( "../trigfiles/".str_replace("signed.","",$filename) );
 
 
 

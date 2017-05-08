@@ -39,12 +39,11 @@ $('.ajaxsubmit').click(function(e)
 
             if(data.response == false)
             {
-                theform.find(".alert-warning").delay(300).slideDown();
-
+                theform.find(".alert-warning").delay(300).slideDown().text(data.message);
+                console.log(data.errors);
                 // errors are found
                 if(data.errors.length <= 1)
                 {
-
                     $.each(data.errors, function(i, item){
 						console.log(data.errors[i]);
                         theform.find('#'+data.errors[i]).addClass("redBorder");
