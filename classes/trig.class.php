@@ -2,115 +2,19 @@
 
 class Trig {
 
-	function aida( $doi, $orcid, $sentence, $date = false )
-	{
-
-		$date = ( $date !='' ) ? $date : date("c", time());
-
-		$data =
-		   '@prefix : <http://example.org/nanodesk/example/aida/> .
-			@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-			@prefix dc: <http://purl.org/dc/terms/> .
-			@prefix pav: <http://purl.org/pav/> .
-			@prefix prov: <http://www.w3.org/ns/prov#> .
-			@prefix np: <http://www.nanopub.org/nschema#> .
-			@prefix ex: <http://example.org/> .
-			@prefix orcid: <http://orcid.org/> .
-
-			:Head {
-				: np:hasAssertion :assertion ;
-					np:hasProvenance :provenance ;
-					np:hasPublicationInfo :pubinfo ;
-					a np:Nanopublication .
-			}
-
-			:assertion {
-			    <http://dx.doi.org/'.$doi.'> ex:includesStatement <http://purl.org/aida/'.urlencode( $sentence ).'> .
-			}
-
-
-			:provenance {
-				:assertion prov:wasAttributedTo orcid:'.$orcid.' .
-			}
-
-			:pubinfo {
-				: dc:created "'.$date.'"^^xsd:dateTime ;
-				pav:createdBy orcid:'.$orcid.' .
-
-			}
-		';
-
-		return $data;
-	}
-
-	/*
-	/ Example of a read nanopub
-	*/
-	function writeReadNanopub(array $paper, $orcid, $date=false )
-	{
-		$date = ( $date !='' ) ? $date : date("c", time());
-
-		$data = '@prefix : <http://purl.org/np/> .
-		@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-		@prefix dct: <http://purl.org/dc/terms/> .
-		@prefix pav: <http://purl.org/pav/> .
-		@prefix prov: <http://www.w3.org/ns/prov#> .
-		@prefix orcid: <http://orcid.org/> .
-		@prefix np: <http://www.nanopub.org/nschema#> .
-		@prefix npx: <http://purl.org/nanopub/x/> .
-		@prefix fabio: <http://purl.org/spar/fabio/> .
-		@prefix pc: <http://purl.org/petapico/o/paperclub#> .
-
-		:Head {
-			: np:hasAssertion :assertion ;
-				np:hasProvenance :provenance ;
-				np:hasPublicationInfo :pubinfo ;
-				a np:Nanopublication .
-		}
-
-		:assertion {
-			orcid:'.$orcid.' pc:hasRead <http://dx.doi.org/'.$paper['doi'].'> .
-
-			<http://dx.doi.org/'.$paper['doi'].'>
-				dct:bibliographicCitation "'.$paper['description'].'" ;
-				dct:title "'.$paper['title'].'" ;
-				fabio:hasPublicationYear "'.$paper['year'].'"^^xsd:gYear .
-		}
-
-		:provenance {
-			:assertion prov:wasAttributedTo orcid:'.$orcid.' .
-		}
-
-		:pubinfo {
-			: dct:created "'.$date.'"^^xsd:dateTime ;
-				pav:createdBy orcid:'.$orcid.' .
-			: a npx:ExampleNanopub .  # remove this line once we are done with testing
-		}';
-
-		// Set filename of the trigfile
-		$filename = uniqid(mt_rand(), true).'_'.time().'_'.$orcid;
-
-		// Write the file to folder
-		$this->writeFile($filename, $data, '../trigfiles');
-
-		// make file trusty or signed
-		$this->makeTrusty($filename);
-
-		return 'signed.'.$filename.'.trig';
-
-	}//
-
 	/*
 	 Write a nanopub
-	 $np_type = read | retract
+	 $np_type = [read | retract]
+	 	'read' requires : orcid, doi, paper_cite, paper_title, paper_year, datetime
+		'retract' requires : orcid, np_uri, datetime
 	 $np_info = array of all info of the np e.g. title date, orcid etc.
-
 	*/
 
 	function makeNanopub($np_type, array $np_info)
 	{
 		// reurns a string with corrent template and information
 		$file = $this->writeNanopub($np_type,$np_info);
+
 		// new name for the file
 		$filename = uniqid(mt_rand(), true).'_'.time().'_'.$np_info['orcid'];
 
@@ -127,7 +31,6 @@ class Trig {
 
 	/*
 		writes nanopub
-
 		Read NP requires : orcid, doi, paper_cite, paper_title, paper_year, datetime
 		Retract NP requires : orcid, np_uri, datetime
 	*/
@@ -142,7 +45,9 @@ class Trig {
 			'|*PAPER_CITE*|',
 			'|*PAPER_TITLE*|',
 			'|*PAPER_YEAR*|',
-			'|*DATETIME*|');
+			'|*DATETIME*|',
+			'|*DOI_URL*|'
+		);
 
 		$orcid 			=  ($np_info['orcid'] !='') ? $np_info['orcid'] : '';
 		$np_uri 		=  ($np_info['np_uri'] !='') ? $np_info['np_uri'] : '';
@@ -151,7 +56,7 @@ class Trig {
 		$paper_title 	=  ($np_info['paper_title'] !='') ? $np_info['paper_title'] :'';
 		$paper_year 	= ($np_info['paper_year'] !='') ? $np_info['paper_year'] :'';
 		$date 			= ( $np_info['date'] !='' ) ? $np_info['date'] : date("c", time());
-
+		$doi_url 		= ( $np_info['doi_url'] !='' ) ? $np_info['doi_url'] : '';
 
 		$replace = array(
 			$orcid,
@@ -160,7 +65,8 @@ class Trig {
 			$paper_cite,
 			$paper_title,
 			$paper_year,
-			$date
+			$date,
+			$doi_url
 		);
 
 		$file = @str_replace($find,$replace,$file);

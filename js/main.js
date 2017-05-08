@@ -44,9 +44,11 @@ $('.ajaxsubmit').click(function(e)
                 // errors are found
                 if(data.errors.length <= 1)
                 {
+
                     $.each(data.errors, function(i, item){
-                        $('#'+data.errors[i]).addClass("redBorder");
-                        $('#'+data.errors[i]+'_alt').show();
+						console.log(data.errors[i]);
+                        theform.find('#'+data.errors[i]).addClass("redBorder");
+                        theform.find('#'+data.errors[i]+'_alt').show();
                     });
                 }
             }

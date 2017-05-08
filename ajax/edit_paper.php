@@ -21,7 +21,7 @@ if( $login->get_login_info('id') =='' )
 // start actions
 if($action == 'addpaper')
 {
-    $required = array('uid','ihaveread');
+    $required = array('uid','ihaveread','title');
     $json['errors'] = array();
 
     foreach($required as $val)
@@ -53,17 +53,18 @@ if($action == 'addpaper')
 		$paper_data['description'] =
 		$paper_data['author'].'. '.
 		str_replace('—','-',$paper_data['title']).'. '.
-		$paper_data['year'].'. '.
+		$paper_data['year'].'. ';
 		$paper_data['journal'];
 
         //Write nanopub file - returns trusty file name
         $np_array = array();
         $np_array['orcid'] = $login->get_login_info('orcid_id');
         $np_array['doi'] = $_POST['doi'];
+        $np_array['doi_url'] = $_POST['doi_url'];
         $np_array['paper_cite'] = $paper_data['description'];
         $np_array['paper_title'] = htmlspecialchars($_POST['title']);
         $np_array['paper_year'] = $_POST['year'];
-        
+
         $trigfile = $trig->makeNanopub('read', $np_array);
 
        // prepare query
@@ -80,6 +81,10 @@ if($action == 'addpaper')
         $paper_data['doi_url'] = $doi_url = "https://doi.org/".$_POST['doi'];
 
         $paper_data = json_encode($paper_data);
+
+		//rewrite url for papers that dont have a doi
+		$doi_url = ($_POST['doi'] == '') ? $doi_url : $_POST['doi_url'];
+
 
         //Bind values
         $query->bindValue(':doi', htmlspecialchars($_POST['doi'],ENT_QUOTES), PDO::PARAM_STR);

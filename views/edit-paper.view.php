@@ -14,8 +14,25 @@
 			e.preventDefault();
 			var aida_item = '<div class="aida-item col-md-12"><div class="col-md-3"><label for="">Does:</label><select name="aida_option[]" id="something" class="form-control"><option value="Confirms">Claim</option><option value="Refutes">Refutes</option><option value="option 3">option 3</option></select></div><div class="col-md-8"><label for="">Aida Sentence:</label><textarea name="aida[]" id="" class="form-control"></textarea><input type="hidden" class="aida_id" name="aida_id[]" value=""><input type="hidden" class="aida_action" name="aida_action[]" value="insert"></div><div class="col-md-1"><br><button class="delete-aida btn btn-md btn-default"><i class=" glyphicon glyphicon-trash"></i></button></div></div><!-- end aida -->';
 			$('.aida-list--target').append(aida_item);
-			//$('.aida-item').clone().insertAfter('.aida-list--target');
+
 		});
+
+		$("#doi_submit").click( function(e){
+			e.preventDefault();
+
+			//$('#doi_results').show();
+			$('#manual_input').hide();
+		})
+
+		$('#manual_btn').click( function(e)
+		{
+			e.preventDefault();
+
+			$('#doi_results').hide();
+			$('#manual_input').show();
+		});
+
+
 	});
 
 	$('body').on('click', '.delete-aida', function(e){
@@ -53,6 +70,7 @@
 							</button>
 							<br>
 							<br>
+							<a href="#" id="manual_btn">Manual upload</a>
 							<div class="w3loader" style="display:none;"></div>
 						</div>
 					</div>
@@ -140,9 +158,65 @@
 							</div>
 						</div>
 					</form>
+
 				</div>
 			</div><!--end col-10-->
 
+		</div>
+
+		<div id="manual_input" class="row no-gutter site-main-holder" style="display:none;">
+			<!--
+				Form For Manual Input
+			-->
+			<div class="col-md-10 col-md-offset-1 box ">
+				<div class="box-h-50 box-v-50">
+					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
+
+						<div class="form-group">
+							<label for="title">Resource URL <span class="redText">*</span></label>
+							<input type="text" id="doi_url" class="form-control input-lg" name="doi_url" value="">
+						</div>
+
+						<div class="form-group">
+							<div class="form-group">
+							    <label for="title">Title <span class="redText">*</span></label>
+							    <input type="text" id="title" class="form-control input-lg" name="title" value="">
+							</div>
+							<div class="form-group">
+							    <label for="author">Author(s)?</label> <small>e.g. Maedche, Staab</small>
+								<input type="text" id="author" class="form-control input-lg" name="author" value="">
+							</div>
+							<div class="form-group">
+							    <label for="journal">Journal</label>
+							   	<input type="text" id="journal" class="form-control input-lg" name="journal" value="">
+							</div>
+							<div class="form-group">
+							    <label for="year">Year</label>
+							    <input type="text" id="year" class="form-control input-lg" name="year" value="">
+							</div>
+
+							<div id="ihaveread" class="checkbox text-center pd-10">
+								<label>
+									<input type="checkbox" name="ihaveread" class="required"> I have read this paper and want to make it public
+								</label>
+							</div>
+
+							<div class="form-group text-center pd-10">
+								<input type="hidden" name="action" value="addpaper">
+								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
+								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
+									<i class="glyphicon glyphicon-upload"></i>  Make Public
+								</button>
+							</div>
+							<div class="form-group text-center pd-10">
+								<div class="alert alert-danger text-center" style="display:none;">
+									There was an error while uploading. Please try again in a few mintutes.
+								</div>
+							</div>
+						</div>
+					</form>
+				</div><!-- end block 50 -->
+			</div>
 		</div>
 	</div><!--end container-->
 </div><!--//site container-->

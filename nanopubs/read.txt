@@ -17,7 +17,7 @@
 }
 
 :assertion {
-	orcid:|*ORCID*| pc:hasRead <http://dx.doi.org/|*DOI*|> .
+	orcid:|*ORCID*| pc:hasRead <|*DOI_URL*|> .
 
 	<http://dx.doi.org/|*DOI*|>
 		dct:bibliographicCitation "|*PAPER_CITE*|" ;
