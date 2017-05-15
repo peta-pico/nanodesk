@@ -7,14 +7,7 @@
 <div class="container">
 
 	<div class="row bg--white" style="padding:30px 0px; margin-bottom:20px;">
-		<div class="col-md-2">
-
-		</div>
-		<div class="col-md-2">
-			<div style="width:150px; height:150px; background:url(http://lorempixel.com/300/300/sports/) 50% 50% no-repeat transparent; border-radius:50%; border:0px; background-size:cover;">
-			</div>
-		</div>
-		<div class="col-md-4">
+		<div class="col-md-12 text-center">
 			<h2 style="margin-top:30px;"><?php echo $user['username']; ?>
 				<a href="#" class="btn btn-md btn-default hidden" style="margin-right:15px;">+ Follow</a>
 			</h2>

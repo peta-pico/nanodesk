@@ -1,14 +1,8 @@
 <?php
-//
-$argv;
 
-
-die('i died');
-//invokes basic info
-include('../config.inc.php');
-
-//invokes $db for database operations
-include('../classes/core.class.php');
+// $argv[1] = database name
+// $argv[2] = database user
+// $argv[3] = database password
 
 include('../classes/trig.class.php');
 $trig = new Trig;
@@ -16,16 +10,70 @@ $trig = new Trig;
 include('../classes/functions.class.php');
 $functions = new Functions;
 
+// ---
+// Check for argsv
+// ---
+if($argv[1] == '' || $argv[1] == 'help' || $argv[1] == '--help' )
+{
+	echo "\n";
+	echo "\n";
+	echo " UPLOAD NANOPUBS";
+	echo "\n";
+	echo "\n ----------------";
+	echo "\n";
+	echo "\n args: <database name> <database user> <database password>";
+	echo "\n";
+	echo "\n Make sure there is a file in the folder that contains the nanopubs.
+			\n Name this file 'data.json' or 'data.txt' ";
+	echo "\n";
+	echo "\n";
+	die();
+}
 
-//$data = file_get_contents("data.txt");
-$data = "data.txt";
-$papers = json_decode(file_get_contents($data), true);
 
 
-echo "<hr>";
-//echo "Total Nanopubs = ". count($papers)/4;
+// ---
+// database connection
+// ---
 
-echo "<hr>";
+	$host = 'localhost';
+	$dbname = $argv[1];
+	$dbuser = $argv[2];
+	$dbpass = (@$argv[3] !='' ) ? $argv[3]:'';
+
+	//--try catch
+	try {
+		$db = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpass);
+	}
+	catch (PDOException $e)
+	{
+			$sMsg = '<p> 
+	        Regelnummer: '.$e->getLine().'<br /> 
+	        Bestand: '.$e->getFile().'<br /> 
+	        Foutmelding: '.$e->getMessage().' 
+	    </p>'; 
+	 
+		trigger_error($sMsg);
+	}
+
+// ---
+// END database connection
+// ---
+
+// ---
+// Check if datafile Exists
+// ---
+	if( !file_exists('data.txt') && !file_exists('data.json'))
+	{
+
+		die("There is no file to upload. 
+			\n Check if file is named 'data.txt' or 'data.json'
+			\n File should contain Json LD data.
+			");
+
+	}
+	$data = (file_exists('data.txt')) ? 'data.txt':'data.json';
+	$papers = json_decode(file_get_contents($data), true);
 
 	$all_nanos = '';
 
@@ -50,6 +98,12 @@ echo "<hr>";
 		}
 		$i++;
 	}
+	$total_items = $i;
+// ---
+// END Check if datafile Exists
+// ---
+
+
 
 	//echo $all_nanos[0][0]['@graph'][0]['@id'].'<br>';
 	//now read nanopubs
@@ -66,7 +120,6 @@ echo "<hr>";
 	foreach	($all_nanos as $paper)
 	{
 		//print_r($paper);
-		//
 		$np_hash =  $trig->getHashFromUrl($paper[0]['@graph'][0]['@id']);
 		$orcid = $trig->getHashFromUrl($paper[1]['@graph'][1]['@id']);
 		$np_uri = $paper[0]['@graph'][0]['@id'];
@@ -78,7 +131,7 @@ echo "<hr>";
 		$doi = str_replace($remove,'',$paper[1]['@graph'][0]['@id']);
 		$doi_url = $paper[1]['@graph'][0]['@id'];
 		$paper_data = 'abc';
-		echo '---<br>';
+		
 
 		$query->bindValue(':orcid_id', htmlspecialchars($orcid,ENT_QUOTES), PDO::PARAM_STR);
 		$query->bindValue(':doi', htmlspecialchars($doi,ENT_QUOTES), PDO::PARAM_STR);
@@ -89,7 +142,10 @@ echo "<hr>";
 		$query->bindValue(':year', $year, PDO::PARAM_INT);
 		$query->bindValue(':paper_data', $paper_data, PDO::PARAM_STR);
 
-		$query->execute();
+		if($query->execute())
+		{
+			echo ($i+1)."/".($total_items+1)."\n";
+		}
 		// insert ino db
 
 

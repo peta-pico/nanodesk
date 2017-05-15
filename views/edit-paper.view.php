@@ -70,7 +70,7 @@
 							</button>
 							<br>
 							<br>
-							<a href="#" id="manual_btn">Manual upload</a>
+							<a href="#" id="manual_btn">Add paper without DOI</a>
 							<div class="w3loader" style="display:none;"></div>
 						</div>
 					</div>
@@ -176,7 +176,7 @@
 					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
 
 						<div class="form-group">
-							<label for="title">Resource URL <span class="redText">*</span></label>
+							<label for="title">Paper URL <span class="redText">*</span></label>
 							<input type="text" id="doi_url" class="form-control input-lg" name="doi_url" value="http://">
 						</div>
 
@@ -186,7 +186,7 @@
 							    <input type="text" id="title" class="form-control input-lg" name="title" value="">
 							</div>
 							<div class="form-group">
-							    <label for="author">Author(s)? <span class="redText">*</span> </label> <small>e.g. Maedche, Staab</small>
+							    <label for="author">Author(s)? <span class="redText">*</span> </label>
 								<input type="text" id="author" class="form-control input-lg" name="author" value="">
 							</div>
 							<div class="form-group">
