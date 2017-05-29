@@ -4,6 +4,7 @@
 @prefix pav: <http://purl.org/pav/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
 @prefix ex: <http://example.org/> .
 @prefix orcid: <http://orcid.org/> .
 
@@ -25,4 +26,5 @@
 :pubinfo {
 	: dc:created "TIMESTAMP-HERE"^^xsd:dateTime ;
 		pav:createdBy orcid:ORCID-ID-HERE .
+	: a npx:ExampleNanopub . # remove this line once we are done with testing
 }
