@@ -16,7 +16,7 @@
 					if( $login->get_login_info('id') ):
 				?>
 					<div class="nav-profile">
-					 	<div class="nav-profile_image" style="background-image:url(<?php echo ROOT.'/assets/profile2.png'?>)"></div>
+					 	<div class="nav-profile_image hidden" style="background-image:url(<?php echo ROOT.'/assets/profile2.png'?>)"></div>
 					 	<div class="nav-profile_username"><?php echo $login->get_login_info('username'); ?></div>
 						<i class="glyphicon glyphicon-triangle-bottom"></i>
 					 	<ul>
@@ -28,7 +28,6 @@
 					</div>
 				<?php else: ?>
 					<ul class="hidden-xs nav-main__cta">
-						<li><a href="<?php echo ROOT.'/login/'; ?>">Sign Up</a></li>
 						<li><a href="<?php echo ROOT.'/login/'; ?>">Log In</a></li>
 					</ul>
 				<?php

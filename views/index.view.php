@@ -4,25 +4,35 @@
 
 ?>
 <div class="hero" style="background-image:url(<?php echo ROOT.'/images/hero/web.jpeg';?>); height:90vh;">
+	<?php if ( ! $login->get_login_info('id')): ?>
+		<div class="hero__content text-center">
+			<h1>Login to Nanodesk</h1>
+			<p style="color:white;">
+				Nanodesk requires you to login with an Orcid account.
+			</p>
 
-	<div class="hero__content text-center">
-		<h1>Login to Nanodesk</h1>
-		<p style="color:white;">
-			Nanodesk requires you to login with an Orcid account.
-		</p>
-
-		<a  style="margin-top:20px;" href="<?php echo $orcid->loginUrl(); ?>" class="btn btn-lg btn-success">
-		  Login With ORCID
-		</a>
-	</div>
-
-	<div class="hero__content text-center hidden">
-		<h1>Search DOI</h1>
-		<div class="hero--search">
-			<input type="text" class="__input" placeholder="e.g: 10.1016/0004-3702(91)90053-M">
-			<button class="__submit"><i class="glyphicon glyphicon-search"></i></button>
+			<a  style="margin-top:20px;" href="<?php echo $orcid->loginUrl(); ?>" class="btn btn-lg btn-success">
+			  Login With ORCID
+			</a>
 		</div>
-	</div>
+
+		<div class="hero__content text-center hidden">
+			<h1>Search DOI</h1>
+			<div class="hero--search">
+				<input type="text" class="__input" placeholder="e.g: 10.1016/0004-3702(91)90053-M">
+				<button class="__submit"><i class="glyphicon glyphicon-search"></i></button>
+			</div>
+		</div>
+	<?php else: ?>
+		<div class="hero__content text-center">
+			<h1>Nanodesk</h1>
+
+			<a  style="margin-top:20px;" href="<?php echo ROOT.'/my-papers/'; ?>" class="btn btn-lg btn-success">
+			  Go to your profile
+			</a>
+		</div>
+	<?php endif; ?>
+
 
 </div>
 

@@ -38,11 +38,11 @@
 								<td><strong>Journal</strong></td>
 								<td><span  id="doi_journal"><?php echo $paper['journal'] ?></span></td>
 							</tr>
-							<tr>
+							<tr class="hidden">
 								<td><strong>Pages</strong></td>
 								<td><span id="doi_pages"><?php echo $paper['pages'] ?></span></td>
 							</tr>
-							<tr>
+							<tr class="hidden">
 								<td><strong>Volume</strong></td>
 								<td><span id="doi_volume"><?php echo $paper['volume'] ?></span></td>
 							</tr>
@@ -55,12 +55,27 @@
 								<td><a href="<?php echo $paper['doi_url']; ?>"><?php echo $paper['doi'] ?></a></td>
 							</tr>
 						</table>
-						<p>
-							<a href="#">2 others have read this paper</a>
-						</p>
+						
 
 						<div class="box-h-50 box-v-50 text-center">
-							<a href="#" class="btn btn-lg btn-default">+ Add Aida</a>
+							<h3>Aida's for this paper</h3>
+							<?php if ( count($paper['aidas']) < 1 ): ?>
+								<div class="alert alert-warning">
+									No Aida's available
+								</div>
+							<?php else: ?>
+								<?php foreach ($paper['aida'] as $aida): ?>
+									<div style="padding:10px; border:1px solid #eee; margin-bottom:10px;">
+										<?php echo $aida['sentence']; ?>
+									</div>
+								<?php endforeach ?>
+							<?php endif ?>
+							
+							
+						</div>
+
+						<div class="box-h-50 box-v-50 text-center">
+							<a href="<?php echo ROOT.'/add-aida/'.$paper['id'].'/'; ?>" class="btn btn-lg btn-default">+ Add Aida for this paper</a>
 						</div>
 					</form>
 				</div>

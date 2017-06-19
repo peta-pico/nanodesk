@@ -130,7 +130,7 @@ if($argv[1] == '' || $argv[1] == 'help' || $argv[1] == '--help' )
 		$remove = array('http://dx.doi.org/','https://dx.doi.org/','http://doi.org/','https://doi.org/');
 		$doi = str_replace($remove,'',$paper[1]['@graph'][0]['@id']);
 		$doi_url = $paper[1]['@graph'][0]['@id'];
-		$paper_data = 'abc';
+		$paper_data = 'none';
 		
 
 		$query->bindValue(':orcid_id', htmlspecialchars($orcid,ENT_QUOTES), PDO::PARAM_STR);

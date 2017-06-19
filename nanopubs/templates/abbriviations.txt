@@ -4,6 +4,8 @@
 
 |*DOI*| 		= the DOI of the paper
 
+|*DOI_URL*| 	= The complete URL of the paper
+
 |*PAPER_CITE*| 	= full paper cite
 
 |*PAPER_TITLE*| = tite pf the paper
@@ -29,7 +31,7 @@
 orcid, doi, paper_cite, paper_title, paper_year, (datetime)
 
 /*
- READ Requirements
+ RETRACT rements
 */
 
 orcid, np_uri, (datetime)

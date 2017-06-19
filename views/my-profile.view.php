@@ -32,7 +32,7 @@
 						<hr>
 					</div>
 					<form class="ajaxform ajaxform-required">
-						<div class="col-md-4 col-md-push-8 text-center">
+						<div class="col-md-4 col-md-push-8 text-center hidden">
 							<div class="text-center">
 								<div class="thumbnail" style="height: 180px; width: 180px; display: inline-block; background:url(<?php echo ROOT.'/assets/profile2.png'?>) 50% 50% no-repeat transparent; background-size:cover;">
 								</div>
@@ -40,7 +40,7 @@
 							<button class="btn btn-md btn-default">Upload new image</button>
 						</div>
 
-						<div class="col-md-8  col-md-pull-4">
+						<div class="col-md-8 ">
 							<div class="form-group">
 								<label for="username">Username:</label>
 								<input type="text" class="form-control" id="username" value="<?php echo $login->get_login_info('username'); ?>">

@@ -36,8 +36,13 @@ class Trig {
 	*/
 	function writeNanopub($np_type,$np_info)
 	{
+
+		// load the correct telplate
 		$file = $this->loadTemplate($np_type);
 
+		// list of all the strings that need to be replaced
+		// The order is important! 
+		// If there are new 'tags', add them at the end of the list
 		$find = array(
 			'|*ORCID*|',
 			'|*NP_URI*|',
@@ -46,18 +51,17 @@ class Trig {
 			'|*PAPER_TITLE*|',
 			'|*PAPER_YEAR*|',
 			'|*DATETIME*|',
-			'|*DOI_URL*|'
+			'|*DOI_URL*|',
+			'|*AIDA_SENTENCE*|'
 		);
 
-		$orcid 			=  ($np_info['orcid'] !='') ? $np_info['orcid'] : '';
-		$np_uri 		=  ($np_info['np_uri'] !='') ? $np_info['np_uri'] : '';
-		$doi 			=  ($np_info['doi'] !='') ? $np_info['doi'] :'';
-		$paper_cite 	=  ($np_info['paper_cite'] !='') ? $np_info['paper_cite'] :'';
-		$paper_title 	=  ($np_info['paper_title'] !='') ? $np_info['paper_title'] :'';
-		$paper_year 	= ($np_info['paper_year'] !='') ? $np_info['paper_year'] :'';
-		$date 			= ( $np_info['date'] !='' ) ? $np_info['date'] : date("c", time());
-		$doi_url 		= ( $np_info['doi_url'] !='' ) ? $np_info['doi_url'] : '';
+		// 
+		// 
+		extract($np_info);
+		$date = ( $np_info['date'] !='' ) ? $np_info['date'] : date("c", time());
 
+		// Put the above data into an array
+		// The order is important!
 		$replace = array(
 			$orcid,
 			$np_uri,
@@ -66,9 +70,11 @@ class Trig {
 			$paper_title,
 			$paper_year,
 			$date,
-			$doi_url
+			$doi_url,
+			$aida_sentence
 		);
 
+		// replace all the "$find" w
 		$file = @str_replace($find,$replace,$file);
 
 		return $file;
@@ -81,24 +87,19 @@ class Trig {
 
 	function loadTemplate($np_type)
 	{
-		$path = '../nanopubs/';
-		//load correct template
-		switch ($np_type)
-		{
-			case 'read':
-				$template = 'read.txt';
-				break;
-			case 'retract':
-				$template = 'retract.txt';
-				break;
-
-			default:
-				$template = 'read.txt';
-				break;
+		// path of the template
+		$path = '../nanopubs/templates/';
+		
+		// load the contents of the file
+		if (@file_exists($path.$np_type.'.txt')) {
+			$file = file_get_contents($path.$np_type.'.txt');
 		}
-
-		$file = file_get_contents($path.$template);
-
+		else
+		{
+			die('The NP template does not exsist');
+			return false;
+		}
+		
 		return $file;
 	}
 
@@ -138,10 +139,10 @@ class Trig {
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
 			// server config
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
+			// $trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			// local config
-			//$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
+			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
 
 			return true;
 		}

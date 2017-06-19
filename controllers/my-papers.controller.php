@@ -1,12 +1,13 @@
 <?php
 
-include('classes/users.class.php');
 
 if( ! $login->get_login_info('id') )
 {
 	$current_url = rawurlencode($_SERVER[REQUEST_URI]);
 	header('Location: '.ROOT.'/login/&next='.rawurlencode($current_url));
 }
+
+include('classes/users.class.php');
 
 $users = new Users;
 $user = $users->dataArray( $login->get_login_info('orcid_id') );
@@ -40,7 +41,7 @@ $head['meta']['robots'] = "index, follow";
 
 //-- user papaers
 //has read filter
-http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F0000-0003-3734-6091%0D%0Ahttp%3A%2F%2Fexample.org%2FhasRead%0D%0A&page=1&begin_timestamp=&end_timestamp=&order=1&head=on&assertion=on&provenance=on&pubinfo=on&format=json
+//http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F0000-0003-3734-6091%0D%0Ahttp%3A%2F%2Fexample.org%2FhasRead%0D%0A&page=1&begin_timestamp=&end_timestamp=&order=1&head=on&assertion=on&provenance=on&pubinfo=on&format=json
 
 $data = file_get_contents("http://petapico.d2s.labs.vu.nl/api/database/api.php?search-uri=http%3A%2F%2Forcid.org%2F".$user_orcid."&head=on&assertion=on&provenance=on&pubinfo=on&format=json&page=1");
 $papers = json_decode($data, true);
