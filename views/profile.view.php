@@ -57,7 +57,7 @@
 							<tr>
 								<td><?php echo $paper['date']; ?></td>
 								<td><?php echo $paper['title']; ?></td>
-								<td><a href="#" class="btn btn-md btn-default">View</a></td>
+								<td><a href="#" class="hidden btn btn-md btn-default">View</a></td>
 							</tr>
 					<?php
 						endforeach;

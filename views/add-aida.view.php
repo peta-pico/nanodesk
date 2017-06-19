@@ -1,46 +1,3 @@
-<script>
-	$(document).ready(function()
-	{
-
-		$("#doi_check").on("change paste", function(){
-			//alert($(this).val());
-
-			var x = $(this).val().replace('http://dx.doi.org/', '').replace('dx.doi.org/', '').replace('https://doi.org/', '').replace('http://doi.org/', '');
-			$(this).val(x);
-		});
-
-		$('.add-aida').click( function(e)
-		{
-			e.preventDefault();
-			var aida_item = '<div class="aida-item col-md-12"><div class="col-md-3"><label for="">Does:</label><select name="aida_option[]" id="something" class="form-control"><option value="Confirms">Claim</option><option value="Refutes">Refutes</option><option value="option 3">option 3</option></select></div><div class="col-md-8"><label for="">Aida Sentence:</label><textarea name="aida[]" id="" class="form-control"></textarea><input type="hidden" class="aida_id" name="aida_id[]" value=""><input type="hidden" class="aida_action" name="aida_action[]" value="insert"></div><div class="col-md-1"><br><button class="delete-aida btn btn-md btn-default"><i class=" glyphicon glyphicon-trash"></i></button></div></div><!-- end aida -->';
-			$('.aida-list--target').append(aida_item);
-
-		});
-
-		$("#doi_submit").click( function(e){
-			e.preventDefault();
-
-			//$('#doi_results').show();
-			$('#manual_input').hide();
-		})
-
-		$('#manual_btn').click( function(e)
-		{
-			e.preventDefault();
-
-			$('#doi_results').hide();
-			$('#manual_input').show();
-		});
-
-
-	});
-
-	$('body').on('click', '.delete-aida', function(e){
-		e.preventDefault();
-		$(this).closest('.aida-item').slideUp().remove();
-	});
-
-</script>
 <?php
 	//insert this view
 	include('snippets/header.php');
@@ -75,8 +32,9 @@
 
 
 							<div class="form-group">
-								<label for="comment">Aida Sentence:</label>
-								<textarea class="form-control" rows="3" id="comment"></textarea>
+								<label for="aida_sentence">Aida Sentence:</label>
+
+								<textarea name="aida_sentence" class="form-control" rows="3" id="aida_sentence"></textarea>
 							</div>
 
 							<div id="ihaveread" class="checkbox text-center pd-10">
@@ -87,7 +45,10 @@
 
 							<div class="form-group text-center pd-10">
 								<input type="hidden" name="action" value="addaida">
+								<input type="hidden" name="paper_id" value="<?php echo $paperData['id']; ?>">
+								<input type="hidden" name="doi_url" value="<?php echo $paperData['doi_url']; ?>">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
+
 								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
 									<i class="glyphicon glyphicon-upload"></i>  Make Public
 								</button>

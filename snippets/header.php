@@ -21,7 +21,7 @@
 						<i class="glyphicon glyphicon-triangle-bottom"></i>
 					 	<ul>
 
-					 		<li><a href="<?php echo ROOT.'/profile/'.$login->get_login_info('id'); ?>">View Profile</a></li>
+					 		<li><a href="<?php echo ROOT.'/profile/'.$login->get_login_info('orcid_id'); ?>">View Profile</a></li>
 							<li><a href="<?php echo ROOT.'/my-profile/'?>">My Account</a></li>
 					 		<li class="seperator-top"><a href="<?php echo ROOT.'/&actie=uitloggen/'?>">Log Out</a></li>
 					 	</ul>

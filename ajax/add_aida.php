@@ -23,7 +23,7 @@ if($action == 'addaida')
 {
 
     //default
-    $required = array('paper_id','ihaveread','sentence');
+    $required = array('paper_id','ihaveread','aida_sentence');
 
     //initiate array
     $json['errors'] = array();
@@ -43,18 +43,19 @@ if($action == 'addaida')
     }
     else // form is valid
     {
+        // set paper data array
+        $trig_data = array();
+        foreach($_POST as $key => $val )
+        {
+            if($key !='uid' && $key !='trigtype' && $key !='action')
+            {
+                $trig_data[$key] = $val;
+            }
+        }
 
-		// set paper data array
-		$paper_data = array();
-		foreach($_POST as $key => $val )
-		{
-			if($key !='uid' && $key !='trigtype' && $key !='action')
-			{
-				$paper_data[$key] = $val;
-			}
-		}
+        $trig_data['orcid'] = $login->get_login_info('orcid_id');
 
-        $trigfile = $trig->makeNanopub('aida', $np_array);
+        $trigfile = $trig->makeNanopub('aida',  $trig_data);
 
 
         //Alter values
@@ -64,15 +65,17 @@ if($action == 'addaida')
 
        // prepare query
         $query = $db->prepare("INSERT INTO aidas 
-        ( date, orcid, paper_id, sentence, np_uri, np_hash )
-        VALUES( NOW(), :orcid, :paper_id, :sentence, :np_uri, :np_hash )
+        ( date, orcid_id, paper_id, sentence, np_uri, np_hash )
+        VALUES( NOW(), :orcid_id, :paper_id, :sentence, :np_uri, :np_hash )
         ");
 
         //Bind values
-        $query->bindValue(':doi', $doi, PDO::PARAM_STR);
+        $query->bindValue(':orcid_id',$login->get_login_info('orcid_id'), PDO::PARAM_STR);
+        $query->bindValue(':paper_id', $_POST['paper_id'], PDO::PARAM_INT);
+        $query->bindValue(':sentence', $_POST['aida_sentence'], PDO::PARAM_STR);
         $query->bindValue(':np_uri', $np_uri, PDO::PARAM_STR);
         $query->bindValue(':np_hash', $np_hash, PDO::PARAM_STR);
-        $query->bindValue(':orcid',$login->get_login_info('orcid_id'), PDO::PARAM_INT);
+      
 
 
         // upload the nanopub

@@ -61,7 +61,7 @@
 					<div class="doi-holder">
 						<div class="input-group">
 							<div class="input-group-addon">http://dx.doi.org/</div>
-							<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="10.1109/5254.920602" required>
+							<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="" required>
 						</div>
 						<div class="text-center" style="margin-top:20px;">
 							<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
@@ -91,7 +91,7 @@
 
 				<div class="box-h-50 box-v-50">
 
-					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
+					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/add_paper.php'; ?>" method="POST">
 
 						<table class="table table-striped">
 							<tr>
@@ -173,7 +173,7 @@
 			-->
 			<div class="col-md-10 col-md-offset-1 box ">
 				<div class="box-h-50 box-v-50">
-					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
+					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/add_paper.php'; ?>" method="POST">
 
 						<div class="form-group">
 							<label for="title">Paper URL <span class="redText">*</span></label>

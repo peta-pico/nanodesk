@@ -57,18 +57,47 @@
 						</table>
 						
 
-						<div class="box-h-50 box-v-50 text-center">
-							<h3>Aida's for this paper</h3>
+						<div class="box-h-50 box-v-50">
+							<h3 class="text-center">Aida's for this paper</h3>
 							<?php if ( count($paper['aidas']) < 1 ): ?>
 								<div class="alert alert-warning">
 									No Aida's available
 								</div>
 							<?php else: ?>
-								<?php foreach ($paper['aida'] as $aida): ?>
-									<div style="padding:10px; border:1px solid #eee; margin-bottom:10px;">
-										<?php echo $aida['sentence']; ?>
-									</div>
-								<?php endforeach ?>
+								
+								<div style="padding:20px; border:1px solid #eee; margin-bottom:10px;">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th width="20%">Date</th>
+												<th width="60%">Sentence</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($paper['aidas'] as $aida): ?>
+												<tr>
+													<td>
+														<?php echo date('d-m-Y', strtotime($aida['date'])); ?>
+													</td>
+													<td>
+														<?php echo $aida['sentence']; ?>
+													</td>
+													<td>
+														<a class="btn btn-md btn-default" href="<?php echo $aida['np_uri']; ?>" target="_blank">
+															<i class="glyphicon glyphicon-new-window"></i>
+														</a>
+														<a class="btn btn-md btn-danger" href="<?php echo $paper['doi_url']; ?>">
+															<i class="glyphicon glyphicon-trash"></i>
+														</a>
+													</td>
+												</tr>
+											<?php endforeach ?>
+										</tbody>
+									</table>
+									
+								</div>
+							
 							<?php endif ?>
 							
 							

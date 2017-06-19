@@ -71,7 +71,7 @@ class Trig {
 			$paper_year,
 			$date,
 			$doi_url,
-			$aida_sentence
+			urlencode(str_replace(' ','+', trim($aida_sentence))) 
 		);
 
 		// replace all the "$find" w
@@ -226,8 +226,8 @@ class Trig {
 				$alert['message'] =  $publish_output.". <br> Your paper will shortly appear in your list.";
 
 				//delete the created files
-				@unlink ( "../trigfiles/".$filename);
-				@unlink ( "../trigfiles/".str_replace("signed.","",$filename) );
+				//@unlink ( "../trigfiles/".$filename);
+				//@unlink ( "../trigfiles/".str_replace("signed.","",$filename) );
 
 
 

@@ -109,7 +109,7 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
         $np_uri = NP_PUBISH_SERVER.$np_hash;
         
 
-       // prepare query
+       // prepare query and aroew in DB
         $query = $db->prepare("INSERT INTO papers
         (date , doi, doi_url, title, author, journal, pages, volume, year, paper_data, np_uri, np_hash, user_id,orcid_id)
         VALUES( NOW(), :doi, :doi_url, :title, :author, :journal, :pages, :volume, :year, :paper_data, :np_uri, :np_hash, :user_id,:orcid_id)

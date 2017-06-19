@@ -21,7 +21,7 @@
 
 
 					<div class="padding-bottom-30">
-						<a href="<?php echo ROOT.'/edit-paper/'; ?>" class="btn btn-lg btn-default">+ Add paper I have read</a>
+						<a href="<?php echo ROOT.'/add-paper/'; ?>" class="btn btn-lg btn-default">+ Add paper I have read</a>
 					</div>
 
 					<div class="module module--list">
