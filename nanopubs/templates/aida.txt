@@ -1,11 +1,11 @@
-@prefix : <http://example.org/nanodesk/example/aida/> .
+@prefix : <http://purl.org/np/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix pav: <http://purl.org/pav/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix np: <http://www.nanopub.org/nschema#> .
 @prefix npx: <http://purl.org/nanopub/x/> .
-@prefix ex: <http://example.org/> .
+@prefix hycl: <http://purl.org/petapico/o/hycl#> .
 @prefix orcid: <http://orcid.org/> .
 
 :Head {
@@ -16,7 +16,7 @@
 }
 
 :assertion {
-    <|*DOI_URL*|> ex:includesStatement <http://purl.org/aida/|*AIDA_SENTENCE*|> .
+    <|*DOI_URL*|> hycl:claims <http://purl.org/aida/|*AIDA_SENTENCE*|> .
 }
 
 :provenance {
@@ -25,6 +25,7 @@
 
 :pubinfo {
 	: dc:created "|*DATETIME*|"^^xsd:dateTime ;
-		pav:createdBy orcid:|*ORCID*| .
+		pav:createdBy orcid:|*ORCID*| ;
+		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
 	: a npx:ExampleNanopub . # remove this line once we are done with testing
 }

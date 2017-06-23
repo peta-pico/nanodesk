@@ -17,9 +17,9 @@
 }
 
 :assertion {
-	orcid:ORCID-ID-HERE pc:hasRead <http://dx.doi.org/DOI-HERE> .
+	orcid:ORCID-ID-HERE pc:hasRead <http://doi.org/DOI-HERE> .
 
-	<http://dx.doi.org/DOI-HERE>
+	<http://doi.org/DOI-HERE>
 		dct:bibliographicCitation "FULL-PAPER-CITATION-HERE" ;
 		dct:title "PAPER-TITLE-HERE" ;
 		fabio:hasPublicationYear "PAPER-YEAR-HERE"^^xsd:gYear .
