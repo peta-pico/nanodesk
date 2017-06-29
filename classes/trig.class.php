@@ -91,8 +91,8 @@ class Trig {
 		$path = '../nanopubs/templates/';
 		
 		// load the contents of the file
-		if (@file_exists($path.$np_type.'.txt')) {
-			$file = file_get_contents($path.$np_type.'.txt');
+		if (@file_exists($path.$np_type.'.trig')) {
+			$file = file_get_contents($path.$np_type.'.trig');
 		}
 		else
 		{

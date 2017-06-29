@@ -17,17 +17,17 @@
 }
 
 :assertion {
-	orcid:ORCID-ID-HERE npx:retracts <URL-OF-NANOPUB-TO-RETRACT-HERE> .
+	orcid:|*ORCID*| npx:retracts <|*NP_URI*|> .
 }
 
 :provenance {
-	:assertion prov:wasAttributedTo orcid:ORCID-ID-HERE .
+	:assertion prov:wasAttributedTo orcid:|*ORCID*| .
 }
 
 :pubinfo {
-	: dct:created "TIMESTAMP-HERE"^^xsd:dateTime ;
-		pav:createdBy orcid:ORCID-ID-HERE ;
+	: dct:created "|*DATETIME*|"^^xsd:dateTime ;
+		pav:createdBy orcid:|*ORCID*| ;
 		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> ;
-		npx:supersedes <URL-OF-NANOPUB-TO-RETRACT-HERE> .
+		npx:supersedes <|*NP_URI*|> .
 	: a npx:ExampleNanopub .  # remove this line once we are done with testing
 }

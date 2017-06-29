@@ -17,21 +17,21 @@
 }
 
 :assertion {
-	orcid:ORCID-ID-HERE pc:hasRead <http://doi.org/DOI-HERE> .
+	orcid:|*ORCID*| pc:hasRead <|*DOI_URL*|> .
 
-	<http://doi.org/DOI-HERE>
-		dct:bibliographicCitation "FULL-PAPER-CITATION-HERE" ;
-		dct:title "PAPER-TITLE-HERE" ;
-		fabio:hasPublicationYear "PAPER-YEAR-HERE"^^xsd:gYear .
+	<|*DOI_URL*|>
+		dct:bibliographicCitation "|*PAPER_CITE*|" ;
+		dct:title "|*PAPER_TITLE*|" ;
+		fabio:hasPublicationYear "|*PAPER_YEAR*|"^^xsd:gYear .
 }
 
 :provenance {
-	:assertion prov:wasAttributedTo orcid:ORCID-ID-HERE .
+	:assertion prov:wasAttributedTo orcid:|*ORCID*| .
 }
 
 :pubinfo {
-	: dct:created "TIMESTAMP-HERE"^^xsd:dateTime ;
-		pav:createdBy orcid:ORCID-ID-HERE ;
+	: dct:created "|*DATETIME*|"^^xsd:dateTime ;
+		pav:createdBy orcid:|*ORCID*| ;
 		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
 	: a npx:ExampleNanopub .  # remove this line once we are done with testing
 }
