@@ -21,7 +21,7 @@
 				<?php endif; ?>
 				<div class="box-h-50 box-v-50">
 					<p class="text-center">
-						You have read the following paper:
+						You have read the following paper on <strong><?php echo date('M d Y', strtotime($paper['date'])) ?></strong>:
 					</p>
 					<form class="ajaxform" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
 
@@ -69,7 +69,7 @@
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th width="20%">Date</th>
+												<th width="20%">Created on</th>
 												<th width="60%">Sentence</th>
 												<th></th>
 											</tr>
@@ -87,7 +87,7 @@
 														<a class="btn btn-md btn-default" href="<?php echo $aida['np_uri']; ?>" target="_blank">
 															<i class="glyphicon glyphicon-new-window"></i>
 														</a>
-														<a class="btn btn-md btn-danger" href="<?php echo $paper['doi_url']; ?>">
+														<a class="btn btn-md btn-danger" href="<?php echo ROOT.'/retract-aida/'.$aida['id']; ?>">
 															<i class="glyphicon glyphicon-trash"></i>
 														</a>
 													</td>

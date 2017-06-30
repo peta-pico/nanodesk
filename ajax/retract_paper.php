@@ -3,7 +3,6 @@
 error_reporting(E_ALL & ~E_NOTICE);
 include('ajax.inc.php');
 include('../classes/trig.class.php');
-
 $trig = new Trig;
 
 //Vars
