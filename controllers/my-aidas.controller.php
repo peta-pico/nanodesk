@@ -1,6 +1,5 @@
 <?php
 
-include('classes/users.class.php');
 
 if( ! $login->get_login_info('id') )
 {
@@ -11,15 +10,12 @@ if( ! $login->get_login_info('id') )
 
 include('classes/aidas.class.php');
 $aidas = new Aidas;
+$rows = $aidas->dataArray( $login->get_login_info('orcid_id') );
 
-$row = $aidas->dataArrayById($_GET['var'],$login->get_login_info('orcid_id'));
-
-
-//---
-// add metatags
-//---
-$head['meta']['title'] = "Delete Papers";
+//add metatags
+$head['meta']['title'] = "My Papers";
 $head['meta']['description'] = "page to edit papers";
 $head['meta']['robots'] = "index, follow";
+
 
 ?>

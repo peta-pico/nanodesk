@@ -36,6 +36,7 @@ class Trig {
 	*/
 	function writeNanopub($np_type,$np_info)
 	{
+		$functions = new Functions;
 
 		// load the correct telplate
 		$file = $this->loadTemplate($np_type);
@@ -71,7 +72,7 @@ class Trig {
 			$paper_year,
 			$date,
 			$doi_url,
-			urlencode(str_replace(' ','+', trim($aida_sentence))) 
+			$functions->cleanup($aida_sentence) 
 		);
 
 		// replace all the "$find" w

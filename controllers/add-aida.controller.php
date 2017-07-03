@@ -16,11 +16,6 @@ $user_id = $login->get_login_info('orcid_id');
 $paper = new Papers;
 $paperData = $paper->dataArray($_GET['var'], $user_id);
 
-// $query = $db->prepare('SELECT * FROM papers WHERE id=? AND orcid_id=? LIMIT 1');
-// $query->execute(array($_GET['var'], $user_id));
-// $paper = $query->fetch(PDO::FETCH_ASSOC);
-
- $functions->dumpArray($paperData);
 
 
 //add metatags

@@ -78,7 +78,7 @@
 											<?php foreach ($paper['aidas'] as $aida): ?>
 												<tr>
 													<td>
-														<?php echo date('d-m-Y', strtotime($aida['date'])); ?>
+														<?php echo date('d M Y', strtotime($aida['date'])); ?>
 													</td>
 													<td>
 														<?php echo $aida['sentence']; ?>

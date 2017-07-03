@@ -9,7 +9,7 @@
 
 			<div class="col-md-12">
 				<div class="row">
-					<h2 class="text-center text-upper">Papers I have read</h2>
+					<h2 class="text-center text-upper">My AIDA Claims</h2>
 					<!-- <p class="text-center">All those papers, all in one place.</p> -->
 				</div>
 				<main class="site-main__content">
@@ -20,8 +20,8 @@
 					<?php endif; ?>
 
 
-					<div class="padding-bottom-30">
-						<a href="<?php echo ROOT.'/add-paper/'; ?>" class="btn btn-lg btn-default">+ Add paper I have read</a>
+					<div class="padding-bottom-30 hidden">
+						<a href="<?php echo ROOT.'/add-paper/'; ?>" class="btn btn-lg btn-default">+ Add AIDA claim</a>
 					</div>
 
 					<div class="module module--list">
@@ -30,26 +30,22 @@
 							<table class="table table-striped">
 								<tr>
 									<td><strong>Date</strong></td>
-									<td><strong>Paper</strong></td>
+									<td><strong>AIDA Sentence</strong></td>
 									<td></td>
 								</tr>
 
 								<?php
-
-									foreach($user['papers'] as $paper):
-
+									foreach($rows as $data):
 								?>
 										<tr>
-											<td><?php echo date('d M Y',strtotime($paper['date'])); ?></td>
+											<td><?php echo date('d M Y',strtotime($data['date'])); ?></td>
 											<td>
-												<?php echo '<strong>'.$paper['title'].'</strong>'; ?><br>
-												<?php echo '<i>'.$paper['year'].'</i>'; ?>
+												<?php echo '<strong>'.$data['sentence'].'</strong>'; ?><br>
 											</td>
 											<td style="width:30%; text-align:right;">
-												<a href="<?php echo ROOT.'/show-paper/'.$paper['id']; ?>" class="btn btn-md btn-default"><i class="fa fa-eye"></i> Show</a>
-												<a href="<?php echo $paper['np_uri']; ?>" target="_blank" class="btn btn-md btn-default">Nanopub</a>
-												<a href="<?php echo 'https://doi.org/'.$paper['doi']; ?>" target="_blank" class="btn btn-md btn-default">Paper</a>
-												<a href="<?php echo ROOT.'/retract-paper/'.$paper['id'].'/'; ?>" target="" class="btn btn-md btn-danger">
+												<a href="<?php echo $data['np_uri']; ?>" target="_blank" class="btn btn-md btn-default">Nanopub</a>
+												<a href="<?php echo $data['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">Paper</a>
+												<a href="<?php echo ROOT.'/retract-aida/'.$data['id'].'/'; ?>" target="" class="btn btn-md btn-danger">
 													<i class="glyphicon glyphicon-trash"></i>
 												</a>
 											</td>

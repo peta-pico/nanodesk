@@ -65,8 +65,8 @@ if($action == 'addaida')
 
        // prepare query
         $query = $db->prepare("INSERT INTO aidas 
-        ( date, orcid_id, paper_id, sentence, np_uri, np_hash )
-        VALUES( NOW(), :orcid_id, :paper_id, :sentence, :np_uri, :np_hash )
+        ( date, orcid_id, paper_id, sentence, np_uri, np_hash, doi_url )
+        VALUES( NOW(), :orcid_id, :paper_id, :sentence, :np_uri, :np_hash, :doi_url )
         ");
 
         //Bind values
@@ -75,6 +75,7 @@ if($action == 'addaida')
         $query->bindValue(':sentence', $_POST['aida_sentence'], PDO::PARAM_STR);
         $query->bindValue(':np_uri', $np_uri, PDO::PARAM_STR);
         $query->bindValue(':np_hash', $np_hash, PDO::PARAM_STR);
+        $query->bindValue(':doi_url', $_POST['doi_url'], PDO::PARAM_STR);
       
 
 

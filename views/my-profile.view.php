@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="text-center">My Profile</h2>
-				<p class="text-center">Edit your profile.</p>
+				<p class="text-center hidden">Edit your profile.</p>
 			</div>
 		</div>
 
@@ -42,8 +42,12 @@
 
 						<div class="col-md-8 ">
 							<div class="form-group">
+								<label for="username">View Public Profile:</label>
+								<a href="<?php echo ROOT.'/profile/'.$login->get_login_info('orcid_id').'/';?>">Profile</a>
+							</div>
+							<div class="form-group">
 								<label for="username">Username:</label>
-								<input type="text" class="form-control" id="username" value="<?php echo $login->get_login_info('username'); ?>">
+								<input type="text" class="form-control" id="username" value="<?php echo $login->get_login_info('username'); ?>" readonly>
 							</div>
 
 							<div class="form-group">
@@ -54,7 +58,7 @@
 
 
 					</form>
-					<div class="form-group col-md-12 text-center">
+					<div class="form-group col-md-12 text-center hidden">
 						<hr>
 						<button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
 					</div>
