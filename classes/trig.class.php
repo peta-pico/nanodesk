@@ -28,6 +28,16 @@ class Trig {
 		return 'signed.'.$filename.'.trig';
 	}
 
+	function aidaSentenceEncoding( $sentence )
+	{
+		// URL encode the sentence
+		$sentence = urlencode($sentence);
+
+		// Replace all the spaces or'%20' 
+		$sentence = str_replace('%20', '+', $sentence);
+
+		return $sentence;
+	}
 
 	/*
 		writes nanopub
@@ -72,7 +82,7 @@ class Trig {
 			$paper_year,
 			$date,
 			$doi_url,
-			$functions->cleanup($aida_sentence) 
+			$this->aidaSentenceEncoding($aida_sentence) 
 		);
 
 		// replace all the "$find" w
@@ -245,10 +255,8 @@ class Trig {
 			}
 		}
 
-		function descriptionFormat( array $data )
-		{
 
-		}
+
 
 
 

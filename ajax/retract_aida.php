@@ -24,7 +24,7 @@ if($action == 'retract')
 {
 
     // Required Fields
-    $required = array('ihaveread');
+    $required = array('uid');
     $json['errors'] = array();
 
     // Validate required fields

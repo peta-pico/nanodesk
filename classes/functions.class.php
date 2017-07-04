@@ -14,7 +14,7 @@ class Functions
 		echo "</pre>";
 	}
 
-	function cleanup($str, $replace=array(), $delimiter='-') {
+	function cleanup($str, $replace=array(), $delimiter='+') {
 		
 		if( !empty($replace) ) {
 				$str = str_replace((array)$replace, ' ', $str);

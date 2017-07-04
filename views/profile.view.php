@@ -22,14 +22,14 @@
 
 	<div class="row bg--white">
 		<ul class="tabs">
-			<li class="col-xs-4">
-				<a href="#" class="active">
+			<li class="col-xs-6">
+				<a href="#tabs-paper" class="active">
 					<i class="fa fa-eye" aria-hidden="true"></i> Has Read
 				</a>
 			</li>
-			<li class="col-xs-4 hidden">
-				<a href="#">
-					<i class="fa fa-commenting" aria-hidden="true"></i>	Aida
+			<li class="col-xs-6">
+				<a href="#tabs-aida" class="inactive">
+					<i class="fa fa-commenting" aria-hidden="true"></i>	AIDA
 				</a>
 			</li>
 			<li class="col-xs-4 hidden">
@@ -41,13 +41,14 @@
 	</div>
 
 	<div class="row posrel bg--white">
-		<div class="col-md-12">
+		<div id="tabs-paper" class="col-md-12 tabs-content">
 			<div class="" style="padding:30px;">
 				<table class="table table-striped">
 					<tr>
-						<td>Date</td>
-						<td>Paper</td>
-						<td>Action</td>
+						<td><strong>Date Added</strong></td>
+						<td><strong>Paper</strong></td>
+						<td></td>
+					
 					</tr>
 
 					<?php
@@ -55,9 +56,12 @@
 						foreach($user['papers'] as $paper):
 					?>
 							<tr>
-								<td><?php echo $paper['date']; ?></td>
-								<td><?php echo $paper['title']; ?></td>
-								<td><a href="#" class="hidden btn btn-md btn-default">View</a></td>
+								<td><?php echo date('M d Y', strtotime($paper['date'])); ?></td>
+								<td><?php echo $paper['title']; ?>
+								<br><i><?php echo $paper['year']; ?> - <?php echo $paper['author'] ?></i>
+								</td>
+								<td><a href="<?php echo $paper['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">
+									<i class="glyphicon glyphicon-new-window"></i> Read</a></td>
 							</tr>
 					<?php
 						endforeach;
@@ -65,6 +69,33 @@
 				</table>
 			</div>
 		</div>
+		<div id="tabs-aida" class="col-md-12  tabs-content" style="display:none;">
+			<div class="" style="padding:30px;">
+				<table class="table table-striped">
+					<tr>
+						<td><strong>Date Added</strong></td>
+						<td><strong>Sentence</strong></td>
+						<td></td>
+					</tr>
+
+					<?php
+						$i=0;
+						foreach($aidas as $aida):
+					?>
+							<tr>
+								<td><?php echo $aida['date']; ?></td>
+								<td><?php echo $aida['sentence']; ?></td>
+								<td><a href="<?php echo $aida['paper']['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">
+									<i class="glyphicon glyphicon-new-window"></i> Paper</a></td>
+							</tr>
+					<?php
+						endforeach;
+					?>
+				</table>
+			</div>
+		</div>
+
+
 	</div>
 </div>
 </div>

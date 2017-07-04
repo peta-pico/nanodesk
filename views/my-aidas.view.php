@@ -29,8 +29,8 @@
 
 							<table class="table table-striped">
 								<tr>
-									<td><strong>Date</strong></td>
-									<td><strong>AIDA Sentence</strong></td>
+									<td><strong>Date Added</strong></td>
+									<td><strong><a href="http://purl.org/aida/" target="_blank">AIDA Sentence(s) <i class="fa fa-info-circle"></i></a></strong></td>
 									<td></td>
 								</tr>
 
@@ -40,9 +40,12 @@
 										<tr>
 											<td><?php echo date('d M Y',strtotime($data['date'])); ?></td>
 											<td>
-												<?php echo '<strong>'.$data['sentence'].'</strong>'; ?><br>
+												<?php echo $data['sentence']; ?><br>
 											</td>
 											<td style="width:30%; text-align:right;">
+												<a href="<?php echo ROOT.'/show-paper/'.$data['paper']['id']; ?>" class="btn btn-md btn-default">
+													<i class="fa fa-eye"></i> Show
+												</a>
 												<a href="<?php echo $data['np_uri']; ?>" target="_blank" class="btn btn-md btn-default">Nanopub</a>
 												<a href="<?php echo $data['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">Paper</a>
 												<a href="<?php echo ROOT.'/retract-aida/'.$data['id'].'/'; ?>" target="" class="btn btn-md btn-danger">

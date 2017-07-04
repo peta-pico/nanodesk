@@ -24,11 +24,11 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
     if($action == 'addpaper')
     {   
         //default
-        $required = array('uid','ihaveread','title','year','author','doi');
+        $required = array('uid','title','year','author','doi');
     }
     else
     {
-         $required = array('uid','ihaveread','title','year','author','doi_url');
+         $required = array('uid','title','year','author','doi_url');
     }
 
     //initiate array

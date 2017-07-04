@@ -29,7 +29,7 @@
 
 							<table class="table table-striped">
 								<tr>
-									<td><strong>Date</strong></td>
+									<td><strong>Date Added</strong></td>
 									<td><strong>Paper</strong></td>
 									<td></td>
 								</tr>
@@ -43,7 +43,7 @@
 											<td><?php echo date('d M Y',strtotime($paper['date'])); ?></td>
 											<td>
 												<?php echo '<strong>'.$paper['title'].'</strong>'; ?><br>
-												<?php echo '<i>'.$paper['year'].'</i>'; ?>
+												<?php echo '<i>'.$paper['year'].' - '.$paper['journal'].' - '.$paper['author'].'</i>'; ?>
 											</td>
 											<td style="width:30%; text-align:right;">
 												<a href="<?php echo ROOT.'/show-paper/'.$paper['id']; ?>" class="btn btn-md btn-default"><i class="fa fa-eye"></i> Show</a>

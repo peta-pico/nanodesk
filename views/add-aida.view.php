@@ -39,7 +39,7 @@
 
 							<div id="ihaveread" class="checkbox text-center pd-10">
  								<label>
-									<input type="checkbox" name="ihaveread" class="required">I understand that this claim will be made public
+									Click below to publicly announce this AIDA sentence.
 								</label>
 							</div>
 
@@ -49,8 +49,8 @@
 								<input type="hidden" name="doi_url" value="<?php echo $paperData['doi_url']; ?>">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
 
-								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
-									<i class="glyphicon glyphicon-upload"></i>  Make Public
+								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary">
+									<i class="glyphicon glyphicon-upload"></i> Announce
 								</button>
 							</div>
 							<div class="form-group text-center pd-10">

@@ -8,7 +8,7 @@
 
 			<div class="col-md-12">
 				<div class="row">
-					<h2 class="text-center text-upper">Delete Paper</h2>
+					<h2 class="text-center text-upper">Retract Paper</h2>
 					<!-- <p class="text-center">All those papers, all in one place.</p> -->
 				</div>
 				<main class="site-main__content">
@@ -34,19 +34,13 @@
 								</table>
 
 
-								<div id="ihaveread" class="checkbox text-center pd-10">
-	 								<label>
-										<input type="checkbox" id="ihaveread_t" name="ihaveread" class="required"> I understand. Make my deletion public.
-									</label>
-								</div>
-
 								<div class="form-group text-center pd-10">
 									<input type="hidden" name="action" value="retract">
 									<input type="hidden" name="id" value="<?php echo $_GET['var']; ?>">
 									<input type="hidden" name="np_uri" value="<?php echo $row['np_uri'] ?>">
 									<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
-									<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-danger" disabled="disabled">
-										<i class="glyphicon glyphicon-xupload"></i>  Delete
+									<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-danger">
+										<i class="glyphicon glyphicon-xupload"></i>  Retract
 									</button>
 								</div>
 								<div class="form-group text-center pd-10">

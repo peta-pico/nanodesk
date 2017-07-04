@@ -21,7 +21,7 @@
 				<?php endif; ?>
 				<div class="box-h-50 box-v-50">
 					<p class="text-center">
-						You have read the following paper on <strong><?php echo date('M d Y', strtotime($paper['date'])) ?></strong>:
+						You have added the following paper on <strong><?php echo date('M d Y', strtotime($paper['date'])) ?></strong>:
 					</p>
 					<form class="ajaxform" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
 
@@ -58,10 +58,10 @@
 						
 
 						<div class="box-h-50 box-v-50">
-							<h3 class="text-center">Aida's for this paper</h3>
+							<h3 class="text-center">Aida for this paper</h3>
 							<?php if ( count($paper['aidas']) < 1 ): ?>
 								<div class="alert alert-warning">
-									No Aida's available
+									No Aida vailable
 								</div>
 							<?php else: ?>
 								
@@ -70,7 +70,7 @@
 										<thead>
 											<tr>
 												<th width="20%">Created on</th>
-												<th width="60%">Sentence</th>
+												<th width="60%"><a href="http://purl.org/aida/" target="_blank">AIDA Sentence(s) <i class="fa fa-info-circle"></i></a></th>
 												<th></th>
 											</tr>
 										</thead>

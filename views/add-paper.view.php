@@ -51,29 +51,33 @@
 		<div class="row">
 			<div class="text-center">
 				<h2>Add Paper I have read</h2>
-				<p>Let the world know what you are working on.</p>
+				<p>Let the world know what you are reading.</p>
 			</div>
 		</div>
 		<div class="row no-gutter site-main-holder">
 			<div class="col-md-10 col-md-offset-1 box ">
 				<div class="box-h-50 box-v-50">
-					<p class="text-center"><strong>Provide us with a DOI, we do the rest</strong></p>
-					<div class="doi-holder">
-						<div class="input-group">
-							<div class="input-group-addon">http://dx.doi.org/</div>
-							<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="" required>
+					<form action="<?php echo ROOT.'/ajax/doi_check.php';?>">
+						<p class="text-center"><strong>Provide us with a DOI, we do the rest</strong></p>
+						<div class="doi-holder">
+							<div class="input-group">
+								<div class="input-group-addon">http://dx.doi.org/</div>
+								<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="" required>
+							</div>
+							<div class="text-center" style="margin-top:20px;">
+								<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
+								<button type="submit" id="doi_submit" class="btn btn-lg btn-primary" style="font-weight:bold;">
+									<i class="glyphicon glyphicon-search"></i> CHECK DOI
+								</button>
+								<br>
+								<br>
+								<a href="#" id="manual_btn">Add paper without DOI</a>
+								<br>
+								<br>
+								<div class="w3loader" style="display:none;"></div>
+							</div>
 						</div>
-						<div class="text-center" style="margin-top:20px;">
-							<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
-							<button type="submit" id="doi_submit" class="btn btn-lg btn-primary" style="font-weight:bold;">
-								<i class="glyphicon glyphicon-search"></i> CHECK DOI
-							</button>
-							<br>
-							<br>
-							<a href="#" id="manual_btn">Add paper without DOI</a>
-							<div class="w3loader" style="display:none;"></div>
-						</div>
-					</div>
+					</form>
 				</div>
 
 			</div>
@@ -131,24 +135,15 @@
 
 							<div id="ihaveread" class="checkbox text-center pd-10">
  								<label>
-									<input type="checkbox" name="ihaveread" class="required"> I have read this paper and want to make it public
+									Click below to publicly announce that you have read that paper.
 								</label>
 							</div>
-
-							<!-- <div class="form-group">
-								<label for="trigtype">Choose publish format</label>
-								<select id="trigtype" name="trigtype" class="form-control" id="">
-									<option value="read">Has Read</option>
-									<option value="aida">AIDA</option>
-								</select>
-							</div> -->
-
 
 							<div class="form-group text-center pd-10">
 								<input type="hidden" name="action" value="addpaper">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
-								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
-									<i class="glyphicon glyphicon-upload"></i>  Make Public
+								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary">
+									<i class="glyphicon glyphicon-upload"></i>  Announce
 								</button>
 							</div>
 							<div class="form-group text-center pd-10">
@@ -200,7 +195,7 @@
 
 							<div id="ihaveread" class="checkbox text-center pd-10">
 								<label>
-									<input type="checkbox" name="ihaveread" class="required"> I have read this paper and want to make it public
+									Click below to publicly announce that you have read that paper.
 								</label>
 							</div>
 
@@ -208,7 +203,7 @@
 								<input type="hidden" name="action" value="addpaper_manual">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
 								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
-									<i class="glyphicon glyphicon-upload"></i>  Make Public
+									<i class="glyphicon glyphicon-upload"></i>  Announce
 								</button>
 							</div>
 							<div class="form-group text-center pd-10">

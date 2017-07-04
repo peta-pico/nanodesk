@@ -21,7 +21,7 @@
               ?>
               <div class="text-center">
               	<h3 class="text-center">Login to Nanodesk</h3>
-              	<p>Nanodesk requires you to login with an <a href="#">Orcid</a> account.</p>
+              	<p>Nanodesk requires you to login with an <a href="#">ORCID</a> account.</p>
                 <a  style="margin-top:20px;" href="<?php echo $orcid->loginUrl(); ?>" class="btn btn-lg btn-success">
                   Login With ORCID
                 </a>

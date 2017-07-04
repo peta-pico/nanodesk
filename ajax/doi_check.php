@@ -1,18 +1,11 @@
 <?php
-//curl -LH "Accept: application/json"
-//> http://dx.doi.org/10.1103/PhysRevX.4.041036
+
 error_reporting(E_ALL & ~E_NOTICE);
 
-
-
-
-//$doi = (isset($_GET["doi"]) && $_GET["doi"] != "" ? $_GET["doi"] : "10.1037/0022-3514.65.6.1190");
-//$debug = (isset($_GET["debug"]) ? true : false);
 
 function doi_url($doi)
 {
   return "http://dx.doi.org/" . $doi;
-  //return "http://data.crossref.org/" . $doi;
 }
 
 function get_curl($url)
@@ -38,7 +31,7 @@ function get_json_array($json)
 {
 	$print = json_decode($json, true);
 	//print_r($print);
-  return $print;
+ 	return $print;
 }
 
 
@@ -47,7 +40,6 @@ function show_json_array($json_array, $debug=false) {
     echo "<pre class='json_array'>";
     print_r($json_array);
     echo "</pre>";
-
 }
 
 function doiData($json_array)
@@ -61,9 +53,6 @@ function doiData($json_array)
 
 	if( count($json_array["author"]) > 5)
 	{
-		//print_r( $json_array["author"]);
-		//echo "<br>---<br>";
-		//print_r( $json_array["author"][2]['family']);
 
 		for($i=0; $i < 5; $i++)
 		{
@@ -79,16 +68,11 @@ function doiData($json_array)
 		{
 			foreach ($json_array["author"] as $key)
 			{
-				//$data['author'] .= $key['given'].' '.$key['family'].', ';
 				$data['author'] .= $key['family'].', ';
 			}
 			$data['author'] = substr($data['author'],0,-2);
 		}
 	}
-
-
-		//:[{"given":"Tom","family":"Heath","affiliation":[]},
-
 
 
 	$data['journal']  = $json_array["container-title"];
@@ -110,20 +94,11 @@ function doiData($json_array)
 
 
 $doi = $_POST['doi'];
-$doi      		= doi_url($doi);
-//echo $doi;
+$doi = doi_url($doi);
 
 $json         = get_curl($doi);
 
-//print_r($json);
-
 $json_array   = get_json_array($json);
-
-//print_r($json_array);
-// echo "<br><br>---------------------------------<br><br>";
-//echo "<pre>";
-//print_r(   $json_array );
-//echo "</pre>";
 
 echo doiData( $json_array );
 ?>

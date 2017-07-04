@@ -18,6 +18,8 @@ $paperData = new Papers;
 $paper = $paperData->dataArray($_GET['var'], $user_id);
 
 
+//$functions->dumpArray($paper);
+
 //add metatags
 $head['meta']['title'] = $paper['title'];
 $head['meta']['description'] = "page to edit papers";

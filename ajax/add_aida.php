@@ -23,7 +23,7 @@ if($action == 'addaida')
 {
 
     //default
-    $required = array('paper_id','ihaveread','aida_sentence');
+    $required = array('paper_id','aida_sentence');
 
     //initiate array
     $json['errors'] = array();

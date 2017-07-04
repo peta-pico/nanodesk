@@ -77,11 +77,12 @@ $('.ajaxsubmit').click(function(e)
 $("#doi_submit").click(function(e)
 {
     e.preventDefault();
+    var theFormAction = $('#doi_submit').closest('form').attr('action');
     var doi = $("#doi_check").val();
     //alert('the doi:'+ doi);
     $.ajax({
         type:"POST",
-        url: "/ajax/doi_check.php",
+        url: theFormAction,
         dataType:"json",
         data:{ doi:doi },
         cache:false,
@@ -156,4 +157,22 @@ $('form.ajax-required .required').bind('keyup change',function()
 $('.required').change(function(){
 	$(this).removeClass('redBorder');
 	$(this).closest('.redBorder').removeClass('redBorder');
+});
+
+
+$('ul.tabs li a').click(function()
+{
+  var tab = $(this).attr('href');
+
+  if($(this).hasClass('inactive'))
+  { 
+  //this is the start of our condition 
+    $('ul.tabs li a').addClass('inactive');          
+    $('ul.tabs li a').removeClass('active');          
+    $(this).removeClass('inactive');
+    $(this).addClass('active');
+
+    $('.tabs-content').hide();
+    $(tab).fadeIn('slow');
+ }
 });

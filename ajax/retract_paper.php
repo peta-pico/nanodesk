@@ -20,7 +20,7 @@ if( $login->get_login_info('id') =='' )
 // start actions
 if($action == 'retract')
 {
-    $required = array('uid','ihaveread');
+    $required = array('uid');
     $json['errors'] = array();
 
     foreach($required as $val)

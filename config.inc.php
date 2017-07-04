@@ -19,13 +19,16 @@ define('NP_PUBLISH_METHOD','auto');
 
 if(NP_PUBLISH_METHOD == 'auto')
 {
-	define('NP_PUBISH_SERVER','http://np.inn.ac/');
+	define('NP_PUBISH_SERVER','http://purl.org/np/');
 }
 elseif(NP_PUBLISH_METHOD == 'manual')
 {
 	define('NP_PUBISH_SERVER','http://app.petapico.d2s.labs.vu.nl/nanopub-server/');
 }
 
+// default servers
+define('PURL', 'http://purl.org');
+define('PURL_AIDA', 'http://purl.org/aida/');
 
 
 
