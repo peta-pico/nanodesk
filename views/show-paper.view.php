@@ -104,7 +104,7 @@
 						</div>
 
 						<div class="box-h-50 box-v-50 text-center">
-							<a href="<?php echo ROOT.'/add-aida/'.$paper['id'].'/'; ?>" class="btn btn-lg btn-default">+ Add Aida for this paper</a>
+							<a href="<?php echo ROOT.'/add-aida/'.$paper['id'].'/'; ?>" class="btn btn-lg btn-default">+ Add AIDA for this paper</a>
 						</div>
 					</form>
 				</div>
