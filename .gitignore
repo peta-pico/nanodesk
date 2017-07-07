@@ -2,7 +2,7 @@
 .sass-cache/
 .git/
 scss/
-classes/core.class.php
+#classes/core.class.php
 trigfiles/
 db/
 # config.inc.php
