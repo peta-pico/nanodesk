@@ -2,7 +2,6 @@
 	//insert this view
 	include('snippets/header.php');
 ?>
-
 <div class="site-container site-main">
 	<div class="container">
 		<div class="row no-gutter site-main-holder">
