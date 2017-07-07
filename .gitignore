@@ -5,6 +5,6 @@ scss/
 classes/core.class.php
 trigfiles/
 db/
-config.inc.php
+# config.inc.php
 javatest/
 steps.txt
