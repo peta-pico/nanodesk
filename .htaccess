@@ -1,0 +1,51 @@
+#php_flag display_startup_errors on
+#php_flag display_errors on
+#php_flag html_errors on
+#php_flag  log_errors on
+#php_value error_log  /home/path/public_html/domain/PHP_errors.log
+
+Options +FollowSymLinks
+
+RewriteEngine On
+RewriteBase /
+
+## If the request is for a valid directory
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+
+## If the request is for a valid file
+# RewriteCond %{REQUEST_FILENAME} -f [OR] <-- the below code would otherwise not work
+RewriteCond %{REQUEST_FILENAME} -f
+
+## If the request is for a valid link
+#RewriteCond %{REQUEST_FILENAME} -l <-- this causes urelencode not to work
+
+## don't do anything
+RewriteRule ^ - [L]
+
+
+##
+# Add trailing slash when missing
+##
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ $1/ [R=301,L]
+
+
+##
+# Query fields
+##
+
+#RewriteRule ^([^/]+)/$ index.php?p=$1
+#RewriteRule ^([^/]+)/([^/]+)/$ index.php?p=$1&var=$2
+#RewriteRule ^([^/]+)/([^/]+)/([^/]+)/$ index.php?p=$1&var=$2&var2=$3
+#RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/$ index.php?p=$1&var=$2&var2=$3&var3=$4
+
+
+
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ ?p=$1&var=$2&var2=$3&var3=$4 [L,QSA]
+
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ ?p=$1&var=$2&var2=$3 [L,QSA]
+
+RewriteRule ^([^/]+)/([^/]+)/?$ ?p=$1&var=$2 [L,QSA]
+
+RewriteRule ^([^/]+)/?$ ?p=$1 [L,QSA]
