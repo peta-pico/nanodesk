@@ -1,0 +1,36 @@
+@prefix this: <http://purl.org/np/RAqnbPVxlvAaD2OB9Tg-o2WCBenp59FfmjcuzTIi-q88k> .
+@prefix sub: <http://purl.org/np/RAqnbPVxlvAaD2OB9Tg-o2WCBenp59FfmjcuzTIi-q88k#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix hycl: <http://purl.org/petapico/o/hycl#> .
+@prefix orcid: <http://orcid.org/> .
+
+sub:Head {
+	this: np:hasAssertion sub:assertion ;
+		np:hasProvenance sub:provenance ;
+		np:hasPublicationInfo sub:pubinfo ;
+		a np:Nanopublication .
+}
+
+sub:assertion {
+	<https://doi.org/10.1089/10949310151088299> hycl:claims <http://purl.org/aida/Th%C3%AFs+is+A+Weird+sentenece+with+points.+and+%22Characters+not+rem%C3%B6ved%21> .
+}
+
+sub:provenance {
+	sub:assertion prov:wasAttributedTo orcid:0000-0003-3734-6091 .
+}
+
+sub:pubinfo {
+	sub:signature.MC0CFHDK7tbJ9cdv npx:hasPublicKey "MIIBtzCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYQAAoGAKdtCL0pUDm2q/3DwbIeB/JlYHjLH7pFpPTsN2zyM9T6Vu4UjD2cNOe6HkmMjiCH8fscOewFGHoqHiDPKDdszo1JQG8w4KduEh+/8EscKj8cJiDASolcYS2cbq05oanPuzoVvjJSr6ZMPJ6k+BKHwZh/vrKkSUH1+70NOX20Nqt4=" ;
+		npx:hasSignature "MC0CFHDK7tbJ9cdvemzOWyhGeT7M4i1qAhUAj8j0BvzqVP9HfDdcuYM21nTpXbs=" .
+	
+	this: dc:created "2017-07-04T15:52:23+02:00"^^xsd:dateTime ;
+		npx:hasSignatureElement sub:signature.MC0CFHDK7tbJ9cdv ;
+		pav:createdBy orcid:0000-0003-3734-6091 ;
+		a npx:ExampleNanopub ;
+		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
+}

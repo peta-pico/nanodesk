@@ -1,0 +1,31 @@
+@prefix : <http://purl.org/np/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix hycl: <http://purl.org/petapico/o/hycl#> .
+@prefix orcid: <http://orcid.org/> .
+
+:Head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :pubinfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+    <https://doi.org/10.1109/5254.920602> hycl:claims <http://purl.org/aida/blabla> .
+}
+
+:provenance {
+	:assertion prov:wasAttributedTo orcid:0000-0003-3734-6091 .
+}
+
+:pubinfo {
+	: dc:created "2017-07-03T15:43:55+02:00"^^xsd:dateTime ;
+		pav:createdBy orcid:0000-0003-3734-6091 ;
+		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
+	: a npx:ExampleNanopub . # remove this line once we are done with testing
+}

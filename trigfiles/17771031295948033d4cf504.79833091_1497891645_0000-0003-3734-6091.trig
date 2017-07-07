@@ -1,0 +1,30 @@
+@prefix : <http://example.org/nanodesk/example/aida/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix ex: <http://example.org/> .
+@prefix orcid: <http://orcid.org/> .
+
+:Head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :pubinfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+    <https://doi.org/10.1037/0022-0663.92.1.137> ex:includesStatement <http://purl.org/aida/this+is+a+claim+with+normal+letters+and+strings> .
+}
+
+:provenance {
+	:assertion prov:wasAttributedTo orcid:0000-0003-3734-6091 .
+}
+
+:pubinfo {
+	: dc:created "2017-06-19T19:00:45+02:00"^^xsd:dateTime ;
+		pav:createdBy orcid:0000-0003-3734-6091 .
+	: a npx:ExampleNanopub . # remove this line once we are done with testing
+}

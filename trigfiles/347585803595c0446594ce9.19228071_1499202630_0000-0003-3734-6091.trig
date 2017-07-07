@@ -1,0 +1,37 @@
+@prefix : <http://purl.org/np/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix orcid: <http://orcid.org/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix pc: <http://purl.org/petapico/o/paperclub#> .
+
+:Head {
+	: np:hasAssertion :assertion ;
+		np:hasProvenance :provenance ;
+		np:hasPublicationInfo :pubinfo ;
+		a np:Nanopublication .
+}
+
+:assertion {
+	orcid:0000-0003-3734-6091 pc:hasRead <https://doi.org/10.1111/j.1467-8659.2009.01506.x> .
+
+	<https://doi.org/10.1111/j.1467-8659.2009.01506.x>
+		dct:bibliographicCitation "Weiss, De Floriani. Diamond Hierarchies of Arbitrary Dimension. 2009. " ;
+		dct:title "Diamond Hierarchies of Arbitrary Dimension" ;
+		fabio:hasPublicationYear "2009"^^xsd:gYear .
+}
+
+:provenance {
+	:assertion prov:wasAttributedTo orcid:0000-0003-3734-6091 .
+}
+
+:pubinfo {
+	: dct:created "2017-07-04T23:10:30+02:00"^^xsd:dateTime ;
+		pav:createdBy orcid:0000-0003-3734-6091 ;
+		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
+	: a npx:ExampleNanopub .  # remove this line once we are done with testing
+}

@@ -3,7 +3,7 @@
 .git/
 scss/
 #classes/core.class.php
-trigfiles/
+#trigfiles/
 db/
 # config.inc.php
 javatest/
