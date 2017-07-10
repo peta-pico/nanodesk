@@ -8,7 +8,7 @@
 
 			<div class="col-md-12">
 				<div class="row">
-					<h2 class="text-center text-upper">My AIDA Sentences</h2>
+					<h2 class="text-center text-upper">AIDA Sentences</h2>
 					<!-- <p class="text-center">All those papers, all in one place.</p> -->
 				</div>
 				<main class="site-main__content">
