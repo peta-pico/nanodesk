@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="text-center">
-				<h2>Add Aida</h2>
+				<h2>Add AIDA Sentence</h2>
 				
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 
 					<form class="ajaxform ajax-required" action="<?php echo ROOT.'/ajax/add_aida.php'; ?>" method="POST">
 						<div class="text-center" style="padding-bottom:40px;">
-							<strong>Add Aida Claim for the following paper:</strong><br>
+							<strong>Add AIDA sentence for the following paper:</strong><br>
 							<?php echo $paperData['title'] ?>
 						</div>
 						<div class="form-group">

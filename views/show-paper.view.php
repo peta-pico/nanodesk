@@ -58,7 +58,7 @@
 						
 
 						<div class="box-h-50 box-v-50">
-							<h3 class="text-center">Aida for this paper</h3>
+							<h3 class="text-center">AIDA sentence for this paper</h3>
 							<?php if ( count($paper['aidas']) < 1 ): ?>
 								<div class="alert alert-warning">
 									No Aida vailable
@@ -70,7 +70,7 @@
 										<thead>
 											<tr>
 												<th width="20%">Created on</th>
-												<th width="60%"><a href="http://purl.org/aida/" target="_blank">AIDA Sentence(s) <i class="fa fa-info-circle"></i></a></th>
+												<th width="60%"><a href="http://purl.org/aida/" target="_blank">AIDA Sentence <i class="fa fa-info-circle"></i></a></th>
 												<th></th>
 											</tr>
 										</thead>
@@ -104,7 +104,7 @@
 						</div>
 
 						<div class="box-h-50 box-v-50 text-center">
-							<a href="<?php echo ROOT.'/add-aida/'.$paper['id'].'/'; ?>" class="btn btn-lg btn-default">+ Add AIDA for this paper</a>
+							<a href="<?php echo ROOT.'/add-aida/'.$paper['id'].'/'; ?>" class="btn btn-lg btn-default">+ Add AIDA sentence for this paper</a>
 						</div>
 					</form>
 				</div>

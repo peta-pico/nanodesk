@@ -49,7 +49,7 @@
 				<ul>
 					<!-- <li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Feed</a></li> -->
 					<li><a href="<?php echo ROOT.'/my-papers/'; ?>"><i class="glyphicon glyphicon-bookmark"></i>Papers i have read</a></li>
-					<li><a href="<?php echo ROOT.'/my-aidas/'; ?>"><i class="glyphicon glyphicon-bookmark"></i> My AIDA claims</a></li>
+					<li><a href="<?php echo ROOT.'/my-aidas/'; ?>"><i class="glyphicon glyphicon-bookmark"></i> My AIDA Sentences</a></li>
 				</ul>
 			</nav>
 		</div>

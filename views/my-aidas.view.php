@@ -8,7 +8,7 @@
 
 			<div class="col-md-12">
 				<div class="row">
-					<h2 class="text-center text-upper">My AIDA Claims</h2>
+					<h2 class="text-center text-upper">My AIDA Sentences</h2>
 					<!-- <p class="text-center">All those papers, all in one place.</p> -->
 				</div>
 				<main class="site-main__content">
@@ -20,7 +20,7 @@
 
 
 					<div class="padding-bottom-30 hidden">
-						<a href="<?php echo ROOT.'/add-paper/'; ?>" class="btn btn-lg btn-default">+ Add AIDA claim</a>
+						<a href="<?php echo ROOT.'/add-paper/'; ?>" class="btn btn-lg btn-default">+ Add AIDA Sentence</a>
 					</div>
 
 					<div class="module module--list">
@@ -29,7 +29,7 @@
 							<table class="table table-striped">
 								<tr>
 									<td><strong>Date Added</strong></td>
-									<td><strong><a href="http://purl.org/aida/" target="_blank">AIDA Sentence(s) <i class="fa fa-info-circle"></i></a></strong></td>
+									<td><strong><a href="http://purl.org/aida/" target="_blank">AIDA Sentence <i class="fa fa-info-circle"></i></a></strong></td>
 									<td></td>
 								</tr>
 

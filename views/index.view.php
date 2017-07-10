@@ -8,7 +8,7 @@
 		<div class="hero__content text-center">
 			<h1>Login to Nanodesk</h1>
 			<p style="color:white;">
-				Nanodesk requires you to login with an Orcid account.
+				Nanodesk requires you to login with an ORCID account.
 			</p>
 
 			<a  style="margin-top:20px;" href="<?php echo $orcid->loginUrl(); ?>" class="btn btn-lg btn-success">
