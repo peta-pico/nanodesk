@@ -21,8 +21,8 @@
 										<i class="glyphicon glyphicon-warning-sign"></i>
 									</div>
 									<div class="col-xs-10">
-										Are you sure you want to delete this entry?
-										It will create a new nanopub stating you delteted this publication.
+										Are you sure that you want to retract this entry?
+										This will create a new nanopublication to announce the retraction.
 									</div>
 								</div>
 
