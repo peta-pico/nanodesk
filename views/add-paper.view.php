@@ -61,7 +61,7 @@
 						<p class="text-center"><strong>Provide us with a DOI, we do the rest</strong></p>
 						<div class="doi-holder">
 							<div class="input-group">
-								<div class="input-group-addon">http://dx.doi.org/</div>
+								<div class="input-group-addon">https://doi.org/</div>
 								<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="" required>
 							</div>
 							<div class="text-center" style="margin-top:20px;">
@@ -202,7 +202,7 @@
 							<div class="form-group text-center pd-10">
 								<input type="hidden" name="action" value="addpaper_manual">
 								<input type="hidden" name="uid" value="<?php echo $login->get_login_info('id'); ?>">
-								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary" disabled="disabled">
+								<button type="submit" class="ajaxsubmit ajax-required-submit btn btn-lg btn-primary">
 									<i class="glyphicon glyphicon-upload"></i>  Announce
 								</button>
 							</div>

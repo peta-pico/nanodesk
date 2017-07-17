@@ -56,7 +56,7 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
     else // form is valid
     {
 
-                //rewrite url for papers that dont have a doi
+        //rewrite url for papers that dont have a doi
         $doi_url = "https://doi.org/".$_POST['doi'];
         $doi_url = ($_POST['doi_url'] != '') ? $_POST['doi_url'] : $doi_url;
 
@@ -85,10 +85,10 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
 
         // format = Berners-Lee et al. 2001. Title of paper. Nature.
         $paper_data['description'] =
-        $paper_data['author'].'. '.
-        str_replace('—','-',$paper_data['title']).'. '.
-        $paper_data['year'].'. ';
-        $paper_data['journal'];
+            $paper_data['author'].'. '.
+            str_replace('—','-',$paper_data['title']).'. '.
+            $paper_data['journal'].'. '.
+            $paper_data['year'].'.';
         $paper_data['doi_url'] = $doi_url;
         $paper_data_json = json_encode($paper_data);
 

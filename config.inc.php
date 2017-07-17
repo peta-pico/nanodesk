@@ -3,6 +3,10 @@
 $root  = "http://nanodesk.nl";
 define('ROOT', $root);
 
+$env = 'dev'; // PROD | DEV
+define('NP_ENV',$env);
+
+
 #-------------------------------------------
 #  MYSQL DATABASE
 #-------------------------------------------

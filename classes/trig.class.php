@@ -150,10 +150,18 @@ class Trig {
 		if(file_exists("../trigfiles/".$file.".trig"))
 		{
 			// server config
-			// $trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
+			if(NP_ENV == 'prod' )
+			{
+				 $trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k /home/petapico/nanodesk-config/keys/id_dsa ../trigfiles/".$file.".trig", $trusty_outputx);
+			}
 
-			// local config
-			$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
+			if(NP_ENV == 'dev' )
+			{
+				// local config
+				$trusty_output = exec("java -jar -Dfile.encoding=UTF-8 ../trigfiles/nanopub.jar sign -k ../id_key ../trigfiles/".$file.".trig", $trusty_outputx);
+			}
+
+			
 
 			return true;
 		}

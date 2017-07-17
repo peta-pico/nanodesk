@@ -21,7 +21,7 @@
 				<?php endif; ?>
 				<div class="box-h-50 box-v-50">
 					<p class="text-center">
-						You have added the following paper on <strong><?php echo date('M d Y', strtotime($paper['date'])) ?></strong>:
+						You have added the following paper on <strong><?php echo date('d M Y', strtotime($paper['date'])) ?></strong>:
 					</p>
 					<form class="ajaxform" action="<?php echo ROOT.'/ajax/edit_paper.php'; ?>" method="POST">
 

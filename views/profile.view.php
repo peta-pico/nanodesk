@@ -56,7 +56,7 @@
 						foreach($user['papers'] as $paper):
 					?>
 							<tr>
-								<td><?php echo date('M d Y', strtotime($paper['date'])); ?></td>
+								<td><?php echo date('d M Y', strtotime($paper['date'])); ?></td>
 								<td><?php echo $paper['title']; ?>
 								<br><i><?php echo $paper['year']; ?> - <?php echo $paper['author'] ?></i>
 								</td>
@@ -83,7 +83,7 @@
 						foreach($aidas as $aida):
 					?>
 							<tr>
-								<td><?php echo $aida['date']; ?></td>
+								<td><?php echo date('d M Y', strtotime($aida['date'])); ?></td>
 								<td><?php echo $aida['sentence']; ?></td>
 								<td><a href="<?php echo $aida['paper']['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">
 									<i class="glyphicon glyphicon-new-window"></i> Paper</a></td>

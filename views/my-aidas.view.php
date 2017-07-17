@@ -28,7 +28,7 @@
 
 							<table class="table table-striped">
 								<tr>
-									<td><strong>Date Added</strong></td>
+									<td width="12%"><strong>Date Added</strong></td>
 									<td><strong><a href="http://purl.org/aida/" target="_blank">AIDA Sentence <i class="fa fa-info-circle"></i></a></strong></td>
 									<td></td>
 								</tr>

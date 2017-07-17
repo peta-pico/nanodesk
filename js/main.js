@@ -160,8 +160,9 @@ $('.required').change(function(){
 });
 
 
-$('ul.tabs li a').click(function()
+$('ul.tabs li a').click(function(e)
 {
+    e.preventDefault();
   var tab = $(this).attr('href');
 
   if($(this).hasClass('inactive'))
