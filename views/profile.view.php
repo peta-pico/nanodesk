@@ -57,8 +57,9 @@
 					?>
 							<tr>
 								<td><?php echo date('d M Y', strtotime($paper['date'])); ?></td>
-								<td><?php echo $paper['title']; ?>
-								<br><i><?php echo $paper['year']; ?> - <?php echo $paper['author'] ?></i>
+								<td>
+									<?php echo '<strong>'.$paper['title'].'</strong>'; ?><br>
+									<?php echo '<i>'.$paper['author'].'. '.$paper['journal'].'. '.$paper['year'].'</i>'; ?>
 								</td>
 								<td><a href="<?php echo $paper['doi_url']; ?>" target="_blank" class="btn btn-md btn-default">
 									<i class="glyphicon glyphicon-new-window"></i> Read</a></td>
