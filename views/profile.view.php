@@ -45,7 +45,7 @@
 			<div class="" style="padding:30px;">
 				<table class="table table-striped">
 					<tr>
-						<td><strong>Date Added</strong></td>
+						<td width="12%"><strong>Date Added</strong></td>
 						<td><strong>Paper</strong></td>
 						<td></td>
 					
