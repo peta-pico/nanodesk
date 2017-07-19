@@ -57,7 +57,9 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
     {
 
         //rewrite url for papers that dont have a doi
-        $doi_url = "https://doi.org/".$_POST['doi'];
+        // if ($_POST['doi']) is empty, it means that it's not an official paper. It could be something else.
+        // the user will then provide their own url
+        $doi_url = "https://doi.org/".$_POST['doi']; // this is the official url of the DOI
         $doi_url = ($_POST['doi_url'] != '') ? $_POST['doi_url'] : $doi_url;
 
 
@@ -66,7 +68,7 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
         if($query->rowCount() >= 1)
         {
             $json['response'] = false;
-            $json['message'] = 'This entry already exsists. Please upload a different paper.';
+            $json['message'] = 'This entry aleardy exsists. Please upload a different paper.';
             echo json_encode($json);
             exit;
         }

@@ -14,12 +14,20 @@
 
 			<div class="col-md-10 col-md-offset-1 box">
 
+
 				<?php if($alert['response'] !=''): ?>
 					<div class="alert alert-<?php echo $alert['response']; ?>">
 					<?php echo $alert['message']; ?>
 					</div>
 				<?php endif; ?>
 				<div class="box-h-50 box-v-50">
+
+				<?php if($_GET['feedback'] !=''): ?>
+					<div class="alert alert-success text-center mg-bottom-30">
+						<strong>Success!</strong> Action completed.
+					</div>
+				<?php endif; ?>
+
 					<p class="text-center">
 						You have added the following paper on <strong><?php echo date('d M Y', strtotime($paper['date'])) ?></strong>:
 					</p>

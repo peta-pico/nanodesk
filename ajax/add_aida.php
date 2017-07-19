@@ -87,7 +87,7 @@ if($action == 'addaida')
 	            $json['response'] = true;
 	            $json['message'] = 'complete';
 	            $json['redirect'] = true;
-	            $json['redirect_url'] = ROOT.'/my-papers/&feedback=success';
+	            $json['redirect_url'] = ROOT.'/show-paper/'. $_POST['paper_id'] .'/&feedback=success';
 			}
             else
             {
