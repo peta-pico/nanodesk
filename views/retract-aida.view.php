@@ -8,7 +8,7 @@
 
 			<div class="col-md-12">
 				<div class="row">
-					<h2 class="text-center text-upper">Retract Aida</h2>
+					<h2 class="text-center text-upper">Retract AIDA</h2>
 					<!-- <p class="text-center">All those papers, all in one place.</p> -->
 				</div>
 				<main class="site-main__content">
@@ -27,7 +27,7 @@
 								</div>
 
 								<table class="table table-striped">
-									<tr><td><strong>Aida Claim</strong></td><td><?php echo $row['sentence'] ?></td></tr>
+									<tr><td><strong>AIDA Sentence</strong></td><td><?php echo $row['sentence'] ?></td></tr>
 									<tr><td><strong>Paper</strong></td><td><?php echo $row['paper']['title']; ?></td></tr>
 									<tr><td><strong>Created on</strong></td><td><?php echo date('M d Y', strtotime($row['date'])); ?></td></tr>
 								</table>

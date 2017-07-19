@@ -61,7 +61,7 @@
 							<h3 class="text-center">AIDA sentence for this paper</h3>
 							<?php if ( count($paper['aidas']) < 1 ): ?>
 								<div class="alert alert-warning">
-									No Aida vailable
+									No AIDA sentence available
 								</div>
 							<?php else: ?>
 								

@@ -32,7 +32,7 @@
 
 
 							<div class="form-group">
-								<label for="aida_sentence">Aida Sentence:</label>
+								<label for="aida_sentence">AIDA Sentence:</label>
 
 								<textarea name="aida_sentence" class="form-control" rows="3" id="aida_sentence"></textarea>
 							</div>

@@ -12,7 +12,7 @@
 		$('.add-aida').click( function(e)
 		{
 			e.preventDefault();
-			var aida_item = '<div class="aida-item col-md-12"><div class="col-md-3"><label for="">Does:</label><select name="aida_option[]" id="something" class="form-control"><option value="Confirms">Claim</option><option value="Refutes">Refutes</option><option value="option 3">option 3</option></select></div><div class="col-md-8"><label for="">Aida Sentence:</label><textarea name="aida[]" id="" class="form-control"></textarea><input type="hidden" class="aida_id" name="aida_id[]" value=""><input type="hidden" class="aida_action" name="aida_action[]" value="insert"></div><div class="col-md-1"><br><button class="delete-aida btn btn-md btn-default"><i class=" glyphicon glyphicon-trash"></i></button></div></div><!-- end aida -->';
+			var aida_item = '<div class="aida-item col-md-12"><div class="col-md-3"><label for="">Does:</label><select name="aida_option[]" id="something" class="form-control"><option value="Confirms">Claim</option><option value="Refutes">Refutes</option><option value="option 3">option 3</option></select></div><div class="col-md-8"><label for="">AIDA Sentence:</label><textarea name="aida[]" id="" class="form-control"></textarea><input type="hidden" class="aida_id" name="aida_id[]" value=""><input type="hidden" class="aida_action" name="aida_action[]" value="insert"></div><div class="col-md-1"><br><button class="delete-aida btn btn-md btn-default"><i class=" glyphicon glyphicon-trash"></i></button></div></div><!-- end aida -->';
 			$('.aida-list--target').append(aida_item);
 
 		});
@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="text-center">
-				<h2>Add Paper I have read</h2>
+				<h2>Add paper I have read</h2>
 				<p>Let the world know what you are reading.</p>
 			</div>
 		</div>
@@ -65,7 +65,7 @@
 								<input type="text" class="form-control input-lg" id="doi_check" name="doi" value="" required>
 							</div>
 							<div class="text-center" style="margin-top:20px;">
-								<div class="error alert alert-danger" style="display:none;">There is no data found under the given DOI</div>
+								<div class="error alert alert-danger" style="display:none;">There is no data found for the given DOI</div>
 								<button type="submit" id="doi_submit" class="btn btn-lg btn-primary" style="font-weight:bold;">
 									<i class="glyphicon glyphicon-search"></i> CHECK DOI
 								</button>

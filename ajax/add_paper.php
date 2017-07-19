@@ -66,7 +66,7 @@ if($action == 'addpaper' || $action == 'addpaper_manual')
         if($query->rowCount() >= 1)
         {
             $json['response'] = false;
-            $json['message'] = 'This entry aleardy exsists. Please upload a different paper.';
+            $json['message'] = 'This entry already exsists. Please upload a different paper.';
             echo json_encode($json);
             exit;
         }
