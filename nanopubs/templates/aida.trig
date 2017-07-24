@@ -27,5 +27,4 @@
 	: dc:created "|*DATETIME*|"^^xsd:dateTime ;
 		pav:createdBy orcid:|*ORCID*| ;
 		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> .
-	: a npx:ExampleNanopub . # remove this line once we are done with testing
 }

@@ -29,5 +29,4 @@
 		pav:createdBy orcid:|*ORCID*| ;
 		prov:wasAttributedTo <https://github.com/peta-pico/nanodesk> ;
 		npx:supersedes <|*NP_URI*|> .
-	: a npx:ExampleNanopub .  # remove this line once we are done with testing
 }
