@@ -1,5 +1,5 @@
 # Nanodesk
-A docker container for the Nanodesk server which makes it easier to publish nanopublications.
+A docker container for the Nanodesk server which makes it easier to create and publish nanopublications.
 Currently, the server is not yet fully functional and contains several bugs that need to be fixed.
 ## Documentation
 The container functions with a docker-compose file which also sets up the mysql database which is required for the site. For development purposes this database is currently set up without any password. When the container becomes operational this needs of course needs to be changed.
