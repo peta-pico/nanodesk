@@ -26,4 +26,4 @@ When logging in with an ORCID ID the redirect from ORCID back to the the server 
 
 
 #### Possibly - Publishing part
-Due to the previous problems other parts of the system are untested such as the important publishing part. Thus, over there other problems can arise.
+Due to the previous problems other parts of the system are untested such as the important publishing part. Therefore, other problems can arise during the creation and publication of the nanopublications.
