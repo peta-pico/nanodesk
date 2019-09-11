@@ -18,8 +18,9 @@ The container can be started by calling docker-compose up from inside the direct
 * .htaccess is currently not included in the container due to the fact that this will cause an internal server error.
 
 ### Current problems
+Problems that have been found with a small description what possibly is going wrong. These problems still need to be fixed.
 #### Redirects
-As mentioned before the redirects to other pages does not work. When looking at "index.php" one can see that "$GET['page']" is used to load the right page. As of now this is not working properly and therefore the redirects will not work. The page itself is initialised as "index", therefore this is working. Changing this to other pages shows that the other pages also load correctly. Thus, the problem is in "$GET['page']".
+As mentioned before the redirects to other pages does not work. When looking at "index.php" one can see that "$GET['page']" is used to load the right page. As of now this is not working properly and therefore the redirects will not work. The page itself is initialised as "index", therefore this is working. Changing this to other pages shows that the other pages also load correctly. Thus, the problem is in "$GET['page']", the absence of the .htaccess file could possibly also contribute to this problem.
 
 #### Login system
 When logging in with an ORCID ID the redirect from ORCID back to the the server is not working. The reason for this that in "config.inc.php" a specific ORCID CLIENT_ID and CLIENT_SECRET is required, this means that the server will probably only work for that specific user. To make the servers accessible for multiple users the login system probably needs to be changed such that CLIENT_IDs and CLIENT_SECRETs are saved in an encrypted way into the database.
