@@ -1,0 +1,31 @@
+version: '2'
+services:
+    php-apache:
+        build:
+            context: .
+        ports:
+            - 8000:80
+        volumes:
+            - ./desk:/var/www/html/web
+        links:
+            - 'db'
+
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            TZ: 'Europe/Amsterdam'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: ''
+            MYSQL_DATABASE: 'nanodesk'
+        ports:
+          - '3306:3306'
+        expose:
+          - '3306'
+        volumes:
+          - mysql-db:/var/lib/mysql
+
+volumes:
+  mysql-db:

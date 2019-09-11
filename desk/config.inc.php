@@ -1,6 +1,6 @@
 <?php
 
-$root  = "http://nanodesk.nl";
+$root  = "."; //In the normal implementation this was nanodesk.nl
 define('ROOT', $root);
 
 $env = 'dev'; // PROD | DEV
@@ -11,7 +11,7 @@ define('NP_ENV',$env);
 #  MYSQL DATABASE
 #-------------------------------------------
 
-define('DB_HOST','localhost');
+define('DB_HOST','db');
 define('DB_NAME','nanodesk');
 define('DB_USER','root');
 define('DB_PASSWORD','');
@@ -40,8 +40,8 @@ define('PURL_AIDA', 'http://purl.org/aida/');
 #-------------------------------------------
 
 //Client information
-define('OAUTH_CLIENT_ID', 'APP-DYF2BEWUCJNL1I5A'); //client ID
-define('OAUTH_CLIENT_SECRET', '919a04c1-9210-4cc1-9ca0-270e52c35b3a'); //client secret
+define('OAUTH_CLIENT_ID', ''); //add client ID
+define('OAUTH_CLIENT_SECRET', ''); // add client secret
 define('OAUTH_REDIRECT_URI', ROOT.'/orcidlogin/'); //redirect URI
 
 //Production - Public API

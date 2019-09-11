@@ -1,10 +1,9 @@
 <?php
 /*
-| Dit is de kern van het hele loginsysteem. Hier gebeurt alles.
-| Dit is een enkele klasse die overal voor zorgt.
+| This is the main file for the entire system for logging in.
+| It contains one class that takes care of everything.
 |
-| Eerst een beveiliging (ook gevonden in config.php, zie die file voor
-| verdere uitleg)
+| The security can be found in config.php and also additional explanation
 */
 if(basename($_SERVER['PHP_SELF']) == "header.php")
 {
@@ -12,28 +11,26 @@ if(basename($_SERVER['PHP_SELF']) == "header.php")
 }
 
 /*
-| Het configuratiebestand laden om verbinding te kunnen maken met de database
-| en om wat andere instellingen te kunnen gebruiken die later nodig zijn.
+| Load the configuration file to connect with the database
+| and to get other settings that are needed later in time.
 */
 //include_once("config.inc.php");
 
 /*
-| Nu beginnen we aan de klasse, dit is een simpele klasse die
-| niets meer en niets minder doet dan waarvoor hij gemaakt is:
-| gebruikersauthenticatie.
+| This class takes care of the userauthentication.
 */
 class login
 {
 
 	/*
-	| instellingen voor de login
+	| settings for logging in
 	*/
 	var $show_errors = true;
 
-	//-- naam voor de cookie
+	//-- name of the cookie
 	var $cookiename;
 
-	//-- tijd van de sessie in uren
+	//-- time of the session
 	var $login_session_time = 24;
 
 	//--password ook md5 encripten? Default = true
@@ -55,46 +52,44 @@ class login
 	var $users_table, $logins_table;
 
 	/*
-	| database verbinding variable
+	| database connection variable
 	*/
 	protected $db;
 	protected $verbinding;
 
 	/*
-	| Een variabele om aan te geven of de gberuiker is ingelogd,
-	| wat standaard niet is, dus de waarde 'false' krijgt
+	| The variable for knowing if the user is logged in,
+	| which is standard not the case.
+
 	*/
 	private static $loginsessie = false;
 
 	/*
-	| Een variabele om fouten in op te slaan die het systeem
-	| teruggeeft.
+	| Variables for saving the given errors of the system
 	*/
 	public $fouten = "";
 
 	/*
-	| Een variabele (array) om wat informatie over de gebruikers
-	| in op te slaan.
+	| Variable to save information about the user
 	*/
 	private static $gebruikersinfo = array();
 
 	/*
-	| Een variabele om database velden in op te slaan
+	| Variable to save database fields.
 	*/
 	public $database_velden = array();
 
 	/*
-	| Een variabele die bijhoud hoeveel pogingen een gebruiker al
-	| heeft gemaakt om in te loggen. We beginnen met tellen bij 0
+	| Counter to check how many times an user has tried to login.
 	*/
 	private $recheck = 0;
 
 
 	/*
-	| Deze functie word aangeroepen bij het laden van de klasse.
-	| Hier word de verbinding met de database tot stand gebracht,
-	| gecontroleerd of er al een sessie is, en word er afgewacht
-	| tot de gebruiker wil uitloggen
+	| This function is being called when the class is loaded.
+	| The connection with the database is being initiated,
+	| checked whether there is already a session running and
+	| waiteed for the user to log out.
 	*/
 	public function __construct( $users_table, $logins_table, $var )
 	{
@@ -107,8 +102,7 @@ class login
 		$this->show_errors = true;
 
 		/*
-		| Verbinding maken met de database. De informatie word uit config.php
-		| gehaald om te kunnen verbinden.
+		| Connect with the database, based on the information in config.php
 		*/
 		$this->verbinding = Core::dbConnect();
 
@@ -116,8 +110,8 @@ class login
 		//mysqli_select_db(mysql_database, $verbinding);
 
 		/*
-		| Als er fouten zijn en fouten mogen getoond worden dan
-		| worden ze nu opgeroepen (en later pas weergegeven!)
+		| When there are errors that are allowed to be displayed
+		| they are being called and displayed later.
 		*/
 		if($this->show_errors == true && !$this->verbinding  )
 		{
@@ -125,13 +119,13 @@ class login
 		}
 
 		/*
-		| Controleren op een login sessie!
+		| Check for a login session.
 		*/
 		$this->check_session();
 
 		/*
-		| De logout actie koppelen aan de end_session functie welke mensen
-		| uitlogd.
+		| Connecting the logout action with the end_sessionn function
+		| which logs people out.
 		*/
 		if(isset($_GET['actie']) && $_GET['actie'] == "uitloggen" && self::$loginsessie === true)
 		{
@@ -158,18 +152,18 @@ class login
 	}
 
 	/*
-	| De init functie. Deze zorgt ervoor dat wanneer de gebruiker inlogt of registreert
-	| hij/zij de juiste pagina voor z'n neus krijgt.
+	| The init function, this ensures that when people login or registers themselves,
+	| he/or she gets displayed the right page.
 	*/
 	public function init()
 	{
 		/*
-		| Check of verplichte velden zijn ingevuld
+		| Check of every required field is filled in.
  		*/
 		$this->checkRequiredVariables();
 
 		/*
-		| Iemand heeft ergens een formulier verzonden wat bij dit loginsysteem hoort
+		| Somebody send a form that is part of the loginsystem.
 		*/
 
 		if( ($_SERVER['REQUEST_METHOD'] == "POST" && self::$loginsessie === false) )
@@ -177,14 +171,12 @@ class login
 			//die('going to work...');
 
 			/*
-			| En het 'actie' veld is gezet, tijd voor wat actie.
+			| `The action field is set.
 			*/
 			if( isset($_POST['actie']) )
 			{
 				/*
-				| Om een grote if-else lussen constructie tegen te
-				| gaan doen we het in een switch, dat is makeklijker
-				| uit te breiden.
+				| We are using a switch to emit large if-else clauses.
 				*/
 
 				switch( $_POST['actie'] )
@@ -199,14 +191,14 @@ class login
 	}
 
 	/*
-	| Een functie om het IP-adres van de gebruiker mee te achterhalen
+	| Check the Ip of the user.
 	*/
 	public function get_ip()
 	{
 		/*
-		| Als PHP gebruikt maakt van $_SERVER,
-		| meerdere pogingen doen om het IP te achterhalen
-		| en in $realip weg te schrijven.
+		| When PHP uses $_SERVER,
+		| and does multiple tries to get the ip address
+		| and tries to write it in  $realip .
 		*/
 		if(isset($_SERVER))
 		{
@@ -225,8 +217,7 @@ class login
 		}
 
 		/*
-		| Als PHP geen gebruik maakt van $_SERVER
-		| moeten we wat anders proberen.
+		| When PHP doesnt use $_SERVER
 		*/
 		else
 		{
@@ -245,28 +236,28 @@ class login
 		}
 
 		/*
-		| De variabele realip returnen, zodat we die kunnen gebruiken
+		| Return the variable such that it can be used.
 		*/
 		return $realip;
 	}
 
 
 	/*
-	| Een functie om de gegevens van de gebruikers die in willen loggen te controleren.
+	| a function to check the data of users that want to login.
 	*/
 	//private function controleer_gegevens()
 	public function controleer_gegevens($orcid_id=false)
 	{
 		/*
-		| Het actie veld is gezet en de waarde is ook goed
+		| Set the action field
 		*/
 		if(isset($_POST['actie']) && $_POST['actie'] == "login" || $orcid_id !='' )
 		{
 
 
 			/*
-			| Even de gebruikersnaam en wachtwoord beveiligen
-			| voordat we deze in de database gooien
+			| Secure the username and password before writing it into the databawse.
+	
 			*/
 			#$gebruiker = mysql_real_escape_string($_POST['gebruikersnaam']);
 			#$wachtwoord = mysql_real_escape_string($_POST['wachtwoord']);
@@ -274,8 +265,8 @@ class login
 			$wachtwoord = $_POST[$this->password_postfield];
 
 			/*
-			| Als je in config.php hebt ingesteld dat wachtwoorden
-			| gecodeerd moeten worden moet MD5, dan doen we dat hier
+			| When in config.php is set that passwords need to be checked
+			| then it is done over here.
 			*/
 			if($this->login_password_md5 === true)
 			{
@@ -283,7 +274,7 @@ class login
 			}
 
 			/*
-			| Een query uitvoeren om te kijken of de gebruiker in de database zit
+			| Run a query to check whether the user is in the database
 			*/
 			$query = $this->verbinding->prepare("SELECT * FROM ".$this->users_table." WHERE orcid_id=? LIMIT 1");
 
@@ -295,8 +286,9 @@ class login
 
 
 			/*
-			| Als dat zo is moet de gebruikersinfo array gevuld worden met informatie,
-			| en er moet een sessie gestart worden.
+			| When this is the case the user information array needs to be filled,
+			| and a session needs to be started.
+			
 			*/
 			$row = $query->fetch();
 
@@ -311,14 +303,13 @@ class login
 			}
 
 			/*
-			| De gebruiker zit niet in de database. Fout laten zien dan maar
+			| User is not inside the database display errors.
 			*/
 			else
 			{
 				/*
-				| Als er een MySQL fout is deze tonen (of niet, ligt aan je config.php)
-				| Is dat niet zo, dan is of de gebruikersnaam of het wachtwoord
-				| fout.
+				| When there is a MySQL error then display this,
+				| When there is no such an error then the username and/ or password is wrong.
 				*/
 				if(mysqli_connect_error())
 				{
@@ -333,15 +324,13 @@ class login
 	}
 
 	/*
-	| Een functie om te kijken of de gebruiker al is ingelogd.
+	| Check whether a user is already logged in.
 	*/
 	private function check_session()
 	{
 		/*
-		| kijken of de recheck variabele van daarstraks niet
-		| te groot is geworden.
-		| Is dat wel zo dan een foutmelding laten zien en
-		| 'false' retourneren.
+		| Check whether the $recheck variable hasn't become to large
+		| Otherwise, show an erro and return false.
 		*/
 		if($this->recheck >= 3)
 		{
@@ -350,22 +339,21 @@ class login
 		}
 
 		/*
-		| als de cookie (sid) is gezet en NIET leeg is
-		| even controleren of de sleutel uit de cookie
-		| klopt met die uit de database (als die er
-		| al in staat om mee te beginnen)
+		| When the cookie (sid) is set and is not empty
+		| check if the key of the cookie matches the key
+		| of the database when it is in the database.
 		|
-		| Is dat zo dan word self::$loginsessie waar en
-		| word self::$gebruikersinfo['info'] met de juiste
-		| velden gevuld
+		| Is this the case than will self::$loginsessie and
+		| self::$gebruikersinfo['info'] being filled with the
+		| right data/
 		|
-		| Zo niet, dan word $this->recheck een groter
+		| Otherwise, $this->recheck is becoming bigger.
 		*/
 
 		if(isset($_COOKIE[$this->cookiename]) && !empty($_COOKIE[$this->cookiename]))
 		{
 			/*
-			| De waarde van de Cookie met cookie naam
+			| The value of the cookie with the cookie name
 			*/
 			$sid = $_COOKIE[$this->cookiename];
 
@@ -415,9 +403,8 @@ class login
 	}
 
 	/*
-	| De sessie die hierboven word besproken starten, de correcte informatie
-	| in de database opslaan ,een cookie maken en de gebruiker terugleiden
-	| naar waar hij/zij vandaan kwam.
+	| Start the session mentioned above, save the right information in the database
+	| make a cookie and redirect the user where he or she came from.
 	*/
 	private function start_session()
 	{
@@ -455,9 +442,9 @@ class login
 	}
 
 	/*
-	| Een functie om de sessie die hierboven besproken word te stoppen, en de
-	| informatie uit de database te halen, de cookie te vernietigen en de
-	| gebruiker terug te leiden naar waar hij/zij vandaan kwam.
+	| A function to stop the session mentioned above and delete the information
+	| in the database, destroy the cookie and redirect the user back where
+	| he or she came from.
 	*/
 	private function end_session()
 	{
@@ -483,13 +470,12 @@ class login
 	}
 
 	/*
-	| De functie om gebruikers informatie op te halen en te controleren
-	| of de gebruikers ingelogd is.
+	| Function to get the user information and check whether he/or she is logged in
 	*/
 	public static function get_login_info($wat=false)
 	{
 		/*
-		| Als de gebruikers niet is ingelogd 'false' retourneren.
+		| When not logged in return false
 		*/
 
 
@@ -499,12 +485,12 @@ class login
 		}
 
 		/*
-		| Anders even wat controles uitvoeren wat er moet gebeuren
+		| Otherwise, some checks to know what needs to be done
 		*/
 		else
 		{
 			/*
-			| Alles van de gebruiker laten zien
+			| Show everything of the user
 			*/
 			if($wat == '')
 			{
@@ -512,7 +498,7 @@ class login
 			}
 
 			/*
-			| Een specefiek veld van de gebruiker latgeen zien
+			| Show a specific field of the user.
 			*/
 			elseif(isset(self::$gebruikersinfo['info'][$wat]))
 			{
@@ -520,7 +506,7 @@ class login
 			}
 
 			/*
-			| Anders true retourneren (zie eerste if() lus van deze functie)
+			| Otherwise return true
 			*/
 			else
 			{
@@ -544,8 +530,8 @@ class login
 }
 
 /*
-| Meteen maar een nieuwe instantie van deze klasse maken en meteen de __constructor() functie laden
-| (in dit geval dus login(), de naam word door PHP bepaald aan de hand van de klasse naam)
+| Immediately make a new instance of this class and load thede __constructor() function 
+| (in this case login(), the name is named by php based on the class name
 */
 //users table, logins table, cookie name
 $login = new login('nanousers', 'logins', 'nda');
@@ -558,7 +544,7 @@ $login->password_postfield = 'wachtwoord';
 
 
 /*
-| En de init functie aanaroepen
+| call the init function
 */
 $login->init();
 ?>

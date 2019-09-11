@@ -36,7 +36,7 @@ if($argv[1] == '' || $argv[1] == 'help' || $argv[1] == '--help' )
 // database connection
 // ---
 
-	$host = 'localhost';
+	$host = DB_HOST;
 	$dbname = $argv[1];
 	$dbuser = $argv[2];
 	$dbpass = (@$argv[3] !='' ) ? $argv[3]:'';

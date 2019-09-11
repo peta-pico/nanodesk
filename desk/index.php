@@ -21,7 +21,7 @@ $head = array();
 
 
 //global read page
-$p = $_GET['p'];
+$p = $_GET['page'];
 if($p ==''){
 	$p = 'index';
 }

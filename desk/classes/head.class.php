@@ -7,10 +7,14 @@ function add_files($array = false){
 
 		$return = '';
 
+// This part of the function is commented for now. 
+// Due to the fact that the count will give warnings 
+// and it not necessarry in the current state of the website.
 /*		echo "<pre>";
 			print_r($array);
 		echo "</pre>";
-*/
+
+
 		if(count($array) >= 1)
 		{
 			foreach($array as $key => $value)
@@ -28,6 +32,6 @@ function add_files($array = false){
 				
 			}
 		}
-
+*/
 }
 ?>

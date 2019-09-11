@@ -17,9 +17,9 @@ class Core{
 		}
 		catch (PDOException $e) {
 	   		$sMsg = '<p> 
-	            Regelnummer: '.$e->getLine().'<br /> 
-	            Bestand: '.$e->getFile().'<br /> 
-	            Foutmelding: '.$e->getMessage().' 
+	            Line: '.$e->getLine().'<br /> 
+	            File: '.$e->getFile().'<br /> 
+	            Error Message: '.$e->getMessage().' 
 	        </p>'; 
 	     
 	    	trigger_error($sMsg);
