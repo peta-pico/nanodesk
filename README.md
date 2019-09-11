@@ -9,7 +9,7 @@ The website itself is located in the "desk" directory which is loaded into "/var
 To make nanopublications one needs to login with an ORCID account, otherwise no nanopublications can be made. For more information about ORCID look at https://orcid.org
 
 ### Starting the container
-The container can be started by calling docker-compose up from inside the directory on your system. The homepage of the server can then be found on: localhost:8000/web/index.php
+The container can be started by calling docker-compose up from inside the directory on your system. The homepage of the server can then be found on: "localhost:8000/web/index.php". When using "localhost:8000/web/" the index page should also be loaded automatically.
 
 ### Changes for Docker container
 * $root in the "config.inc.php" is changed from "nanodesk.nl" to "." to be able to run it on a localhost for developement.
