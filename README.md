@@ -14,7 +14,7 @@ The container can be started by calling docker-compose up from inside the direct
 ### Changes for Docker container
 * $root in the "config.inc.php" is changed from "nanodesk.nl" to "." to be able to run it on a localhost for developement.
 * removed the specific ORCID CLIENT_ID and CLIENT_SECRET from "config.inc.php".
-* commented part of a function in "classes/head.class.php" due to the fact that "count()" raises an error and in the current state of the container this is not yet needed.
+* commented part of a function in "classes/head.class.php" due to the fact that "count()" raises an error and in the current state of the container this code is not yet needed.
 * .htaccess is currently not included in the container due to the fact that this will cause an internal server error.
 
 ### Current problems
